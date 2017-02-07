@@ -45,7 +45,8 @@ $l['no_last_posts'] = 'There were some errors while retrieving the last posts in
 $l['replying_in'] = 'Replying in ';//For the 'You are here'
 
 $l['no_security_code'] = 'The Topic Post Code was not posted or is in wrong format.';//A code to avoid refresh
-$l['wrong_security_code'] = 'The Security Confirmation Code does not match.';
+$l['wrong_security_code'] = 'Oops...the Security Confirmation Code did not match! You might have double clicked or refreshed the page.';
+$l['last_post_time'] = 'There has to be an interval of '.$globals['timepostfromuser'].' seconds between posts!';
 
 //For guest posters some specific errors
 $l['guest_no_name'] = 'You did not enter your name.';

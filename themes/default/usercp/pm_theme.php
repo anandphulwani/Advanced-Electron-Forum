@@ -2,11 +2,11 @@
 
 function inbox_theme(){
 
-global $user, $logged_in, $globals, $theme;
+global $l, $user, $logged_in, $globals, $theme;
 global $inbox, $foldercount;
 
 	//The global User CP Headers
-	usercphead('Inbox');
+	usercphead($l['pm_inbox']);
 	?>
 	<script type="text/javascript">
 	function gotopage(val){
@@ -39,7 +39,7 @@ global $inbox, $foldercount;
 	<td>
 	<table width="100%" cellpadding="0" cellspacing="0"><tr>
 	<td class="ucpcbgl"></td>
-	<td class="ucpcbg">Inbox</td>
+	<td class="ucpcbg">'.$l['pm_inbox'].'</td>
 	<td class="ucpcbgr"></td>		
 	</tr>
 	</table>
@@ -60,13 +60,13 @@ global $inbox, $foldercount;
 	<input type=checkbox onClick="check(document.getElementsByName(\'list[]\'), this)" value="0">
 	</td>
 	<td class="ucpcbg1" align="left" width="20%">
-	Sender
+	'.$l['pm_sender'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="37%">
-	Subject
+	'.$l['pm_subject'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="33%">
-	Date
+	'.$l['pm_date'].'
 	</td>
 	</tr>';
 	
@@ -94,14 +94,14 @@ global $inbox, $foldercount;
 		
 		echo '<tr>
 			<td class="pmfwbg" align="left" colspan="5">
-			<input type="submit" name="deleteselinbox" value="Delete Selected">
+			<input type="submit" name="deleteselinbox" value="'.$l['pm_delete_sel'].'">
 			</td>
 			</tr>';
 	
 	}else{
 	
 		echo '<td class="pmfwbg" align="center" colspan="5">
-			There are no messages in your inbox folder.
+			'.$l['pm_no_messages_inbox'].'
 			</td>';
 		
 	}
@@ -139,11 +139,11 @@ global $inbox, $foldercount;
 
 function sentitems_theme(){
 
-global $user, $logged_in, $globals, $theme;
+global $user, $logged_in, $globals, $l, $theme;
 global $sentitems, $foldercount;
 
 	//The global User CP Headers
-	usercphead('Sent Items');
+	usercphead($l['pm_sent_items']);
 	?>
 	<script type="text/javascript">
 	function gotopage(val){
@@ -176,7 +176,7 @@ global $sentitems, $foldercount;
 	<td>
 	<table width="100%" cellpadding="0" cellspacing="0"><tr>
 	<td class="ucpcbgl"></td>
-	<td class="ucpcbg">Sent Items</td>
+	<td class="ucpcbg">'.$l['pm_sent_items'].'</td>
 	<td class="ucpcbgr"></td>		
 	</tr>
 	</table>
@@ -196,13 +196,13 @@ global $sentitems, $foldercount;
 	<input type=checkbox onClick="check(document.getElementsByName(\'list[]\'), this)" value="0">
 	</td>
 	<td class="ucpcbg1" align="left" width="20%">
-	Sent To
+	'.$l['pm_sent_to'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="37%">
-	Subject
+	'.$l['pm_subject'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="33%">
-	Date
+	'.$l['pm_date'].'
 	</td>
 	</tr>';
 	
@@ -230,14 +230,14 @@ global $sentitems, $foldercount;
 		
 		echo '<tr>
 			<td class="pmfwbg" align="left" colspan="5">
-			<input type="submit" name="deleteselsent" value="Delete Selected">
+			<input type="submit" name="deleteselsent" value="'.$l['pm_delete_sel'].'">
 			</td>
 			</tr>';
 	
 	}else{
 	
 		echo '<td class="pmfwbg" align="center" colspan="5">
-			There are no messages
+			'.$l['pm_no_messages'].'
 			</td>';
 		
 	}
@@ -276,11 +276,11 @@ global $sentitems, $foldercount;
 
 function drafts_theme(){
 
-global $user, $logged_in, $globals, $theme;
+global $user, $logged_in, $globals, $l, $theme;
 global $drafts, $foldercount;
 
 	//The global User CP Headers
-	usercphead('Drafts');
+	usercphead($l['pm_drafts']);
 	?>
 	<script type="text/javascript">
 	function gotopage(val){
@@ -313,7 +313,7 @@ global $drafts, $foldercount;
 	<td>
 	<table width="100%" cellpadding="0" cellspacing="0"><tr>
 	<td class="ucpcbgl"></td>
-	<td class="ucpcbg">Drafts</td>
+	<td class="ucpcbg">'.$l['pm_drafts'].'</td>
 	<td class="ucpcbgr"></td>		
 	</tr>
 	</table>
@@ -335,13 +335,13 @@ global $drafts, $foldercount;
 
 	</td>
 	<td class="ucpcbg1" align="left" width="20%">
-	Sending To
+	'.$l['pm_sending_to'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="37%">
-	Subject
+	'.$l['pm_subject'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="33%">
-	Saved Date
+	'.$l['pm_saved_date'].'
 	</td>
 	</tr>';
 	
@@ -382,14 +382,14 @@ global $drafts, $foldercount;
 		
 		echo '<tr>
 			<td class="pmfwbg" align="left" colspan="5">
-			<input type="submit" name="deleteseldrafts" value="Delete Selected">
+			<input type="submit" name="deleteseldrafts" value="'.$l['pm_delete_sel'].'">
 			</td>
 			</tr>';
 	
 	}else{
 	
 		echo '<td class="pmfwbg" align="center" colspan="5">
-			There are no messages
+			'.$l['pm_no_messages'].'
 			</td>';
 		
 	}
@@ -432,10 +432,10 @@ global $drafts, $foldercount;
 //////////////////////////////////////
 function writepm_theme(){
 
-global $theme, $globals, $logged_in, $postcodefield, $error, $user, $smileys, $smileycode, $smileyimages, $reply, $pmto, $dmenus;
+global $theme, $globals, $l, $logged_in, $postcodefield, $error, $user, $smileys, $smileycode, $smileyimages, $reply, $pmto, $dmenus;
 
 	//The global User CP Headers
-	usercphead('Write a PM');
+	usercphead($l['pm_write_pm']);
 
 	error_handle($error, '90%');
 
@@ -471,7 +471,7 @@ function init_editor(){
 	<td>
 	<table width="100%" cellpadding="0" cellspacing="0"><tr>
 	<td class="ucpcbgl"></td>
-	<td class="ucpcbg">Send New Personal Message</td>
+	<td class="ucpcbg"><?php echo $l['pm_send_new'];?></td>
 	<td class="ucpcbgr"></td>		
 	</tr>
 	</table>
@@ -490,7 +490,7 @@ function init_editor(){
 	</tr>
     
 	<tr>
-	<td width="18%" class="ucplc">Recipients</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_recipients'];?></td>
 	<td class="ucprc"><input type="text" size="45" maxlength="50" id="pmrecipients" name="pmrecipients"  value="<?php
 	if(!empty($_POST['pmrecipients'])){
 		echo $_POST['pmrecipients'];
@@ -503,12 +503,12 @@ function init_editor(){
 	</tr>
 	
 	<tr>
-	<td width="18%" class="ucplc">Subject</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_subject'];?></td>
 	<td class="ucprc"><input type="text" size="45" maxlength="50" name="pmsubject" value="<?php echo (empty($_POST['pmsubject']) ? (empty($reply['pm_subject']) ? '' : $reply['pm_subject']) : $_POST['pmsubject']);?>" /></td>
 	</tr>
 	
 	<tr>
-	<td width="18%" class="ucplc">Formatting</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_formatting'];?></td>
 	<td class="ucprc">
 	<?php editor_buttons('editor');?>
 	</td>
@@ -517,14 +517,14 @@ function init_editor(){
 	<?php editor_smileys('editor', $globals['pmusesmileys']);?>
 	
 	<tr>
-	<td width="18%" class="ucplc">Message</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_message'];?></td>
 	<td class="ucprc"><textarea name="pmbody" rows="13" cols="65" id="pmbody" onchange="storeCaret(this);" onkeyup="storeCaret(this);" onclick="storeCaret(this);" onselect="storeCaret(this);" /><?php echo (empty($_POST['pmbody']) ? (empty($reply['pm_body']) ? '' : '[quote]'.$reply['pm_body'].'[/quote]') : $_POST['pmbody']);?></textarea>
 	<?php echo $postcodefield;/*The most important thing*/?>
 	</td>
 	</tr>
 	
 	<tr>
-	<td width="18%" class="ucplc">Options</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_options'];?></td>
 	<td class="ucprc">
 		<table cellpadding="1" cellspacing="1">
 		
@@ -533,7 +533,7 @@ function init_editor(){
 		<input type="checkbox" name="trackpm" />
 		</td>
 		<td>
-		<b>Track</b> this Message</td>
+		<?php echo $l['pm_track_this'];?></td>
 		</tr>
 		
 		<tr>
@@ -541,7 +541,7 @@ function init_editor(){
 		<input type="checkbox" name="pmsaveinsentitems" <?php echo (($globals['pmsaveinsentitems']) ? 'checked="checked"' : '') ;?> />
 		</td>
 		<td>
-		<b>Save</b> a copy in 'Sent Items' Folder</td>
+		<?php echo $l['pm_save'];?></td>
 		</tr>
 		
 		</table>
@@ -551,8 +551,8 @@ function init_editor(){
 	
 	<tr>
 	<td colspan="2" class="ucprc" style="text-align:center">
-	<input type="submit" name="sendpm" value="Send PM"/>
-	<input type="submit" name="savepm" value="Save and Send Later"/>
+	<input type="submit" name="sendpm" value="<?php echo $l['pm_send_pm'];?>"/>
+	<input type="submit" name="savepm" value="<?php echo $l['pm_save_send'];?>"/>
 	</td>
 	</tr>
 
@@ -580,7 +580,7 @@ function init_editor(){
 
 function searchpm_theme(){
 
-global $theme, $user, $globals, $error, $themes, $pms;
+global $theme, $user, $globals, $l, $error, $themes, $pms;
 
 	//The global User CP Headers
 	usercphead();
@@ -598,7 +598,7 @@ global $theme, $user, $globals, $error, $themes, $pms;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Search PM Options</td>
+<td class="ucpcbg"><?php echo $l['pm_save_send'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -617,44 +617,44 @@ global $theme, $user, $globals, $error, $themes, $pms;
 	</tr>
 	
 	<tr>
-	<td width="30%" class="ucpflc" align="right"><b>Search : </b></td>
+	<td width="30%" class="ucpflc" align="right"><b><?php echo $l['pm_search_pm'];?></b></td>
 	<td class="ucpflc">
 	<select name="folder">
-	<option value="0">Inbox</option>
-	<option value="1">Sent Items</option>
-	<option value="2">Drafts</option>
+	<option value="0"><?php echo $l['pm_inbox'];?></option>
+	<option value="1"><?php echo $l['pm_sent_items'];?></option>
+	<option value="2"><?php echo $l['pm_drafts'];?></option>
 	</select>
 	</td> 
 	</tr>
 	
 	<tr>
-	<td width="30%" class="ucpflc" align="right"><b>From : </b></td>
+	<td width="30%" class="ucpflc" align="right"><?php echo $l['pm_from'];?></td>
 	<td class="ucpflc"><input type="text" name="from" <?php echo 'value="'.((isset($_POST['from'])) ? $_POST['from'] : '').'"';?> size="40" /></td> 
 	</tr>
 	
 	<tr>
-	<td class="ucpflc" align="right"><b>To : </b></td>
+	<td class="ucpflc" align="right"><?php echo $l['pm_to'];?></td>
 	<td class="ucpflc"><input type="text" name="to" <?php echo 'value="'.((isset($_POST['to'])) ? $_POST['to'] : '').'"';?> size="40" /></td> 
 	</tr>
 	
 	<tr>
-	<td class="ucpflc" align="right"><b>Subject : </b></td>
+	<td class="ucpflc" align="right"><?php echo $l['pm_subj'];?></td>
 	<td class="ucpflc"><input type="text" name="subject" <?php echo 'value="'.((isset($_POST['subject'])) ? $_POST['subject'] : '').'"';?> size="40" /></td> 
 	</tr>
 	
 	<tr>
-	<td class="ucpflc" align="right"><b>Has the words : </b></td>
+	<td class="ucpflc" align="right"><?php echo $l['pm_has_words'];?></td>
 	<td class="ucpflc"><input type="text" name="hasthewords" <?php echo 'value="'.((isset($_POST['hasthewords'])) ? $_POST['hasthewords'] : '').'"';?> size="40" /></td> 
 	</tr>
 	
 	<tr>
-	<td class="ucpflc" align="right"><b>Doesn't have : </b></td>
+	<td class="ucpflc" align="right"><?php echo $l['pm_doesnt_have'];?></td>
 	<td class="ucpflc"><input type="text" name="doesnthave" <?php echo 'value="'.((isset($_POST['doesnthave'])) ? $_POST['doesnthave'] : '').'"';?> size="40" /></td> 
 	</tr>
 		
 	<tr>
 	<td class="ucpflc" colspan="5" align="center">
-	<input type="submit" name="searchpm" value="Search" />
+	<input type="submit" name="searchpm" value="<?php echo $l['pm_search'];?>" />
 	</td>
 	</tr>
 	
@@ -678,7 +678,7 @@ global $theme, $user, $globals, $error, $themes, $pms;
 	
 	}else{
 	
-	echo '<b>Search Results : </b><br />';
+	echo $l['pm_search_results'];
 	
 	foreach($pms as $p => $pm){
 		
@@ -720,9 +720,9 @@ global $theme, $user, $globals, $error, $themes, $pms;
 	<td class="pmdate" width="80%">	
 	<div style="float:right">
 	'.((!$pm['pm_folder']) ? '<a href="'.$globals['index_url'].'act=usercp&ucpact=writepm&reply='.$pm['pmid'].'">
-	Reply</a> | ' : '').'
+	'.$l['pm_reply'].'</a> | ' : '').'
 	<a href="'.$globals['index_url'].'act=usercp&ucpact=delpm&pm='.$pm['pmid'].'&folder='.$pm['pm_folder'].'">
-	Delete
+	'.$l['pm_delete'].'
 	</a>
 	</div>
 	<img src="'.$theme['images'].'postedon.png">&nbsp;'.$pm['pm_time'].'	
@@ -763,10 +763,10 @@ global $theme, $user, $globals, $error, $themes, $pms;
 //////////////////////////////////////
 function sendsaved_theme(){
 
-global $theme, $postcodefield, $error, $user, $smileys, $smileycode, $smileyimages, $emoticons, $popup_emoticons, $globals, $draft, $dmenus;
+global $theme, $l, $postcodefield, $error, $user, $smileys, $smileycode, $smileyimages, $emoticons, $popup_emoticons, $globals, $draft, $dmenus;
 
 	//The global User CP Headers
-	usercphead('Drafts');
+	usercphead($l['pm_drafts']);
 
 	error_handle($error, '90%');
 	
@@ -803,7 +803,7 @@ function init_editor(){
 	<td>
 	<table width="100%" cellpadding="0" cellspacing="0"><tr>
 	<td class="ucpcbgl"></td>
-	<td class="ucpcbg">Drafts</td>
+	<td class="ucpcbg"><?php echo $l['pm_drafts'];?></td>
 	<td class="ucpcbgr"></td>		
 	</tr>
 	</table>
@@ -822,18 +822,18 @@ function init_editor(){
 	</tr>
     
 	<tr>
-	<td width="18%" class="ucplc">Recipients</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_recipients'];?></td>
 	<td class="ucprc"><input type="text" size="45" maxlength="50" name="pmrecipients" <?php echo 'value="'.((isset($_POST['pmrecipients'])) ? $_POST['pmrecipients'] : $draft['rec_usernames']).'"';?> onkeyup="handlesuggest(event, 'pmrecipients')" onkeydown="handlekeys(event)" autocomplete=off  onblur="setTimeout(hidesuggest, 1000);" suggesturl="<?php echo $globals['index_url'];?>act=suggest" id="pmrecipients" />
 	</td>
 	</tr>
 	
 	<tr>
-	<td width="18%" class="ucplc">Subject</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_subject'];?></td>
 	<td class="ucprc"><input type="text" size="45" maxlength="50" name="pmsubject" <?php echo 'value="'.((isset($_POST['pmsubject'])) ? $_POST['pmsubject'] : $draft['pm_subject']).'"';?> /></td>
 	</tr>
 	
 	<tr>
-	<td width="18%" class="ucplc">Formatting</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_formatting'];?></td>
 	<td class="ucprc">
 	<?php editor_buttons('editor');?>
 	</td>
@@ -842,14 +842,14 @@ function init_editor(){
 	<?php editor_smileys('editor', $globals['pmusesmileys']);?>
 	
 	<tr>
-	<td width="18%" class="ucplc">Message</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_message'];?></td>
 	<td class="ucprc"><textarea name="pmbody" rows="13" cols="65" id="pmbody" onchange="storeCaret(this);" onkeyup="storeCaret(this);" onclick="storeCaret(this);" onselect="storeCaret(this);" /><?php echo (empty($_POST['pmbody']) ? (empty($draft['pm_body']) ? '' : $draft['pm_body']) : $_POST['pmbody']);?></textarea>
 	<?php echo $postcodefield;/*The most important thing*/?>
 	</td>
 	</tr>
 	
 	<tr>
-	<td width="18%" class="ucplc">Options</td>
+	<td width="18%" class="ucplc"><?php echo $l['pm_options'];?></td>
 	<td class="ucprc">
 		<table cellpadding="1" cellspacing="1">
 		
@@ -858,7 +858,7 @@ function init_editor(){
 		<input type="checkbox" name="trackpm" />
 		</td>
 		<td>
-		<b>Track</b> this Message</td>
+		<?php echo $l['pm_track_this'];?></td>
 		</tr>
 		
 		<tr>
@@ -866,7 +866,7 @@ function init_editor(){
 		<input type="checkbox" name="pmsaveinsentitems" <?php echo (($globals['pmsaveinsentitems']) ? 'checked="checked"' : '') ;?> />
 		</td>
 		<td>
-		<b>Save</b> a copy in 'Sent Items' Folder</td>
+		<?php echo $l['pm_save'];?></td>
 		</tr>
 		
 		</table>
@@ -876,8 +876,8 @@ function init_editor(){
 	
 	<tr>
 	<td colspan="2" class="ucprc" style="text-align:center">
-	<input type="submit" name="sendpm" value="Send PM"/>
-	<input type="submit" name="savepm" value="Save and Send Later"/>
+	<input type="submit" name="sendpm" value="<?php echo $l['pm_send_pm'];?>"/>
+	<input type="submit" name="savepm" value="<?php echo $l['pm_save_send'];?>"/>
 	</td>
 	</tr>
 
@@ -904,10 +904,10 @@ function init_editor(){
 
 function trackpm_theme(){
 
-global $theme, $user, $globals, $read, $unread;
+global $theme, $user, $globals, $l, $read, $unread;
 
 	//The global User CP Headers
-	usercphead('Track Messages');
+	usercphead($l['pm_track_mess']);
 	
 	
 	/* Show the Read Ones first */
@@ -919,7 +919,7 @@ global $theme, $user, $globals, $read, $unread;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Read PM</td>
+<td class="ucpcbg">'.$l['pm_read_pm'].'</td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -938,13 +938,13 @@ global $theme, $user, $globals, $read, $unread;
 	<input type=checkbox onClick="check(document.getElementsByName(\'list[]\'), this)" value="0">
 	</td>
 	<td class="ucpcbg1" align="left" width="20%">
-	Sent To
+	'.$l['pm_sent_to'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="37%">
-	Subject
+	'.$l['pm_subject'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="33%">
-	Read Date
+	'.$l['pm_read_date'].'
 	</td>
 	</tr>';
 	
@@ -976,7 +976,7 @@ global $theme, $user, $globals, $read, $unread;
 		
 		echo '<tr>
 			<td class="pmfwbg" align="left" colspan="5">
-			<input type="submit" name="stoptrackread" value="Stop Tracking">
+			<input type="submit" name="stoptrackread" value="'.$l['pm_stop_tracking'].'">
 			</td>
 			</tr>';
 		
@@ -984,7 +984,7 @@ global $theme, $user, $globals, $read, $unread;
 	}else{
 	
 		echo '<td class="pmfwbg" align="center" colspan="5">
-			There are no messages
+			'.$l['pm_no_messages'].'
 			</td>';
 		
 	}
@@ -1016,7 +1016,7 @@ global $theme, $user, $globals, $read, $unread;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Unread PM</td>
+<td class="ucpcbg">'.$l['pm_unread_pm'].'</td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -1035,13 +1035,13 @@ global $theme, $user, $globals, $read, $unread;
 	<input type=checkbox onClick="check(document.getElementsByName(\'listu[]\'), this)" value="0">
 	</td>
 	<td class="ucpcbg1" align="left" width="20%">
-	Sent To
+	'.$l['pm_sent_to'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="37%">
-	Subject
+	'.$l['pm_subject'].'
 	</td>
 	<td class="ucpcbg1" align="left" width="33%">
-	Date Sent
+	'.$l['pm_date_sent'].'
 	</td>
 	</tr>';
 	
@@ -1073,7 +1073,7 @@ global $theme, $user, $globals, $read, $unread;
 		
 		echo '<tr>
 			<td class="pmfwbg" align="left" colspan="5">
-			<input type="submit" name="stoptrackunread" value="Stop Tracking">
+			<input type="submit" name="stoptrackunread" value="'.$l['pm_stop_tracking'].'">
 			</td>
 			</tr>';
 		
@@ -1081,7 +1081,7 @@ global $theme, $user, $globals, $read, $unread;
 	}else{
 	
 		echo '<td class="pmfwbg" align="center" colspan="5">
-			There are no messages
+			'.$l['pm_no_messages'].'
 			</td>';
 		
 	}
@@ -1110,7 +1110,7 @@ global $theme, $user, $globals, $read, $unread;
 
 function showpm_theme(){
 
-global $user, $logged_in, $globals, $AEF_SESS, $theme;
+global $user, $logged_in, $globals, $l, $AEF_SESS, $theme;
 global $pm;
 
 
@@ -1144,9 +1144,9 @@ global $pm;
 	<td class="pmdate" width="80%">	
 	<div style="float:right">
 	'.((!$pm['pm_folder']) ? '<a href="'.$globals['index_url'].'act=usercp&ucpact=writepm&reply='.$pm['pmid'].'">
-	Reply</a> | ' : '').'
+	'.$l['pm_reply'].'</a> | ' : '').'
 	<a href="'.$globals['index_url'].'act=usercp&ucpact=delpm&pm='.$pm['pmid'].'&folder='.$pm['pm_folder'].'">
-	Delete
+	'.$l['pm_delete'].'
 	</a>
 	</div>
 	<img src="'.$theme['images'].'postedon.png">&nbsp;'.$pm['pm_time'].'
@@ -1166,7 +1166,7 @@ global $pm;
 		
 	}
 	
-	echo '<div class="pisub">Group: '.$pm['mem_gr_name'].'<br />';
+	echo '<div class="pisub">'.$l['pm_group'].' '.$pm['mem_gr_name'].'<br />';
 	
 	//If the user group has some images as per Group
 	if($pm['image_count']){
@@ -1180,9 +1180,9 @@ global $pm;
 	}
 	
 	echo '
-	'.(!empty($pm['post_gr_name']) ? '<div class="pisub">Post Group: '.$pm['post_gr_name'].'</div>':'').'
-	'.(!empty($pm['posts']) ? '<div class="pisub">Posts: '.$pm['posts'].'</div>':'').'	
-	<div class="pisub">Status: '.($pm['status'] ? '<img src="'.$theme['images'].'online.png" title="Online" />' : '<img src="'.$theme['images'].'offline.png" title="Offline" />').'</div>
+	'.(!empty($pm['post_gr_name']) ? '<div class="pisub">'.$l['pm_post_group'].' '.$pm['post_gr_name'].'</div>':'').'
+	'.(!empty($pm['posts']) ? '<div class="pisub">'.$l['pm_posts'].' '.$pm['posts'].'</div>':'').'	
+	<div class="pisub">'.$l['pm_status'].' '.($pm['status'] ? '<img src="'.$theme['images'].'online.png" title="'.$l['pm_online'].'" />' : '<img src="'.$theme['images'].'offline.png" title="'.$l['pm_offline'].'" />').'</div>
 	'.( (empty($pm['users_text'])) ? '' : '<br />'.$pm['users_text'] ).'
 	</td>
 	<td class="pm" align="left" valign="top">
@@ -1202,19 +1202,19 @@ global $pm;
 	&nbsp;
 	</td>
 	<td class="specialrow">
-	<a href="'.$globals['index_url'].'mid='.$pm['id'].'"><img src="'.$theme['images'].'profile.gif" title="View the profile of '.$pm['sender'].'" /></a>
+	<a href="'.$globals['index_url'].'mid='.$pm['id'].'"><img src="'.$theme['images'].'profile.gif" title="'.$l['pm_view_profile'].' '.$pm['sender'].'" /></a>
 	
-	'.(!empty($pm['email']) ? '<a href="mailto:'.$pm['email'].'"><img src="'.$theme['images'].'email.gif" title="Send a email '.$pm['sender'].'" /></a>' : '').'
+	'.(!empty($pm['email']) ? '<a href="mailto:'.$pm['email'].'"><img src="'.$theme['images'].'email.gif" title="'.$l['pm_send_email'].' '.$pm['sender'].'" /></a>' : '').'
 	
-	'.($logged_in ? '<a href="'.$globals['index_url'].'act=usercp&ucpact=writepm&to='.$pm['id'].'"><img src="'.$theme['images'].'pmuser.gif" title="Send a PM '.$pm['sender'].'" /></a>' : '').'
+	'.($logged_in ? '<a href="'.$globals['index_url'].'act=usercp&ucpact=writepm&to='.$pm['id'].'"><img src="'.$theme['images'].'pmuser.gif" title="'.$l['pm_send_a_pm'].' '.$pm['sender'].'" /></a>' : '').'
 	
-	'.(!empty($pm['www']) ? '<a href="'.$pm['www'].'" target="_blank"><img src="'.$theme['images'].'www.gif" title="Visit the website of '.$pm['sender'].'" /></a>' : '').'
+	'.(!empty($pm['www']) ? '<a href="'.$pm['www'].'" target="_blank"><img src="'.$theme['images'].'www.gif" title="'.$l['pm_visit_website'].' '.$pm['sender'].'" /></a>' : '').'
 	
-	'.(!empty($pm['msn']) ? '<a href="http://members.msn.com/'.$pm['msn'].'" target="_blank"><img src="'.$theme['images'].'msn.gif" title="View the MSN profile of '.$pm['sender'].'" /></a>' : '').'
+	'.(!empty($pm['msn']) ? '<a href="http://members.msn.com/'.$pm['msn'].'" target="_blank"><img src="'.$theme['images'].'msn.gif" title="'.$l['pm_view_msn_profile'].' '.$pm['sender'].'" /></a>' : '').'
 	
-	'.(!empty($pm['aim']) ? '<a href="aim:goim?screenname='.$pm['aim'].'&message=Hello+From+'.$globals['sn'].'" target="_blank"><img src="'.$theme['images'].'aim.gif" title="The AIM username of '.$pm['sender'].' is '.$pm['aim'].'" /></a>' : '').'
+	'.(!empty($pm['aim']) ? '<a href="aim:goim?screenname='.$pm['aim'].'&message=Hello+From+'.$globals['sn'].'" target="_blank"><img src="'.$theme['images'].'aim.gif" title="'.$l['pm_aim_sername'].' '.$pm['sender'].' '.$l['pm_identity_is'].' '.$pm['aim'].'" /></a>' : '').'
 	
-	'.(!empty($pm['yim']) ? '<a href="http://edit.yahoo.com/config/send_webmesg?.target='.$pm['yim'].'&.src=pg" target="_blank"><img src="'.$theme['images'].'yim.gif" title="The YIM identity of '.$pm['sender'].' is '.$pm['yim'].'" /></a>' : '').'
+	'.(!empty($pm['yim']) ? '<a href="http://edit.yahoo.com/config/send_webmesg?.target='.$pm['yim'].'&.src=pg" target="_blank"><img src="'.$theme['images'].'yim.gif" title="'.$l['pm_yim_identity'].' '.$pm['sender'].' '.$l['pm_identity_is'].' '.$pm['yim'].'" /></a>' : '').'
 	
 	</td>
 	</tr>';
@@ -1240,7 +1240,7 @@ global $pm;
 
 function prunepm_theme(){
 
-global $theme, $user, $globals, $error, $foldercount;
+global $theme, $user, $globals, $l, $error, $foldercount;
 
 	//The global User CP Headers
 	usercphead();
@@ -1257,7 +1257,7 @@ global $theme, $user, $globals, $error, $foldercount;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Prune Personal Messages</td>
+<td class="ucpcbg"><?php echo $l['pm_prune_pm'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -1276,28 +1276,28 @@ global $theme, $user, $globals, $error, $foldercount;
 	</tr>
 	
 	<tr>
-	<td width="25%" class="ucpfrc"><b>Select Folder</b><br />
-	<font class="ucpfexp">Select the folder you want to Prune the Messages of.</font></td>
+	<td width="25%" class="ucpfrc"><?php echo $l['pm_select_folder'];?><br />
+	<font class="ucpfexp"><?php echo $l['pm_select_folder_exp'];?></font></td>
 	<td class="ucpflc">
 	<select name="prunefolder">
-	<option value="0">Inbox(<?php echo $foldercount[0];?>)</option>
-	<option value="1">Sent Items(<?php echo $foldercount[1];?>)</option>
-	<option value="2">Drafts(<?php echo $foldercount[2];?>)</option>
-	<option value="3">All Folders(<?php echo $user['pm'];?>)</option>
+	<option value="0"><?php echo $l['pm_inbox'];?>(<?php echo $foldercount[0];?>)</option>
+	<option value="1"><?php echo $l['pm_sent_items'];?>(<?php echo $foldercount[1];?>)</option>
+	<option value="2"><?php echo $l['pm_drafts'];?>(<?php echo $foldercount[2];?>)</option>
+	<option value="3"><?php echo $l['pm_all_folders'];?>(<?php echo $user['pm'];?>)</option>
 	</select>
 	</td>
 	</tr>
 	
 	<tr>
-	<td width="25%" class="ucpfrc"><b>Older Than</b><br />
-	<font class="ucpfexp">Specify the Number of Days from today to Delete Messages Older than that.
+	<td width="25%" class="ucpfrc"><b><?php echo $l['pm_older_than'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['pm_older_than_exp'];?>
 	</font></td>
-	<td class="ucpflc"><input type="text" size="10" maxlength="50" name="prunedays" /> Days</td>
+	<td class="ucpflc"><input type="text" size="10" maxlength="50" name="prunedays" /> <?php echo $l['pm_prune_days'];?></td>
 	</tr>
 	
 	<tr>
 	<td class="ucpflc" colspan="2" align="center">
-	<input type="submit" name="prunesubmit" value="Prune" />
+	<input type="submit" name="prunesubmit" value="<?php echo $l['pm_prune'];?>" />
 	</td>
 	</tr>
 	
@@ -1325,7 +1325,7 @@ global $theme, $user, $globals, $error, $foldercount;
 
 function emptyfolders_theme(){
 
-global $theme, $user, $globals, $error, $foldercount;
+global $theme, $user, $globals, $l, $error, $foldercount;
 
 	//The global User CP Headers
 	usercphead();
@@ -1341,7 +1341,7 @@ global $theme, $user, $globals, $error, $foldercount;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Empty Folder</td>
+<td class="ucpcbg"><?php echo $l['pm_empty_folder'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -1364,10 +1364,10 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	</td>
 	<td class="ucpcbg1" align="left">
-	Folder Name
+	<?php echo $l['pm_folder_name'];?>
 	</td>
 	<td class="ucpcbg1" align="left">
-	Number of PM's
+	<?php echo $l['pm_number_pm'];?>
 	</td>
 	</tr>
 	
@@ -1376,7 +1376,7 @@ global $theme, $user, $globals, $error, $foldercount;
 	<input type="checkbox" name="emptyinbox" />
 	</td>
 	<td class="ucpflc" align="center">
-	<b>Inbox</b>
+	<b><?php echo $l['pm_inbox'];?></b>
 	</td>
 	<td class="ucpflc" align="center">
 	<b><?php echo $foldercount[0];?></b>
@@ -1388,7 +1388,7 @@ global $theme, $user, $globals, $error, $foldercount;
 	<input type="checkbox" name="emptysentitems" />
 	</td>
 	<td class="ucpflc" align="center">
-	<b>Sent Items</b>
+	<b><?php echo $l['pm_sent_items'];?></b>
 	</td>
 	<td class="ucpflc" align="center">
 	<b><?php echo $foldercount[1];?></b>
@@ -1400,7 +1400,7 @@ global $theme, $user, $globals, $error, $foldercount;
 	<input type="checkbox" name="emptydrafts" />
 	</td>
 	<td class="ucpflc" align="center">
-	<b>Drafts</b>
+	<b><?php echo $l['pm_drafts'];?></b>
 	</td>
 	<td class="ucpflc" align="center">
 	<b><?php echo $foldercount[2];?></b>
@@ -1409,7 +1409,7 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" colspan="3" align="center">
-	<input type="submit" name="emptyfoldersubmit" value="Empty Selected" />
+	<input type="submit" name="emptyfoldersubmit" value="<?php echo $l['pm_empty_selected'];?>" />
 	</td>
 	</tr>
 	

@@ -31,6 +31,11 @@ function usergroups(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/usergroups')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/usergroups';
 	
@@ -93,7 +98,7 @@ global $user_group, $post_group;
 	if(!membergroups()){
 	
 		//Show a major error and return
-		reporterror('No User Groups' ,'No User Groups were found in the system.');
+		reporterror($l['ugr_no_ugroups'], $l['ugr_no_ugroups_found']);
 			
 		return false;
 	
@@ -344,7 +349,7 @@ global $error, $user_group;
 		//Check the name
 		if(!(isset($_POST['mem_gr_name'])) || (trim($_POST['mem_gr_name']) == "")){
 			
-			$error[] = 'The user group name was not specified.';
+			$error[] = $l['ugr_no_ugroup_name'];
 			
 		}else{
 		
@@ -369,7 +374,7 @@ global $error, $user_group;
 		//Check the image file
 		if(!(isset($_POST['image_name'])) || (trim($_POST['image_name']) == "")){
 			
-			$error[] = 'The user group image was not specified.';
+			$error[] = $l['ugr_no_ugroup_image'];
 			
 		}else{
 		
@@ -387,7 +392,7 @@ global $error, $user_group;
 		//Check the image count
 		if(!(isset($_POST['image_count'])) || (trim($_POST['image_count']) == "")){
 			
-			$error[] = 'The user group star count was not specified.';
+			$error[] = $l['ugr_no_ugroup_star'];
 			
 		}else{
 		
@@ -411,7 +416,7 @@ global $error, $user_group;
 				//Check the post count
 				if(!(isset($_POST['post_count'])) || (trim($_POST['post_count']) == "") || (trim($_POST['post_count']) == -1) ){
 					
-					$error[] = 'The user group post count was not specified.';
+					$error[] = $l['ugr_no_ugroup_post'];
 					
 				}else{
 				
@@ -528,7 +533,7 @@ global $error, $user_group;
 				if( empty($member_group_id) ){
 								
 					//Show a major error and return
-					reporterror('Permissions' ,'There were some errors while inserting the Permission Mask.');
+					reporterror($l['ugr_error'], $l['ugr_errors_inserting_perms']);
 						
 					return false;
 				
@@ -641,7 +646,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	}else{
 	
 		//Show a major error and return
-		reporterror('Error' ,'You cannot delete this Permission Mask.');
+		reporterror($l['ugr_error'], $l['ugr_no_del_perm']);
 			
 		return false;
 	
@@ -876,7 +881,7 @@ global $error, $user_group;
 		//Check the name
 		if(!(isset($_POST['mem_gr_name'])) || (trim($_POST['mem_gr_name']) == "")){
 			
-			$error[] = 'The user group name was not specified.';
+			$error[] = $l['ugr_no_ugroup_name'];
 			
 		}else{
 		
@@ -901,7 +906,7 @@ global $error, $user_group;
 		//Check the image file
 		if(!(isset($_POST['image_name'])) || (trim($_POST['image_name']) == "")){
 			
-			$error[] = 'The user group image was not specified.';
+			$error[] = $l['ugr_no_ugroup_image'];
 			
 		}else{
 		
@@ -919,7 +924,7 @@ global $error, $user_group;
 		//Check the image count
 		if(!(isset($_POST['image_count'])) || (trim($_POST['image_count']) == "")){
 			
-			$error[] = 'The user group star count was not specified.';
+			$error[] = $l['ugr_no_ugroup_star'];
 			
 		}else{
 		
@@ -940,7 +945,7 @@ global $error, $user_group;
 			//Check the post count
 			if(!(isset($_POST['post_count'])) || (trim($_POST['post_count']) == "")){
 				
-				$error[] = 'The user group post count was not specified.';
+				$error[] = $l['ugr_no_ugroup_post'];
 				
 			}else{
 			
@@ -1009,7 +1014,7 @@ global $error, $user_group;
 		if( empty($member_group) ){
 						
 			//Show a major error and return
-			reporterror('Permissions' ,'There were some errors while inserting the User Group.');
+			reporterror($l['ugr_error'], $l['ugr_errors_inserting_perms']);
 				
 			return false;
 		

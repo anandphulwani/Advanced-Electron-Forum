@@ -2,11 +2,11 @@
 
 function topicsub_theme(){
 
-global $user, $logged_in, $globals, $theme;
+global $user, $logged_in, $globals, $l, $theme;
 global $subscriptions, $count;
 
 	//The global User CP Headers
-	usercphead('Topic Subscription');
+	usercphead($l['subsc_topic_subscriptions']);
 	
 	?>
 	<script type="text/javascript">
@@ -40,7 +40,7 @@ global $subscriptions, $count;
 	<td>
 	<table width="100%" cellpadding="0" cellspacing="0"><tr>
 	<td class="ucpcbgl"></td>
-	<td class="ucpcbg">Topic Subscriptions</td>
+	<td class="ucpcbg">'.$l['subsc_topic_subscription'].'</td>
 	<td class="ucpcbgr"></td>		
 	</tr>
 	</table>
@@ -61,7 +61,7 @@ global $subscriptions, $count;
 	<input type=checkbox onClick="check(document.getElementsByName(\'list[]\'), this)" value="0">
 	</td>
 	<td class="ucpcbg1" align="left">
-	Subject
+	'.$l['subsc_subject'].'
 	</td>
 	</tr>';
 	
@@ -83,14 +83,14 @@ global $subscriptions, $count;
 		
 		echo '<tr>
 			<td class="pmfwbg" align="left" colspan="5">
-			<input type="submit" name="unsubseltsub" value="Unsubscribe Selected">
+			<input type="submit" name="unsubseltsub" value="'.$l['subsc_unsubscribe_selected'].'">
 			</td>
 			</tr>';
 	
 	}else{
 	
 		echo '<td class="pmfwbg" align="center" colspan="3">
-			You have not subscribed to any topic.
+			'.$l['subsc_no_subscribed_topic'].'
 			</td>';
 		
 	}
@@ -126,11 +126,11 @@ global $subscriptions, $count;
 
 function forumsub_theme(){
 
-global $user, $logged_in, $globals, $theme;
+global $user, $logged_in, $globals, $l, $theme;
 global $subscriptions, $count;
 
 	//The global User CP Headers
-	usercphead('Forum Subscription');
+	usercphead($l['subsc_forum_subscriptions']);
 	?>
 	<script type="text/javascript">
 	function gotopage(val){
@@ -163,7 +163,7 @@ global $subscriptions, $count;
 	<td>
 	<table width="100%" cellpadding="0" cellspacing="0"><tr>
 	<td class="ucpcbgl"></td>
-	<td class="ucpcbg">Forum Subscriptions</td>
+	<td class="ucpcbg">'.$l['subsc_forum_subscriptions'].'</td>
 	<td class="ucpcbgr"></td>		
 	</tr>
 	</table>
@@ -206,14 +206,14 @@ global $subscriptions, $count;
 		
 		echo '<tr>
 			<td class="pmfwbg" align="left" colspan="5">
-			<input type="submit" name="unsubselfsub" value="Unsubscribe Selected">
+			<input type="submit" name="unsubselfsub" value="'.$l['subsc_unsubscribe_selected'].'">
 			</td>
 			</tr>';
 	
 	}else{
 	
 		echo '<td class="pmfwbg" align="center" colspan="3">
-			You have not subscribed to any forum.
+			'.$l['subsc_no_subscribed_forum'].'
 			</td>';
 		
 	}

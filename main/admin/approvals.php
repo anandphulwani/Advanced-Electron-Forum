@@ -26,10 +26,15 @@ if(!defined('AEF')){
 
 }
 
-
 function approvals(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
+
+	if(!load_lang('admin/approvals')){
+		
+		return false;
+			
+	}
 
 	//The name of the file
 	$theme['init_theme'] = 'admin/approvals';
@@ -199,7 +204,7 @@ global $members, $error, $count;
 		
 		if(!in_array($dothis, array(1,2,3,4))){
 			
-			$error[] = 'The action you specified is invalid.';
+			$error[] = $l['action_invalid'];
 		
 		}
 		
@@ -222,7 +227,7 @@ global $members, $error, $count;
 		//Was anything selected
 		if(empty($post_uid)){
 		
-			$error[] = 'You did not select any members.';
+			$error[] = $l['not_select_members'];
 		
 		}		
 				
@@ -372,7 +377,7 @@ global $members, $error, $count;
 		
 		if(!in_array($dothis, array(1,2,3,4))){
 			
-			$error[] = 'The action you specified is invalid.';
+			$error[] = $l['action_invalid'];
 		
 		}
 		
@@ -395,7 +400,7 @@ global $members, $error, $count;
 		//Was anything selected
 		if(empty($post_uid)){
 		
-			$error[] = 'You did not select any members.';
+			$error[] = $l['not_select_members'];
 		
 		}		
 				
@@ -544,7 +549,7 @@ global $members, $error, $count;
 		
 		if(!in_array($dothis, array(1,2,3,4))){
 			
-			$error[] = 'The action you specified is invalid.';
+			$error[] = $l['action_invalid'];
 		
 		}
 		
@@ -567,7 +572,7 @@ global $members, $error, $count;
 		//Was anything selected
 		if(empty($post_uid)){
 		
-			$error[] = 'You did not select any members.';
+			$error[] = $l['not_select_members'];
 		
 		}		
 				
@@ -616,7 +621,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('No Members Found' ,'Sorry, we were unable to process your request because no members were found having the user id specified by you.');
+		reporterror($l['no_members_found'], $l['no_members_id_found']);
 		
 		return false;
 		
@@ -653,7 +658,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 						
 		if(mysql_affected_rows($conn) < count($users)){
 				
-			reporterror('Error' ,'There were some errors in updating the users activation status.');
+			reporterror($l['error'], $l['errors_updating']);
 			
 			return false;
 			
@@ -715,24 +720,8 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 			foreach($users as $uk => $uv){
 			
 			$mail[$uk]['to'] = $uv['email'];
-			$mail[$uk]['subject'] = 'Welcome to '.$globals['sn'];
-			$mail[$uk]['message'] = $uv['username'].',
-   Congratulations your account at '.$globals['sn'].' has been activated by the Admin.
-			
-You may now login to your account at '.$globals['mail_url'].'act=login
-and start Posting into threads and topics on the Forum.
-Alternatively, you may change your Account Settings or 
-Profile through the UserCP at '.$globals['mail_url'].'act=usercp
-
-Please keep this email for your records.
-
-Enjoy!
-
-The '.$globals['sn'].' Team
-
-'.$globals['url'].'/
-
-User ID: '.$uk;
+			$mail[$uk]['subject'] = $l['subject_mail_activated'].$globals['sn'];
+			$mail[$uk]['message'] = $uv['username'].$l['body_mail_activated'].$uk;
 
 			}
 			/*$mail[$uk]['headers'] = 'Reply-To: '.$globals['board_email']."\r\n".
@@ -755,7 +744,7 @@ User ID: '.$uk;
 						
 		if(mysql_affected_rows($conn) < count($users)){
 				
-			reporterror('Error' ,'There were some errors in deleting the users.');
+			reporterror($l['error'], $l['errors_deleting']);
 			
 			return false;
 			
@@ -770,14 +759,8 @@ User ID: '.$uk;
 			foreach($users as $uk => $uv){
 			
 			$mail[$uk]['to'] = $uv['email'];
-			$mail[$uk]['subject'] = 'Account Rejected/Deleted at '.$globals['sn'];
-			$mail[$uk]['message'] = $uv['username'].',
-   Your account at '.$globals['sn'].' has been deleted/rejected by the Admin.			
-You cannot use your account at '.$globals['sn'].'.
-
-The '.$globals['sn'].' Team
-
-'.$globals['url'].'/';
+			$mail[$uk]['subject'] = $l['subject_mail_account_deleted'].$globals['sn'];
+			$mail[$uk]['message'] = $uv['username'].$l['body_mail_account_deleted'];
 
 			}
 			/*$mail[$uk]['headers'] = 'Reply-To: '.$globals['board_email']."\r\n".

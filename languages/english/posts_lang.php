@@ -51,12 +51,16 @@ $l['page'] = 'Page';
 $l['of'] = 'of';
 $l['submit_go'] = 'Go';
 $l['all'] = 'All';
+$l['edit_title'] = 'Title';
+$l['edit_description'] = 'Description';
+$l['edit_submit_button'] = 'Edit Topic';
 $l['options'] = 'Options';
 $l['lock_topic'] = 'Lock Topic';
 $l['unlock_topic'] = 'Unlock Topic';
 $l['pin_topic'] = 'Pin Topic';
 $l['unpin_topic'] = 'Unpin Topic';
 $l['edit_topic'] = 'Edit Topic';
+$l['quick_edit_topic'] = 'Quickly Edit Topic';
 $l['delete_topic'] = 'Delete Topic';
 $l['move_topic'] = 'Move Topic';
 $l['mark_as_unread'] = 'Mark as Unread';
@@ -116,5 +120,8 @@ $l['posted_by'] = 'Posted By';
 $l['downloads'] = 'Downloads';
 $l['del_sel_conf'] = 'Are you sure you want to delete the selected posts ?';
 $l['del_this_conf'] = 'Are you sure you want to delete this post ?';
+
+$l['previous'] = 'Previous';
+$l['next'] = 'Next';
 
 ?>

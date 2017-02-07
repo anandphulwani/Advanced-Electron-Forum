@@ -26,10 +26,15 @@ if(!defined('AEF')){
 
 }
 
-
 function backup(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
+
+	if(!load_lang('admin/backup')){
+		
+		return false;
+			
+	}
 
 	//The name of the file
 	$theme['init_theme'] = 'admin/backup';
@@ -104,7 +109,7 @@ global $error;
 		//The folderpath
 		if(!(isset($_POST['folderpath'])) || (trim($_POST['folderpath']) == "")){
 			
-			$error[] = 'The folder path was not specified.';
+			$error[] = $l['no_path'];
 			
 		}else{
 		
@@ -114,7 +119,7 @@ global $error;
 			
 			if(!is_readable($folderpath)){
 				
-				$error[] = 'The folder path you submitted is not readable.';
+				$error[] = $l['no_readable_path'];
 				
 			}
 						
@@ -130,7 +135,7 @@ global $error;
 		//The compression method
 		if(!(isset($_POST['compression'])) || (trim($_POST['compression']) == "")){
 			
-			$error[] = 'The compression method was not specified.';
+			$error[] = $l['no_compression'];
 			
 		}else{
 		
@@ -138,7 +143,7 @@ global $error;
 			
 			if(!in_array($compression, array('zip', 'tar', 'tgz', 'tbz'))){
 			
-				$error[] = 'The compression method you specified is invalid.';
+				$error[] = $l['compression_invalid'];
 			
 			}
 			
@@ -159,7 +164,7 @@ global $error;
 			
 			if(!is_writable($localpath)){
 			
-				$error[] = 'The local storage path you submitted is not accessible.';
+				$error[] = $l['unaccessible_local_path'];
 			
 			}
 			
@@ -185,7 +190,7 @@ global $error;
 		//Did it compress
 		if(empty($data)){
 		
-			$error[] = 'There were some errors while compressing the data.';
+			$error[] = $l['errors_compressing_data'];
 			
 			//on error call the form
 			if(!empty($error)){
@@ -234,15 +239,13 @@ global $error;
 			if(writefile($localpath.'/'.$filename.'.'.$compression, $data, 0)){
 			
 				//Give a message
-				reportmessage('Successfully backed up', 'Backup created successfully', '', 'The backup was created successfully.<br />You may now return to the <a href="'.$globals['index_url'].'act=admin">Admin Index</a> or the <a href="'.$globals['index_url'].'act=admin&adact=backup">Backup Tools</a>.<br /><br />
-		
-		Thankyou!');
+				reportmessage($l['backup_ok'], $l['backup_created_ok'], '', $l['backup_created_ok_exp']);
 		
 				return true;
 			
 			}else{
 			
-				$error[] = 'There were some errors while writing the file on the server.';
+				$error[] = $l['errors_writing'];
 			
 				//on error call the form
 				if(!empty($error)){
@@ -292,7 +295,7 @@ global $error;
 		//Check the Avatar Directory
 		if(!(isset($_POST['tables'])) || !is_array($_POST['tables'])){
 			
-			$error[] = 'The tables to be exported was not specified.';
+			$error[] = $l['no_tables_specified'];
 			
 		}else{
 		
@@ -307,7 +310,7 @@ global $error;
 				//Is it a valid table
 				if(!in_array($v, $keys)){
 				
-					$error[] = 'The tables you specified are invalid.';
+					$error[] = $l['tables_invalid'];
 					break;
 				
 				}
@@ -326,7 +329,7 @@ global $error;
 		//The compression method
 		if(!(isset($_POST['compression'])) || (trim($_POST['compression']) == "")){
 			
-			$error[] = 'The compression method was not specified.';
+			$error[] = $l['no_compression'];
 			
 		}else{
 		
@@ -334,7 +337,7 @@ global $error;
 			
 			if(!in_array($compression, array('none', 'zip', 'gzip', 'bzip'))){
 			
-				$error[] = 'The compression method you specified is invalid.';
+				$error[] = $l['compression_invalid'];
 			
 			}
 			
@@ -350,7 +353,7 @@ global $error;
 			
 			if(!is_writable($localpath)){
 			
-				$error[] = 'The local storage path you submitted is not accessible.';
+				$error[] = $l['unaccessible_local_path'];
 			
 			}
 			
@@ -365,7 +368,7 @@ global $error;
 		//Select atlest the Data or structure
 		if(!isset($_POST['data']) && !isset($_POST['structure'])){
 		
-			$error[] = 'You must select either the Structure or Data ar Both to export something.';
+			$error[] = $l['select_structure_data'];
 			
 			//on error call the form
 			if(!empty($error)){
@@ -455,7 +458,7 @@ $crlf;
 				
 			}else{
 			
-				$error[] = 'Your server does not support Zip Compression.';
+				$error[] = $l['no_zip'];
 			
 			}
 
@@ -467,7 +470,7 @@ $crlf;
 				
 			}else{
 			
-				$error[] = 'Your server does not support GZip Compression.';
+				$error[] = $l['no_gzip'];
 			
 			}
 		
@@ -479,13 +482,13 @@ $crlf;
 				
 				 if($data === -8){
 				 
-				 	$error[] = 'Your server does not support BZip Compression.';
+				 	$error[] = $l['no_bzip'];
 				 
 				 }
 				
 			}else{
 			
-				$error[] = 'Your server does not support BZip Compression.';
+				$error[] = $l['no_bzip'];
 			
 			}
 		
@@ -536,15 +539,13 @@ $crlf;
 			if(writefile($localpath.'/'.$filename, $data, 0)){
 			
 				//Give a message
-				reportmessage('Successfully backed up', 'Backup created successfully', '', 'The backup was created successfully.<br />You may now return to the <a href="'.$globals['index_url'].'act=admin">Admin Index</a> or the <a href="'.$globals['index_url'].'act=admin&adact=backup">Backup Tools</a>.<br /><br />
-		
-		Thankyou!');
+				reportmessage($l['backup_ok'], $l['backup_created_ok'], '', $l['backup_created_ok_exp']);
 		
 				return true;
 			
 			}else{
 			
-				$error[] = 'There were some errors while writing the file on the server.';
+				$error[] = $l['errors_writing'];
 			
 				//on error call the form
 				if(!empty($error)){

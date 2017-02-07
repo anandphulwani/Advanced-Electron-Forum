@@ -1,5 +1,24 @@
 <?php
 
+//////////////////////////////////////////////////////////////
+//===========================================================
+// adminlogin_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
 if(!defined('AEF')){
 
 	die('Hacking Attempt');
@@ -10,10 +29,10 @@ if(!defined('AEF')){
 
 function adminlogin_theme(){
 
-global $error, $globals, $theme, $user;
+global $error, $globals, $theme, $user, $l;
 
 	//The header
-	aefheader('Administration Center - Login');
+	aefheader($l['<title>']);
 	
 	error_handle($error, '100%');
 	
@@ -26,7 +45,7 @@ global $error, $globals, $theme, $user;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="pcbgl"></td>
-<td class="pcbg" align="left">Security Login</td>
+<td class="pcbg" align="left"><?php echo $l['security_login'];?></td>
 <td class="pcbgr"></td>		
 </tr>
 </table>
@@ -46,7 +65,7 @@ global $error, $globals, $theme, $user;
 
 <tr>
 <td width="30%" class="etrc">
-<b>Username :</b>
+<b><?php echo $l['username'];?> :</b>
 </td>
 <td class="etrc" align="left">
 <input type="text" size="40" name="aduser" value="<?php echo $user['username'];?>" disabled="disabled" />
@@ -55,7 +74,7 @@ global $error, $globals, $theme, $user;
 
 <tr>
 <td width="30%" class="etrc">
-<b>Password :</b>
+<b><?php echo $l['password'];?> :</b>
 </td>
 <td class="etrc" align="left">
 <input type="password" size="40" name="adpass" />
@@ -64,7 +83,7 @@ global $error, $globals, $theme, $user;
 
 <tr>
 <td colspan="2" class="etrc" style="text-align:center">
-<input type="submit" name="adminlogin" value="Submit" />
+<input type="submit" name="adminlogin" value="<?php echo $l['submit'];?>" />
 </td>
 </tr>	
 

@@ -1,14 +1,33 @@
 <?php
 
-if(!defined('AEF'))
-{
+//////////////////////////////////////////////////////////////
+//===========================================================
+// recyclebin_theme.php(admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
+
+if(!defined('AEF')){
 die('Hacking Attempt');
 }
 
 //A global part to appear
 function recyclebin_global(){
 
-global $globals, $theme, $categories;
+global $globals, $theme, $l, $categories;
 
 	?>
 	
@@ -20,7 +39,7 @@ global $globals, $theme, $categories;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Recycle Bin Settings</font><br />
+	<font class="adgreen"><?php echo $l['recyclebin_set'];?></font><br />
 	
 	
 	
@@ -29,7 +48,7 @@ global $globals, $theme, $categories;
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	In this area you can set up a recycle bin for every topic that will be deleted. This helps to keep the other forums clean and also makes it possible to save the deleted topics and posts. Please select a forum to be set up as a Recycle Bin.
+	<?php echo $l['recyclebin_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -43,9 +62,9 @@ global $globals, $theme, $categories;
 //This is the theme that is for the management of the forums
 function recyclebin_theme(){
 
-global $globals, $theme, $categories, $forums, $mother_options, $error;
+global $globals, $theme, $categories, $l, $forums, $mother_options, $error;
 	
-	adminhead('Administration Center - Recycle Bin Settings');
+	adminhead($l['cp_recyclebin']);
 	
 	recyclebin_global();
 	
@@ -58,14 +77,14 @@ global $globals, $theme, $categories, $forums, $mother_options, $error;
 		
 		<tr>
 		<td class="adcbg" colspan="2" style="height:25px">
-		Recycle Bin Settings
+		<?php echo $l['recyclebin_set'];?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td class="adbg" width="40%" height="30">
-		<b>Forum:</b><br />
-		Choose the forum to which this Permission Set will apply.
+		<b><?php echo $l['forum'];?></b><br />
+		<?php echo $l['forum_exp'];?>
 		</td>
 		<td class="adbg">&nbsp;&nbsp;&nbsp;&nbsp;		
 		<select name="rbfid" style="font-family:Verdana; font-size:11px">
@@ -73,7 +92,7 @@ global $globals, $theme, $categories, $forums, $mother_options, $error;
 		<?php 
 		
 		echo '<option value="0" '.((isset($_POST['rbfid']) && trim($_POST['rbfid']) == $mother_options[$i][0] ) ? 'selected="selected"' : '').'>
-			None
+			'.$l['none'].'
 			</option>';
 			
 		foreach($mother_options as $i => $iv){
@@ -91,7 +110,7 @@ global $globals, $theme, $categories, $forums, $mother_options, $error;
 		
 		<tr>
 		<td class="adbg" height="30" colspan="2" align="center">
-		<input type="submit" name="setrecyclebin" value="Submit" />		
+		<input type="submit" name="setrecyclebin" value="<?php echo $l['submit'];?>" />		
 		</td>
 		</tr>
 			

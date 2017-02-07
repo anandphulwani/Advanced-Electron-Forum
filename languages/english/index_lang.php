@@ -68,6 +68,8 @@ $l['init_theme_func_error'] = 'Unable to load the theme function(s) of &aefv-1;.
 
 $l['load_theme_settings_error'] = 'Unable to load the Themes settings file.';
 
+$l['ip_banned_title'] = 'Restricted';//Title
+$l['ip_banned'] = 'The admins of this board have banned your IP Address!';
 
 /////////////////////////////////
 // hf_theme.php Language Strings

@@ -26,10 +26,15 @@ if(!defined('AEF')){
 
 }
 
-
 function attachments(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
+
+	if(!load_lang('admin/attachments')){
+		
+		return false;
+			
+	}
 
 	//The name of the file
 	$theme['init_theme'] = 'admin/attachments';
@@ -146,7 +151,7 @@ global $error, $addslashes;
 		//Check the attachment directory
 		if(!(isset($_POST['attachmentdir'])) || (trim($_POST['attachmentdir']) == "")){
 			
-			$error[] = 'The attachment directory was not specified.';
+			$error[] = $l['no_attach_directory'];
 			
 		}else{
 		
@@ -159,7 +164,7 @@ global $error, $addslashes;
 		//Check the attachment URL
 		if(!(isset($_POST['attachmenturl'])) || (trim($_POST['attachmenturl']) == "")){
 			
-			$error[] = 'The attachment URL was not specified.';
+			$error[] = $l['no_attach_url'];
 			
 		}else{
 		
@@ -172,7 +177,7 @@ global $error, $addslashes;
 		//Check the maximum number of attachments per post
 		if(!(isset($_POST['maxattachmentpost'])) || (trim($_POST['maxattachmentpost']) == "")){
 			
-			$error[] = 'The maximum number of attachments per post was not specified.';
+			$error[] = $l['no_max_num'];
 			
 		}else{
 		
@@ -183,7 +188,7 @@ global $error, $addslashes;
 		//Check the max attach size
 		if(!(isset($_POST['maxattachsize'])) || (trim($_POST['maxattachsize']) == "")){
 			
-			$error[] = 'The maximum size of an attachment was not specified.';
+			$error[] = $l['no_max_size_of_attach'];
 			
 		}else{
 		
@@ -194,7 +199,7 @@ global $error, $addslashes;
 		//Check the max attach size per post
 		if(!(isset($_POST['maxattachsizepost'])) || (trim($_POST['maxattachsizepost']) == "")){
 			
-			$error[] = 'The maximum size of attachments per post was not specified.';
+			$error[] = $l['no_max_size_per_post'];
 			
 		}else{
 		
@@ -219,7 +224,7 @@ global $error, $addslashes;
 		
 		if(!(isset($_POST['attachmentshowimagemaxwidth'])) || (trim($_POST['attachmentshowimagemaxwidth']) == "")){
 			
-			$error[] = 'The maximum width of the image attachment that will be displayed in posts was not specified.';
+			$error[] = $l['no_max_width'];
 			
 		}else{
 		
@@ -230,7 +235,7 @@ global $error, $addslashes;
 		
 		if(!(isset($_POST['attachmentshowimagemaxheight'])) || (trim($_POST['attachmentshowimagemaxheight']) == "")){
 			
-			$error[] = 'The maximum height of the image attachment that will be displayed in posts was not specified.';
+			$error[] = $l['no_max_height'];
 			
 		}else{
 		
@@ -380,7 +385,7 @@ global $error, $mimetype;
 		//Check the extension
 		if(!(isset($_POST['atmt_ext'])) || (trim($_POST['atmt_ext']) == "")){
 			
-			$error[] = 'The file type extension was not specified.';
+			$error[] = $l['no_file_type'];
 			
 		}else{
 		
@@ -391,7 +396,7 @@ global $error, $mimetype;
 		//Check the Mime Type
 		if(!(isset($_POST['atmt_mimetype'])) || (trim($_POST['atmt_mimetype']) == "")){
 			
-			$error[] = 'The mimetype of the allowed extension was not specified.';
+			$error[] = $l['no_mimetype'];
 			
 		}else{
 		
@@ -402,7 +407,7 @@ global $error, $mimetype;
 		//Check the file type icon
 		if(!(isset($_POST['atmt_icon'])) || (trim($_POST['atmt_icon']) == "")){
 			
-			$error[] = 'The icon that represents the allowed file type was not specified.';
+			$error[] = $l['no_file_type_icon'];
 			
 		}else{
 		
@@ -413,7 +418,7 @@ global $error, $mimetype;
 			//Check is it there
 			if( ($iconsize[0] < 1) || ($iconsize[1] < 1) ){
 			
-				$error[] = 'The icon that represents the allowed file type was not found in the folder.';
+				$error[] = $l['no_file_type_icon_found'];
 			
 			}
 			
@@ -555,7 +560,7 @@ global $error;
 		//Check the extension
 		if(!(isset($_POST['atmt_ext'])) || (trim($_POST['atmt_ext']) == "")){
 			
-			$error[] = 'The file type extension was not specified.';
+			$error[] = $l['no_file_type'];
 			
 		}else{
 		
@@ -566,7 +571,7 @@ global $error;
 		//Check the Mime Type
 		if(!(isset($_POST['atmt_mimetype'])) || (trim($_POST['atmt_mimetype']) == "")){
 			
-			$error[] = 'The mimetype of the allowed extension was not specified.';
+			$error[] = $l['no_mimetype'];
 			
 		}else{
 		
@@ -577,7 +582,7 @@ global $error;
 		//Check the file type icon
 		if(!(isset($_POST['atmt_icon'])) || (trim($_POST['atmt_icon']) == "")){
 			
-			$error[] = 'The icon that represents the allowed file type was not specified.';
+			$error[] = $l['no_file_type_icon'];
 			
 		}else{
 		
@@ -588,7 +593,7 @@ global $error;
 			//Check is it there
 			if( ($iconsize[0] < 1) || ($iconsize[1] < 1) ){
 			
-				$error[] = 'The icon that represents the allowed file type was not found in the folder.';
+				$error[] = $l['no_file_type_icon_found'];
 			
 			}
 			
@@ -647,7 +652,7 @@ global $error;
 				
 		if( empty($atmtid) ){
 			
-			reporterror('Add Attachment Type Error' ,'There were some errors in adding the new  Attachment Type.');
+			reporterror($l['add_attach_type_error'], $l['errors_adding_new_attach_type']);
 			
 			return false;
 			

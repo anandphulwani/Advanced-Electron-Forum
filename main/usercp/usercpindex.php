@@ -31,6 +31,11 @@ function usercpindex(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	
+	if(!load_lang('usercp/usercpindex')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'usercp/usercpindex';
 	

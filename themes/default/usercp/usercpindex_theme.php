@@ -2,10 +2,10 @@
 
 function usercpindex_theme(){
 
-global $globals, $theme;
+global $globals, $l, $theme;
 
 	//The global User CP Headers
-	usercphead('Users Control Panel');
+	usercphead($l['uin_users_cp']);
 	
 	?>
 <table width="100%" cellpadding="4" cellspacing="4" border="0">
@@ -16,8 +16,8 @@ global $globals, $theme;
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=profile'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/general.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Your Profile</font><br />
-Change your profile, lets the members know something about you.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_your_profile'];?></font><br />
+<?php echo $l['uin_your_profile_exp'];?></td>
 </tr>
 </table>
 
@@ -28,8 +28,8 @@ Change your profile, lets the members know something about you.</td>
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=account'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/account.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Account Settings</font><br />
-Here you can change your password, set a secret question and answer for password retrieval.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_account_settings'];?></font><br />
+<?php echo $l['uin_account_settings_exp'];?></td>
 </tr>
 </table>
 
@@ -42,8 +42,8 @@ Here you can change your password, set a secret question and answer for password
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=inbox'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/inbox.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Inbox</font><br />
-Check your inbox for some messages send to you by others.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_inbox'];?></font><br />
+<?php echo $l['uin_inbox_exp'];?></td>
 </tr>
 </table>
 
@@ -54,8 +54,8 @@ Check your inbox for some messages send to you by others.</td>
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=writepm'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/compose.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Compose PM</font><br />
-Send a new Personal Message to members on the board.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_compose_pm'];?></font><br />
+<?php echo $l['uin_compose_pm_exp'];?></td>
 </tr>
 </table>
 
@@ -68,8 +68,8 @@ Send a new Personal Message to members on the board.</td>
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=searchpm'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/searchpm.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Search PM</font><br />
-Search through all the Personal Messages.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_search_pm'];?></font><br />
+<?php echo $l['uin_search_pm_exp'];?></td>
 </tr>
 </table>
 
@@ -80,8 +80,8 @@ Search through all the Personal Messages.</td>
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=emptyfolders'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/bin.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Recycle PM</font><br />
-Here you can empty certain Personal Message Folders.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_recycle_pm'];?></font><br />
+<?php echo $l['uin_recycle_pm_exp'];?></td>
 </tr>
 </table>
 
@@ -94,8 +94,8 @@ Here you can empty certain Personal Message Folders.</td>
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=emailpmset'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/emailpmsettings.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Email & PM Settings</font><br />
-In this section you can change your email and personal message settings.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_email_pm_set'];?></font><br />
+<?php echo $l['uin_email_pm_set_exp'];?></td>
 </tr>
 </table>
 
@@ -106,8 +106,8 @@ In this section you can change your email and personal message settings.</td>
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=forumset'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/boardsettings.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Forum Settings</font><br />
-Personalise the board the way you want it to.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_forum_set'];?></font><br />
+<?php echo $l['uin_forum_set_exp'];?></td>
 </tr>
 </table>
 
@@ -120,8 +120,8 @@ Personalise the board the way you want it to.</td>
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=topicsub'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/topicnotifications.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Topic Subscriptions</font><br />
-Here you can manage all the topics you have subscribed to.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_topic_subscriptions'];?></font><br />
+<?php echo $l['uin_topic_subscriptions_exp'];?></td>
 </tr>
 </table>
 
@@ -132,8 +132,8 @@ Here you can manage all the topics you have subscribed to.</td>
 <table width="100%" cellpadding="1" cellspacing="1" onmouseover="this.className='ucpon'" onmouseout="this.className='ucpnor'" class="ucpnor" border="0" onclick="window.location='<?php echo $globals['index_url'];?>act=usercp&ucpact=forumsub'">
 <tr>
 <td width="30%"><img src="<?php echo $theme['images'];?>usercp/forumnotifications.gif" /></td>
-<td class="ucpicol"><font class="ucpihtxt">Forum Subscriptions</font><br />
-Here you can manage all the forum subscriptions.</td>
+<td class="ucpicol"><font class="ucpihtxt"><?php echo $l['uin_forum_subscriptions'];?></font><br />
+<?php echo $l['uin_forum_subscriptions_exp'];?></td>
 </tr>
 </table>
 

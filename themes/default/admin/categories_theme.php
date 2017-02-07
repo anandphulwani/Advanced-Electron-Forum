@@ -1,13 +1,32 @@
 <?php
 
-if(!defined('AEF'))
-{
+//////////////////////////////////////////////////////////////
+//===========================================================
+// categories_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
+
+if(!defined('AEF')){
 die('Hacking Attempt');
 }
 
 function cat_global(){
 
-global $globals, $theme, $categories;
+global $globals, $theme, $l, $categories;
 
 	?>
 	
@@ -19,15 +38,14 @@ global $globals, $theme, $categories;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Categories Options</font><br />
+	<font class="adgreen"><?php echo $l['cat_options'];?></font><br />
 		
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Here you can choose to edit a Category and also delete them by checking the Checkbox.
-	Please becareful when deleting a Category as these actions are irreversible.
+	<?php echo $l['cat_options_exp'];?>
 	</td>
 	</tr>
 	
@@ -40,10 +58,10 @@ global $globals, $theme, $categories;
 //This is the theme that is for the management of the Categories
 function catmanage_theme(){
 
-global $globals, $theme, $categories, $dmenus;
+global $globals, $theme, $l, $categories, $dmenus;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage Board Categories');
+	adminhead($l['cp_manage_board_cat']);
 	
 	cat_global();
 	
@@ -51,7 +69,7 @@ global $globals, $theme, $categories, $dmenus;
 <table width="100%" cellspacing="0" cellpadding="0" id="delcatpromptha">
 <tr>
 <td class="dwhl"></td>
-<td align="left" class="dwhc"><b>Shout Box</b></td>
+<td align="left" class="dwhc"><b>'.$l['shout_box'].'</b></td>
 <td align="right" class="dwhc"><a href="javascript:hideel(\'delcatprompt\')"><img src="'.$theme['images'].'close.gif"></a></td>
 <td class="dwhr"></td>
 </tr>
@@ -60,13 +78,12 @@ global $globals, $theme, $categories, $dmenus;
 <table width="100%" cellspacing="0" cellpadding="4" class="dwbody">
 <tr>
 <td width="100%" valign="top">
-Are you sure you want to delete this category ? If you delete this category all forums in this category will be deleted as well. Also the topics and posts in the forums of this category will be deleted as well. <b>These actions are irreversible</b>.<br /><br />
-Are you sure you want to delete this category ?
+'.$l['delete_cat'].'
 </td>
 </tr>
 <tr>
 <td style="padding:4px;" align="center">
-<input type="button" onclick="redirectdeletecat();" value="Yes">&nbsp;&nbsp;<input type="button" onclick="hideel(\'delcatprompt\');" value="No">
+<input type="button" onclick="redirectdeletecat();" value="'.$l['yes'].'">&nbsp;&nbsp;<input type="button" onclick="hideel(\'delcatprompt\');" value="'.$l['no'].'">
 </td>
 </tr>
 </table>
@@ -101,7 +118,7 @@ function redirectdeletecat(){
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 	
 	<tr>
-	<td class="cbg" colspan="3">Modify Categories</td>
+	<td class="cbg" colspan="3"><?php echo $l['modify_cat'];?></td>
 	</tr>
 	<?php
 		
@@ -119,13 +136,13 @@ function redirectdeletecat(){
 		
 		<td class="adbg" align="center">
 		<a href="'.$globals['index_url'].'act=admin&adact=categories&seadact=editcat&editcat='.$categories[$c]['cid'].'">
-		Edit
+		'.$l['edit'].'
 		</a>
 		</td>
 		
 		<td class="adbg" align="center">
 		<a href="javascript:confirmdelete('.$categories[$c]['cid'].');">
-		Delete
+		'.$l['delete'].'
 		</a>
 		</td>
 		
@@ -146,10 +163,10 @@ function redirectdeletecat(){
 
 function editcat_theme(){
 
-global $globals, $theme, $categories, $editcat, $orderoptions, $error, $editcategory;
+global $globals, $theme, $categories, $editcat, $l, $orderoptions, $error, $editcategory;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Edit a Category');
+	adminhead($l['cp_edit_cat']);
 	
 	cat_global();
 	
@@ -161,13 +178,13 @@ global $globals, $theme, $categories, $editcat, $orderoptions, $error, $editcate
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 	
 	<tr>
-	<td colspan="2" class="adcbg" align="center"><b>Edit Category</b></td>
+	<td colspan="2" class="adcbg" align="center"><b><?php echo $l['edit_cat'];?></b></td>
 	</tr>
 	
 	<tr>
 	<td width="35%" class="adbg">
-	<b>Order</b><br />
-	The order in which each category will appear on the Boards Index.
+	<b><?php echo $l['order'];?></b><br />
+	<?php echo $l['order_exp'];?>
 	</td>
 	<td class="adbg" align="left">
 	&nbsp;&nbsp;&nbsp;&nbsp;<select name="catorder">
@@ -178,8 +195,8 @@ global $globals, $theme, $categories, $editcat, $orderoptions, $error, $editcate
 	
 	<tr>
 	<td width="35%" class="adbg">
-	<b>Category Name</b><br />
-	The name of the Category that will be displayed.
+	<b><?php echo $l['category_name'];?></b><br />
+	<?php echo $l['category_name_exp'];?>
 	</td>
 	<td class="adbg" align="left">
 	&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="50" maxlength="" name="catname" 
@@ -189,8 +206,8 @@ global $globals, $theme, $categories, $editcat, $orderoptions, $error, $editcate
 	
 	<tr>
 	<td width="35%" class="adbg">
-	<b>Collapsable</b><br />
-	Is the user allowed to collapse the Category.
+	<b><?php echo $l['collapsable'];?></b><br />
+	<?php echo $l['collapsable_exp'];?>
 	</td>
 	<td class="adbg" align="left">
 	&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="catcollapse" 
@@ -202,7 +219,7 @@ global $globals, $theme, $categories, $editcat, $orderoptions, $error, $editcate
 	
 	<tr>
 	<td colspan="2" class="adbg" align="center">
-	<input type="submit" name="edit_cat" value="Edit"/>
+	<input type="submit" name="edit_cat" value="<?php echo $l['edit_cat'];?>"/>
 	</td>
 	</tr>
 	
@@ -217,10 +234,10 @@ global $globals, $theme, $categories, $editcat, $orderoptions, $error, $editcate
 
 function createcat_theme(){
 
-global $globals, $theme, $categories, $orderoptions, $error;
+global $globals, $theme, $categories, $l, $orderoptions, $error;
 
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Create a Category');
+	adminhead($l['cp_create_cat']);
 	
 	cat_global();
 	
@@ -232,14 +249,14 @@ global $globals, $theme, $categories, $orderoptions, $error;
 	
 	<tr>
 	<td colspan="2" class="adcbg" align="center">
-	<b>Create a New Category</b>
+	<b><?php echo $l['create_a_cat'];?></b>
 	</td>
 	</tr>
 	
 	<tr>
 	<td width="35%" class="adbg">
-	<b>Order</b><br />
-	The order in which each category will appear on the Boards Index.
+	<b><?php echo $l['order'];?></b><br />
+	<?php echo $l['order_exp'];?>
 	</td>
 	<td class="adbg" align="left">
 	&nbsp;&nbsp;&nbsp;&nbsp;<select name="catorder">
@@ -250,8 +267,8 @@ global $globals, $theme, $categories, $orderoptions, $error;
 	
 	<tr>
 	<td width="35%" class="adbg">
-	<b>Category Name</b><br />
-	The name of the Category that will be displayed.
+	<b><?php echo $l['category_name'];?></b><br />
+	<?php echo $l['category_name_exp'];?>
 	</td>
 	<td class="adbg" align="left">
 	&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="50" maxlength="" name="catname" <?php echo ( (isset($_POST['catname'])) ? 'value="'.$_POST['catname'].'"' : '' );?> />
@@ -260,8 +277,8 @@ global $globals, $theme, $categories, $orderoptions, $error;
 	
 	<tr>
 	<td width="35%" class="adbg">
-	<b>Collapsable</b><br />
-	Is the user allowed to collapse the Category.
+	<b><?php echo $l['collapsable'];?></b><br />
+	<?php echo $l['collapsable_exp'];?>
 	</td>
 	<td class="adbg" align="left">
 	&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="catcollapse" checked />
@@ -270,7 +287,7 @@ global $globals, $theme, $categories, $orderoptions, $error;
 	
 	<tr>
 	<td colspan="2" class="adbg" align="center">
-	<input type="submit" name="createcat" value="Create"/>
+	<input type="submit" name="createcat" value="<?php echo $l['create_cat'];?>"/>
 	</td>
 	</tr>
 	
@@ -288,13 +305,13 @@ global $globals, $theme, $categories, $orderoptions, $error;
 
 function catreorder_theme(){
 
-global $globals, $theme, $categories, $error, $onload, $dmenus;
+global $globals, $theme, $categories, $l, $error, $onload, $dmenus;
 	
 	//Pass to onload to initialize a JS
 	$onload['catreoder'] = 'init_reoder()';
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Reorder Categories');
+	adminhead($l['cp_reorder_cat']);
 	
 	?>
 	
@@ -306,14 +323,14 @@ global $globals, $theme, $categories, $error, $onload, $dmenus;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Reorder Categories</font><br />
+	<font class="adgreen"><?php echo $l['reorder_cat'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for changing the Category order in which they appear throughout the Board. <b>Drag and Drop</b> the Category box and put them in the order you like.
+	<?php echo $l['reorder_cat_exp'];?>
 	</td>
 	</tr>
 	
@@ -330,7 +347,7 @@ global $globals, $theme, $categories, $error, $onload, $dmenus;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Reorder Categories
+		<?php echo $l['reorder_cat'];?>
 		</td>
 		</tr>
 
@@ -383,7 +400,7 @@ reo_hid = 'cathid';
 	}
 	
 	?>
-		<input type="submit" name="catreorder" value="Re Order" />
+		<input type="submit" name="catreorder" value="<?php echo $l['re_order'];?>" />
 		</td>
 		</tr>	
 	</table>

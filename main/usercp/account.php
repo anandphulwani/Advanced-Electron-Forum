@@ -26,6 +26,11 @@ if(!defined('AEF')){
 
 }
 
+    if(!load_lang('usercp/account')){
+    
+        return false;
+        
+    }
 
 //The name of the file
 $theme['init_theme'] = 'usercp/account';
@@ -51,10 +56,10 @@ global $error, $tree;
 	/////////////////////////////
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=profile',
-					'txt' => 'Profile');
+					'txt' => $l['acc_profile']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=profile',
-					'txt' => 'General');
+					'txt' => $l['acc_general']);
 	
 	//A error handler ARRAY
 	$error = array();
@@ -117,13 +122,13 @@ global $error, $tree;
 				
 				if($dobyear && ($dobyear < 1900 || $dobyear > 2006)){
 				
-					$error[] = 'The Year of your Birth Day is Invalid.';
+					$error[] = $l['acc_year_invalid'];
 				
 				}
 			
 			}else{
 			
-				$error[] = 'The Year of your Birth Day is Invalid.';
+				$error[] = $l['acc_year_invalid'];
 			
 			}
 						
@@ -135,13 +140,13 @@ global $error, $tree;
 				
 				if($dobmonth && ($dobmonth < 1 || $dobmonth > 12)){
 				
-					$error[] = 'The Month of your Birth Day is Invalid.';
+					$error[] = $l['acc_month_invalid'];
 				
 				}
 			
 			}else{
 			
-				$error[] = 'The Month of your Birth Day is Invalid.';
+				$error[] = $l['acc_month_invalid'];
 			
 			}
 			
@@ -154,13 +159,13 @@ global $error, $tree;
 				
 				if($dobday && ($dobday < 1 || $dobday > 31)){
 				
-					$error[] = 'The Day of your Birth Day is Invalid.';
+					$error[] = $l['acc_day_invalid'];
 				
 				}
 			
 			}else{
 			
-				$error[] = 'The Day of your Birth Day is Invalid.';
+				$error[] = $l['acc_day_invalid'];
 			
 			}
 					
@@ -194,7 +199,7 @@ global $error, $tree;
 			//Check maxlength in $globals (Cannot be more than 100)
 			if(strlen($title) > $globals['customtitlelen']){
 				
-				$error[] = 'The Custom title is greater than '.$globals['customtitlelen'].' Characters.';
+				$error[] = $l['acc_cust_title_greater'];
 				
 			}
 		
@@ -209,7 +214,7 @@ global $error, $tree;
 			//Check maxlength in $globals - (Cannot be more than 255)
 			if(strlen($location) > $globals['locationlen']){
 				
-				$error[] = 'The Location is greater than '.$globals['locationlen'].' Characters.';
+				$error[] = $l['acc_locat_greater'];
 				
 			}
 		
@@ -224,7 +229,7 @@ global $error, $tree;
 			//Check is valid or no
 			if(!in_array($gender, array(0, 1, 2))){
 				
-				$error[] = 'The Gender value is incorrect.';
+				$error[] = $l['acc_gender_incorrect'];
 				
 			}
 		
@@ -239,7 +244,7 @@ global $error, $tree;
 			//You can add maxlength later in $globals
 			if(strlen($privatetext) > $globals['userstextlen']){
 				
-				$error[] = 'The Private Text is greater than '.$globals['userstextlen'].' Characters.';
+				$error[] = $l['acc_privtxt_greater'];
 				
 			}
 		
@@ -254,7 +259,7 @@ global $error, $tree;
 			//You can add maxlength later in $globals
 			if(strlen($icq) > 255){
 				
-				$error[] = 'Your ICQ Information is invalid.';
+				$error[] = $l['acc_icq_invalid'];
 				
 			}
 		
@@ -269,7 +274,7 @@ global $error, $tree;
 			//You can add maxlength later in $globals
 			if(strlen($yim) > 255){
 				
-				$error[] = 'Your YIM Information is invalid.';
+				$error[] = $l['acc_yim_invalid'];
 				
 			}
 		
@@ -284,7 +289,7 @@ global $error, $tree;
 			//You can add maxlength later in $globals
 			if(strlen($msn) > 255){
 				
-				$error[] = 'Your MSN Information is invalid.';
+				$error[] = $l['acc_msn_invalid'];
 				
 			}
 		
@@ -299,7 +304,7 @@ global $error, $tree;
 			//You can add maxlength later in $globals
 			if(strlen($aim) > 255){
 				
-				$error[] = 'Your AIM Information is invalid.';
+				$error[] = $l['acc_aim_invalid'];
 				
 			}
 		
@@ -313,7 +318,7 @@ global $error, $tree;
 			//You can add maxlength later in $globals
 			if(strlen($gmail) > 255){
 				
-				$error[] = 'Your GMail Information is invalid.';
+				$error[] = $l['acc_gmail_invalid'];
 				
 			}
 		
@@ -326,14 +331,14 @@ global $error, $tree;
 			
 			if(!preg_match('/^(http|https|ftp):\/\//i', $www)){
 			
-				$error[] = 'The URL you specified is invalid. Please enter the protocol also e.g. http://www.example.com/';
+				$error[] = $l['acc_url_invalid'];
 			
 			}
 			
 			//You can add maxlength later in $globals
 			if(strlen($www) > $globals['wwwlen']){
 				
-				$error[] = 'The URL you specified is greater than '.$globals['wwwlen'].' Chararcters.';
+				$error[] = $l['acc_url_greater'];
 				
 			}
 		
@@ -382,7 +387,7 @@ global $error, $tree;
 				
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your profile information. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['acc_upd_error'] ,$l['acc_errors_upd_profile']);
 			
 			return false;
 			
@@ -450,10 +455,10 @@ global $error, $tree;
 	$currentpass = '';//The users current password - Is Compulsory
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=profile',
-					'txt' => 'Profile');
+					'txt' => $l['acc_profile']);
 		
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=account',
-					'txt' => 'Account');
+					'txt' => $l['acc_acc_acc']);
 		
 	if(isset($_POST['editaccount'])){		
 		
@@ -465,7 +470,7 @@ global $error, $tree;
 		
 		if(!(isset($_POST['currentpass'])) || strlen(trim($_POST['currentpass'])) == 0){
 			
-			$error[] = "You did not enter your Current Password.";
+			$error[] = $l['acc_no_curr_pass'];
 		
 		}else{
 			
@@ -476,7 +481,7 @@ global $error, $tree;
 			//Check if it matches our current password
 			if($currentpass !== $user['password']){
 			
-				$error[] = "Your Current Password is wrong.";
+				$error[] = $l['acc_curr_pass_wrong'];
 			
 			}
 			
@@ -498,7 +503,7 @@ global $error, $tree;
 			//Check the MaxLength
 			if(strlen($realname) > $globals['realnamelen']){
 				
-				$error[] = 'Your name cannot be greater than '.$globals['realnamelen'].' Chararcters.';
+				$error[] = $l['acc_name_greater'];
 				
 			}
 		
@@ -528,7 +533,7 @@ global $error, $tree;
 			
 			if(preg_match("/\s/i", $username)){
 			
-				$error[] = 'The username cannot contain white spaces.';
+				$error[] = $l['acc_uname_spaces'];
 			
 			}
 			
@@ -538,7 +543,7 @@ global $error, $tree;
 				//Check in the Database
 				if(usernameindb($username)){
 				
-					$error[] = 'The username you entered is already under use.';
+					$error[] = $l['acc_uname_use'];
 				
 				}
 			
@@ -557,7 +562,7 @@ global $error, $tree;
 					
 					if(preg_match($pattern, $username)){
 					
-						$error[] = 'The username cannot contain the word(s) '.$reserved[$i].'.';
+						$error[] = $l['acc_uname_words'];
 						
 						break;
 					
@@ -585,14 +590,14 @@ global $error, $tree;
 			//Check Max Length
 			if(strlen($newpass) > $globals['max_pass']){
 				
-				$error[] = 'Your Password cannot be greater than '.$globals['max_pass'].' Chararcters.';
+				$error[] = $l['acc_pass_greater'];
 				
 			}
 			
 			//Check Min Length
 			if(strlen($newpass) < $globals['min_pass']){
 				
-				$error[] = 'Your Password cannot be Less than '.$globals['min_pass'].' Chararcters.';
+				$error[] = $l['acc_pass_less'];
 				
 			}
 			
@@ -603,7 +608,7 @@ global $error, $tree;
 			//Check the New Password Confirmation Match
 			if(!isset($_POST['confirmnewpass']) || (trim($_POST['confirmnewpass']) == "")){
 			
-				$error[] = 'Your Confirm New Password was not specified.';
+				$error[] = $l['acc_no_conf_new_pass'];
 			
 			//Get and Check the Confirmed one with the New Password
 			}else{
@@ -614,7 +619,7 @@ global $error, $tree;
 			
 				if($confnewpass != $newpass){
 				
-					$error[] = 'Your New Password is different from Confirm New Password.';
+					$error[] = $l['acc_pass_diferent'];
 				
 				}//End of if($confnewpass != $newpass)
 			
@@ -632,14 +637,14 @@ global $error, $tree;
 			//Check the MaxLength
 			if(strlen($secretqt) > $globals['secretqtlen']){
 				
-				$error[] = 'Your Secret Question cannot be greater than '.$globals['secretqtlen'].' Chararcters.';
+				$error[] = $l['acc_sec_qt_greater'];
 				
 			}
 			
 			//Check the Min Length
 			if(strlen($secretqt) < 15){
 				
-				$error[] = 'Your Secret Question cannot be less than 15 Chararcters.';
+				$error[] = $l['acc_sec_qt_less'];
 				
 			}
 			
@@ -656,14 +661,14 @@ global $error, $tree;
 				//Check the MaxLength
 				if(strlen($answer) > $globals['secretansmaxlen']){
 					
-					$error[] = 'Your Secret Answer cannot be greater than '.$globals['secretansmaxlen'].' Chararcters.';
+					$error[] = $l['acc_sec_answ_greater'];
 					
 				}
 				
 				//Check the Min Length
 				if(strlen($answer) < $globals['secretansminlen']){
 					
-					$error[] = 'Your Secret Answer cannot be less than '.$globals['secretansminlen'].' Chararcters.';
+					$error[] = $l['acc_sec_answ_less'];
 					
 				}
 				
@@ -678,7 +683,7 @@ global $error, $tree;
 			//Check is the user giving his QT and ANS for the first time
 			if(empty($user['secret_question']) && empty($answer)){
 			
-				$error[] = 'You did not enter your Secret Answer.';
+				$error[] = $l['acc_no_sec_answ'];
 			
 			}//End of if(empty($user['secret_answer']) && empty($answer))
 		
@@ -706,21 +711,21 @@ global $error, $tree;
 				//Max Length
 				if(strlen($email) > 100){
 				
-					$error[] = 'Your Email Address is too large.';
+					$error[] = $l['acc_email_large'];
 				
 				}			
 				
 				//Also confirm its validity
 				if(!emailvalidation($email)){
 		
-					$error[] = 'Your Email Address is invalid.';
+					$error[] = $l['acc_email_invalid'];
 				
 				}
 							
 				//Check is it there in the Data Base
 				if(emailindb($email)){
 		
-					$error[] = 'The email address you specified is already in use.';
+					$error[] = $l['acc_email_in_use'];
 				
 				}
 			
@@ -819,17 +824,17 @@ global $error, $tree;
 	$signature = '';//Signature VAR
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=profile',
-					'txt' => 'Profile');
+					'txt' => $l['acc_profile']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=signature',
-					'txt' => 'Signature');
+					'txt' => $l['acc_acc_sig']);
 	
 	if(isset($_POST['editsig'])){		
 		
 		//Check the Sig was posted
 		if(!(isset($_POST['signature'])) || strlen(trim($_POST['signature'])) < 1){
 		
-			$error[] = 'The Signature was not posted.';
+			$error[] = $l['acc_no_sig'];
 			
 		}else{
 			
@@ -840,7 +845,7 @@ global $error, $tree;
 			//Check the MaxLength
 			if(strlen($signature) > $globals['usersiglen']){
 					
-				$error[] = 'Your Signature cannot be greater than '.$globals['usersiglen'].' Chararcters.';
+				$error[] = $l['acc_sig_greater'];
 					
 			}
 			
@@ -864,7 +869,7 @@ global $error, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Signature. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['acc_upd_error'] ,$l['acc_errors_upd_sig']);
 			
 			return false;
 			
@@ -904,10 +909,10 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 global $error, $avatargallery, $tree;
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=profile',
-					'txt' => 'Profile');
+					'txt' => $l['acc_profile']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=avatar',
-					'txt' => 'Avatar');
+					'txt' => $l['acc_acc_avatar']);
 					
 	//Get the files in Avatars Folder
 	$avatargallery = getdirfiles($globals['avatardir']."/",1,0, array('png', 'gif', 'jpg'));
@@ -932,7 +937,7 @@ global $error, $avatargallery, $tree;
 		//Check the Avatar Type was posted
 		if(!(isset($_POST['avatartype'])) || strlen(trim($_POST['avatartype'])) < 1){
 		
-			$error[] = 'The Avatar Type was not posted.';
+			$error[] = $l['acc_no_avatar_type'];
 			
 		}else{
 		
@@ -940,7 +945,7 @@ global $error, $avatargallery, $tree;
 						
 			if(!in_array($avatartype , array(1,2,3))){
 			
-				$error[] = 'The Avatar Type was invalid.';
+				$error[] = $l['acc_avatar_type_invalid'];
 			
 			}			
 		
@@ -961,7 +966,7 @@ global $error, $avatargallery, $tree;
 			//Check the Avatar Selected in the Gallery
 			if(!(isset($_POST['avatargalfile'])) || strlen(trim($_POST['avatargalfile'])) < 1){
 			
-				$error[] = 'The Avatar was not selected from the Avatar Gallery.';
+				$error[] = $l['acc_no_avatar_gall'];
 				
 			}else{
 			
@@ -977,7 +982,7 @@ global $error, $avatargallery, $tree;
 				//Check whether it exists in our gallery
 				if( !(file_exists($avfile) && is_file($avfile) && filetype($avfile) == "file") ){
 				
-					$error[] = 'The Avatar you selected from the Avatar Gallery is invalid and does not exist.';
+					$error[] = $l['acc_avatar_gall_invalid'];
 				
 				}else{
 				
@@ -994,14 +999,14 @@ global $error, $avatargallery, $tree;
 					//The avatar width
 					if( ($avsize[0] < 1) || ($avsize[1] < 1) ){
 					
-						$error[] = 'There is no such image in our gallery.';
+						$error[] = $l['acc_no_img_in_gall'];
 					
 					}else{
 					
 						//The avatar width
 						if($avsize[0] > $globals['av_width']){
 							
-							$error[] = 'The Image has a width greater than '.$globals['av_width'].' pixels.';				
+							$error[] = $l['acc_img_width_greater'];				
 						
 						}else{
 						
@@ -1013,7 +1018,7 @@ global $error, $avatargallery, $tree;
 						//The avatar height
 						if($avsize[1] > $globals['av_height']){
 							
-							$error[] = 'The Image has a height greater than '.$globals['av_height'].' pixels.';				
+							$error[] = $l['acc_img_height_greater'];				
 						
 						}else{
 						
@@ -1044,7 +1049,7 @@ global $error, $avatargallery, $tree;
 			//Check the URL is mentioned
 			if(!(isset($_POST['urlavatar'])) || strlen(trim($_POST['urlavatar'])) < 1){
 			
-				$error[] = 'You did not specify the URL of your Online Image.';
+				$error[] = $l['acc_no_url_online_img'];
 				
 			}else{
 			
@@ -1053,7 +1058,7 @@ global $error, $avatargallery, $tree;
 				//Check its a Valid Link atleast
 				if (!preg_match('/^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\//i', $avatar)) {
 				
-					$error[] = 'The Avatar URL of your Online Image is Invalid.';
+					$error[] = $l['acc_url_online_img_invalid'];
 				
 				}else{
 				
@@ -1084,7 +1089,7 @@ global $error, $avatargallery, $tree;
 						//The avatar width
 						if( ($avsize[0] < 1) || ($avsize[1] < 1) ){
 						
-							$error[] = 'There is no image at the specified Avatar URL.';
+							$error[] = $l['acc_no_img_avatar_url'];
 						
 						}else{
 						
@@ -1092,7 +1097,7 @@ global $error, $avatargallery, $tree;
 							//The avatar width
 							if($avsize[0] > $globals['av_width']){
 								
-								$error[] = 'The Image has a width greater than '.$globals['av_width'].' pixels.';				
+								$error[] = $l['acc_upl_img_width_greater'];				
 							
 							}else{
 							
@@ -1104,7 +1109,7 @@ global $error, $avatargallery, $tree;
 							//The avatar height
 							if($avsize[1] > $globals['av_height']){
 								
-								$error[] = 'The Image has a height greater than '.$globals['av_height'].' pixels.';				
+								$error[] = $l['acc_upl_img_height_greater'];				
 							
 							}else{
 							
@@ -1153,7 +1158,7 @@ global $error, $avatargallery, $tree;
 				//Check was it previously an Uploaded avatar
 				if($user['avatar_type'] != 3){
 				
-					$error[] = 'No Avatar file was given to be uploaded.';
+					$error[] = $l['acc_no_avatar_upl'];
 				
 				}else{
 				
@@ -1184,7 +1189,7 @@ global $error, $avatargallery, $tree;
 			//The file is not allowed
 			if(!in_array($avext, $allowedext)){
 			
-				$error[] = 'The Uploaded File type is not allowed.';			
+				$error[] = $l['acc_filetype_no_allow'];			
 
 			}
 			
@@ -1213,7 +1218,7 @@ global $error, $avatargallery, $tree;
 			//Check is it a image
 			if( ($avsize[0] < 1) || ($avsize[1] < 1) ){
 			
-				$error[] = 'The Uploaded File is not a image.';
+				$error[] = $l['acc_file_no_img'];
 			
 			//Do the necessary Checkings and Processing.
 			}else{
@@ -1222,7 +1227,7 @@ global $error, $avatargallery, $tree;
 				//The avatar width
 				if($avsize[0] > $globals['av_width']){
 					
-					$error[] = 'The Uploaded Image has a width greater than '.$globals['av_width'].' pixels.';				
+					$error[] = $l['acc_upl_img_avatar_width_greater'];				
 				
 				}else{
 				
@@ -1234,7 +1239,7 @@ global $error, $avatargallery, $tree;
 				//The avatar height
 				if($avsize[1] > $globals['av_height']){
 					
-					$error[] = 'The Uploaded Image has a height greater than '.$globals['av_height'].' pixels.';				
+					$error[] = $l['acc_upl_img_avatar_height_greater'];				
 				
 				}else{
 				
@@ -1246,7 +1251,7 @@ global $error, $avatargallery, $tree;
 				//Lets check the size of the dam file
 				if($_FILES['uploadavatar']['size'] > $globals['uploadavatarmaxsize']){
 				
-					$error[] = 'The Uploaded Avatar\'s Size is greater than '.$globals['uploadavatarmaxsize'].' bytes.';
+					$error[] = $l['acc_upl_img_avatar_size_greater'];
 				
 				}
 				
@@ -1265,7 +1270,7 @@ global $error, $avatargallery, $tree;
 				//Finally lets move the Avatar File
 				if(!(@move_uploaded_file($avatartemp, $globals['uploadavatardir'].'/'.$avatar))){
 				
-					$error[] = 'The Image could not be uploaded.';
+					$error[] = $l['acc_img_no_upl'];
 				
 				}
 				
@@ -1279,7 +1284,7 @@ global $error, $avatargallery, $tree;
 		//Else Big Error Dude - (Actually Impossible)
 		}else{
 		
-			$error[] = 'There was some problem in determining the avatar you selected.';
+			$error[] = $l['acc_errors_avatar_selected'];
 		
 		}
 		
@@ -1303,7 +1308,7 @@ global $error, $avatargallery, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Avatar. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['acc_upd_error'] ,$l['acc_errors_updat_avatar']);
 			
 			return false;
 			
@@ -1327,7 +1332,7 @@ global $error, $avatargallery, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Avatar. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['acc_upd_error'] ,$l['acc_errors_updat_avatar']);
 			
 			return false;
 			
@@ -1412,10 +1417,10 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 global $error, $tree;
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=profile',
-					'txt' => 'Profile');
+					'txt' => $l['acc_profile']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=personalpic',
-					'txt' => 'Personal Picture');
+					'txt' => $l['acc_acc_perpic']);
 	
 	//The user is Posting some Personal Picture
 	if(isset($_POST['editppic'])){
@@ -1437,7 +1442,7 @@ global $error, $tree;
 		//Check the Personal Picture Type was posted
 		if(!(isset($_POST['ppictype'])) || strlen(trim($_POST['ppictype'])) < 1){
 		
-			$error[] = 'The Personal Picture Type was not posted.';
+			$error[] = $l['acc_no_perpic_type'];
 			
 		}else{
 		
@@ -1445,7 +1450,7 @@ global $error, $tree;
 			
 			if(!in_array($ppictype , array(1,2))){
 			
-				$error[] = 'The Personal Picture Type was invalid.';
+				$error[] = $l['acc_perpic_type_invalid'];
 			
 			}			
 		
@@ -1466,7 +1471,7 @@ global $error, $tree;
 			//Check the URL is mentioned
 			if(!(isset($_POST['urlppic'])) || strlen(trim($_POST['urlppic'])) < 1){
 			
-				$error[] = 'You did not specify the URL of your Online Image.';
+				$error[] = $l['acc_no_url_online_img'];
 				
 			}else{
 			
@@ -1475,7 +1480,7 @@ global $error, $tree;
 				//Check its a Valid Link atleast
 				if (!preg_match('/^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\//i', $ppic)) {
 				
-					$error[] = 'The Personal Picture URL of your Online Image is Invalid.';
+					$error[] = $l['acc_perpic_url_online_invalid'];
 				
 				}else{
 				
@@ -1506,7 +1511,7 @@ global $error, $tree;
 						//The Personal Picture width
 						if( ($ppsize[0] < 1) || ($ppsize[1] < 1) ){
 						
-							$error[] = 'There is no image at the specified URL.';
+							$error[] = $l['acc_url_no_img'];
 						
 						}else{
 						
@@ -1514,7 +1519,7 @@ global $error, $tree;
 							//The Personal Picture width
 							if($ppsize[0] > $globals['ppic_width']){
 								
-								$error[] = 'The Image has a width greater than '.$globals['ppic_width'].' pixels.';				
+								$error[] = $l['acc_img_perpic_width_greater'];				
 							
 							}else{
 							
@@ -1526,7 +1531,7 @@ global $error, $tree;
 							//The Personal Picture height
 							if($ppsize[1] > $globals['ppic_height']){
 								
-								$error[] = 'The Image has a height greater than '.$globals['ppic_height'].' pixels.';				
+								$error[] = $l['acc_img_perpic_height_greater'];				
 							
 							}else{
 							
@@ -1575,7 +1580,7 @@ global $error, $tree;
 				//Check was it previously an Uploaded avatar
 				if($user['ppic_type'] != 2){
 				
-					$error[] = 'No Picture file was given to be uploaded.';
+					$error[] = $l['acc_no_perpic_file_upl'];
 				
 				}else{
 				
@@ -1606,7 +1611,7 @@ global $error, $tree;
 			//The file is not allowed
 			if(!in_array($ppext, $allowedext)){
 			
-				$error[] = 'The Uploaded File type is not allowed.';
+				$error[] = $l['acc_filetype_no_allow'];
 			
 			}
 			
@@ -1635,7 +1640,7 @@ global $error, $tree;
 			//Check is it a image
 			if( ($ppsize[0] < 1) || ($ppsize[1] < 1) ){
 			
-				$error[] = 'The Uploaded File is not a image.';
+				$error[] = $l['acc_file_no_img'];
 			
 			//Do the necessary Checkings and Processing.
 			}else{
@@ -1644,7 +1649,7 @@ global $error, $tree;
 				//The Personal Picture width
 				if($ppsize[0] > $globals['ppic_width']){
 					
-					$error[] = 'The Uploaded Image has a width greater than '.$globals['ppic_width'].' pixels.';				
+					$error[] = $l['acc_img_perpic_width_greater'];				
 				
 				}else{
 				
@@ -1656,7 +1661,7 @@ global $error, $tree;
 				//The Personal Picture height
 				if($ppsize[1] > $globals['ppic_height']){
 					
-					$error[] = 'The Uploaded Image has a height greater than '.$globals['ppic_height'].' pixels.';				
+					$error[] = $l['acc_img_perpic_height_greater'];				
 				
 				}else{
 				
@@ -1668,7 +1673,7 @@ global $error, $tree;
 				//Lets check the size of the dam file
 				if($_FILES['uploadppic']['size'] > $globals['uploadppicmaxsize']){
 				
-					$error[] = 'The Uploaded Personal Picture\'s Size is greater than '.$globals['uploadppicmaxsize'].' bytes.';
+					$error[] = $l['acc_upl_img_perpic_size_greater'];
 				
 				}
 				
@@ -1687,7 +1692,7 @@ global $error, $tree;
 				//Finally lets move the Personal Picture File
 				if(!(@move_uploaded_file($ppictemp, $globals['uploadppicdir'].'/'.$ppic))){
 				
-					$error[] = 'The Image could not be uploaded.';
+					$error[] = $l['acc_no_upl_img'];
 				
 				}
 				
@@ -1701,7 +1706,7 @@ global $error, $tree;
 		//Else Big Error Dude - (Actually Impossible)
 		}else{
 		
-			$error[] = 'There was some problem in determining the Personal Picture you selected.';
+			$error[] = $l['acc_errors_perpic_selected'];
 		
 		}
 		
@@ -1716,7 +1721,7 @@ global $error, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Personal Picture. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['acc_upd_error'] ,$l['acc_errors_updat_perpic']);
 			
 			return false;
 			
@@ -1740,7 +1745,7 @@ global $error, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Personal Picture. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['acc_upd_error'] ,$l['acc_errors_updat_perpic']);
 			
 			return false;
 			

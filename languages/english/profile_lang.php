@@ -59,5 +59,6 @@ $l['gmail'] = 'GMail';
 $l['members_signature_heading'] = 'Members Signature';
 $l['no_signature'] = 'No Signature';
 $l['no_info'] = 'No Info';
+$l['last_active'] = 'Last Active';
 
 ?>

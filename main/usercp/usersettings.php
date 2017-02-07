@@ -26,11 +26,16 @@ if(!defined('AEF')){
 
 }
 
+if(!load_lang('usercp/usersettings')){
+    
+    return false;
+        
+}
 //The name of the file
 $theme['init_theme'] = 'usercp/usersettings';
 
 //The name of the Page
-$theme['init_theme_name'] = 'UserCP Settings';
+$theme['init_theme_name'] = $l['uset_usercp_set'];
 
 //Array of functions to initialize
 $theme['init_theme_func'] = array('emailpmset_theme',
@@ -54,10 +59,10 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 global $error, $tree;
 
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=forumset',
-					'txt' => 'Settings');
+					'txt' => $l['uset_set']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=emailpmset',
-					'txt' => 'Email & PM Settings');
+					'txt' => $l['uset_email_pm_set']);
 	
 	//The user is Posting some Personal Picture
 	if(isset($_POST['editemailpmset'])){
@@ -99,7 +104,7 @@ global $error, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Email and PM Settings. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['uset_update_error'] ,$l['uset_update_error_exp']);
 			
 			return false;
 			
@@ -130,7 +135,7 @@ global $error, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Email and PM Settings. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['uset_update_error'] ,$l['uset_update_error_exp']);
 			
 			return false;
 			
@@ -168,10 +173,10 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 global $error, $themes, $tree, $lang_folders;
 
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=forumset',
-					'txt' => 'Settings');
+					'txt' => $l['uset_set']);
 
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=forumset',
-					'txt' => 'Forum Settings');
+					'txt' => $l['uset_forum_set']);
 					
 	$lang_folders = array();
 	
@@ -192,7 +197,7 @@ global $error, $themes, $tree, $lang_folders;
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('No Themes Found' ,'There is some problem in the boards theme.');
+		reporterror($l['uset_no_themes_found'] ,$l['uset_problem_boards_theme']);
 		
 		return false;
 		
@@ -225,7 +230,7 @@ global $error, $themes, $tree, $lang_folders;
 		//Check the theme
 		if(!(isset($_POST['user_theme'])) || (trim($_POST['user_theme']) == "") && !empty($globals['choose_theme'])){
 		
-			$error[] = 'The Forums theme was not posted.';
+			$error[] = $l['uset_forum_theme_no_posted_exp'];
 			
 		}else{
 		
@@ -234,7 +239,7 @@ global $error, $themes, $tree, $lang_folders;
 			//If the selected theme is not the forum default then check
 			if(($id_skin != 0) && !in_array($id_skin, $themeids)){
 			
-				$error[] = 'The Forums theme you selected is invalid.';
+				$error[] = $l['uset_forum_theme_invalid_exp'];
 			
 			}
 			
@@ -256,7 +261,7 @@ global $error, $themes, $tree, $lang_folders;
 			
 			if(!in_array($timezone, $valid_timezones)){
 			
-				$error[] = 'The timezone you specified is invalid.';
+				$error[] = $l['uset_timezoner_invalid_exp'];
 			
 			}
 			
@@ -265,7 +270,7 @@ global $error, $themes, $tree, $lang_folders;
 		//The language
 		if(!(isset($_POST['language'])) || (trim($_POST['language']) == "")){
 			
-			$error[] = 'The board language was not specified.';
+			$error[] = $l['uset_no_board_language_exp'];
 			
 		}else{
 		
@@ -273,7 +278,7 @@ global $error, $themes, $tree, $lang_folders;
 			
 			if(!in_array($language, $lang_folders)){
 			
-				$error[] = 'The language you specified does not exist.';
+				$error[] = $l['uset_language_no_exist_exp'];
 			
 			}
 			
@@ -316,7 +321,7 @@ global $error, $themes, $tree, $lang_folders;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Forum Settings. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['uset_update_error'] ,$l['uset_update_error_exp']);
 			
 			return false;
 			
@@ -348,7 +353,7 @@ global $error, $themes, $tree, $lang_folders;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some errors in updating your Forum Settings. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['uset_update_error'] ,$l['uset_update_error_exp']);
 			
 			return false;
 			
@@ -377,10 +382,10 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 global $error, $theme_registry, $themes, $tree;
 
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=forumset',
-					'txt' => 'Settings');
+					'txt' => $l['uset_set']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=themeset&theme_id='.$globals['theme_id'],
-					'txt' => 'Theme Settings');
+					'txt' => $l['uset_theme_set']);
 	
 	
 	/////////////////////////////
@@ -400,7 +405,7 @@ global $error, $theme_registry, $themes, $tree;
 	if(empty($_GET['theme_id']) || trim($_GET['theme_id']) == "" || !is_numeric(trim($_GET['theme_id']))){
 	
 		//Show a major error and return
-		reporterror('No theme specified' ,'Sorry, we were unable to load any theme settings because the theme was not specified.');
+		reporterror($l['uset_no_theme_specified'] ,$l['uset_no_theme_specified_exp']);
 			
 		return false;
 	
@@ -418,7 +423,7 @@ global $error, $theme_registry, $themes, $tree;
 	if(empty($theme_registry) && !is_array($theme_registry)){
 	
 		//Show a major error and return
-		reporterror('Error' ,'Sorry, there were some errors while loading the themes registry.');
+		reporterror($l['uset_error'] ,$l['uset_errors_loading_exp']);
 			
 		return false;
 	

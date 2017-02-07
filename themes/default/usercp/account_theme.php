@@ -3,7 +3,7 @@
 
 function profile_theme(){
 
-global $theme, $user, $globals, $error, $foldercount;
+global $theme, $user, $globals, $l, $error, $foldercount;
 
 	//The global User CP Headers
 	usercphead();
@@ -19,7 +19,7 @@ global $theme, $user, $globals, $error, $foldercount;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">General Profile Settings</td>
+<td class="ucpcbg"><?php echo $l['acc_gen_prof_set'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -39,8 +39,8 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Date of Birth :</b><br />
-	<font class="ucpfexp">Year - Month - Day</font>
+	<b><?php echo $l['acc_date_birth'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_y_m-d'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" maxlength="4" size="4" name="dobyear" value="<?php echo (isset($_POST['dobyear']) ? $_POST['dobyear'] : $user['dobyear']);?>" /> - <input type="text" maxlength="2" size="2" name="dobmonth" value="<?php echo (isset($_POST['dobmonth']) ? $_POST['dobmonth'] : $user['dobmonth']);?>" /> - <input type="text" maxlength="2" size="2" name="dobday" value="<?php echo (isset($_POST['dobday']) ? $_POST['dobday'] : $user['dobday']);?>" />
@@ -49,8 +49,8 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Custom Title :</b><br />
-	<font class="ucpfexp">What title would you think for yourself ?.</font>
+	<b><?php echo $l['acc_custom_title'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_custom_title_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="45" name="title" value="<?php echo (isset($_POST['title']) ? $_POST['title'] : $user['customtitle']);?>" maxlength="<?php echo $globals['customtitlelen'];?>" />
@@ -59,8 +59,8 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Location :</b><br />
-	<font class="ucpfexp">Enter your Location.</font>
+	<b><?php echo $l['acc_location'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_location_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="45" name="location" value="<?php echo (isset($_POST['location']) ? $_POST['location'] : $user['location']);?>" />
@@ -70,21 +70,21 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Gender :</b><br />
-	<font class="ucpfexp">Select your Gender.</font>
+	<b><?php echo $l['acc_gender'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_gender_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<select name="gender" size="1">
-					<option value="1"  <?php echo ( (isset($_POST['gender']) && (int) $_POST['gender'] == 1) ? 'selected="selected"' : (($user['gender'] == 1) ? 'selected="selected"' : '') );?>>Male</option>
-					<option value="2" <?php echo ( (isset($_POST['gender']) && (int) $_POST['gender'] == 2) ? 'selected="selected"' : (($user['gender'] == 2) ? 'selected="selected"' : '') );?>>Female</option>
+					<option value="1"  <?php echo ( (isset($_POST['gender']) && (int) $_POST['gender'] == 1) ? 'selected="selected"' : (($user['gender'] == 1) ? 'selected="selected"' : '') );?>><?php echo $l['acc_male'];?></option>
+					<option value="2" <?php echo ( (isset($_POST['gender']) && (int) $_POST['gender'] == 2) ? 'selected="selected"' : (($user['gender'] == 2) ? 'selected="selected"' : '') );?>><?php echo $l['acc_female'];?></option>
 					</select>
 	</td>
 	</tr>
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Private Text :</b><br />
-	<font class="ucpfexp">This text will appear in your posts alongwith the Member Group, Posts etc.</font>
+	<b><?php echo $l['acc_private_text'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_private_text_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="45" name="privatetext" value="<?php echo (isset($_POST['privatetext']) ? $_POST['privatetext'] : $user['users_text']);?>" />
@@ -93,8 +93,8 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>ICQ :</b><br />
-	<font class="ucpfexp">Enter your ICQ number.</font>
+	<b><?php echo $l['acc_icq'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_icq_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="24" name="icq" value="<?php echo (isset($_POST['icq']) ? $_POST['icq'] : $user['icq']);?>" />
@@ -104,8 +104,8 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>YIM :</b><br />
-	<font class="ucpfexp">Enter your Yahoo! Instant Messenger name.</font>
+	<b><?php echo $l['acc_yim'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_yim_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="24" name="yim" value="<?php echo (isset($_POST['yim']) ? $_POST['yim'] : $user['yim']);?>" />
@@ -115,8 +115,8 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>MSN :</b><br />
-	<font class="ucpfexp">Enter your MSN email address.</font>
+	<b><?php echo $l['acc_msn'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_msn_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="24" name="msn" value="<?php echo (isset($_POST['msn']) ? $_POST['msn'] : $user['msn']);?>" />
@@ -126,8 +126,8 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>AIM :</b><br />
-	<font class="ucpfexp">Enter your AOL Instant Messenger nickname.</font>
+	<b><?php echo $l['acc_aim'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_aim_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="24" name="aim" value="<?php echo (isset($_POST['aim']) ? $_POST['aim'] : $user['aim']);?>" />
@@ -136,8 +136,8 @@ global $theme, $user, $globals, $error, $foldercount;
     
     <tr>
 	<td class="ucpflc" width="30%">
-	<b>GMail :</b><br />
-	<font class="ucpfexp">Enter your GMail username.</font>
+	<b><?php echo $l['acc_gmail'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_gmail_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="24" name="gmail" value="<?php echo (isset($_POST['gmail']) ? $_POST['gmail'] : $user['gmail']);?>" />
@@ -146,8 +146,8 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>WWW :</b><br />
-	<font class="ucpfexp">If you have your own website enter its URL here e.g http://www.anelectron.com .</font>
+	<b><?php echo $l['acc_www'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_www_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="45" name="www" value="<?php echo (isset($_POST['www']) ? $_POST['www'] : $user['www']);?>" />
@@ -157,7 +157,7 @@ global $theme, $user, $globals, $error, $foldercount;
 	
 	<tr>
 	<td class="ucpflc" colspan="2" align="center">
-	<input type="submit" name="editprofile" value="Edit Profile" />
+	<input type="submit" name="editprofile" value="<?php echo $l['acc_edit_profile'];?>" />
 	</td>
 	</tr>
 	
@@ -184,7 +184,7 @@ global $theme, $user, $globals, $error, $foldercount;
 
 function account_theme(){
 
-global $theme, $user, $globals, $error;
+global $theme, $user, $globals, $l, $error;
 
 	//The global User CP Headers
 	usercphead();
@@ -201,7 +201,7 @@ global $theme, $user, $globals, $error;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Account Settings</td>
+<td class="ucpcbg"><?php echo $l['acc_acc_set'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -222,8 +222,8 @@ global $theme, $user, $globals, $error;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Real Name  :</b><br />
-	<font class="ucpfexp">This name will be visible in your Profile.</font>
+	<b><?php echo $l['acc_realname'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_realname_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="45" name="realname" value="<?php echo (isset($_POST['realname']) ? $_POST['realname'] : $user['realname']);?>" />
@@ -232,7 +232,7 @@ global $theme, $user, $globals, $error;
 	
     <tr>
 	<td class="ucpflc" width="30%">
-	<b>Username :</b>
+	<b><?php echo $l['acc_usname'];?></b><br />
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="45" name="username" value=<?php echo '"'.(isset($_POST['username']) ? $_POST['username'] : $user['username']).'" '.(empty($globals['change_username']) ? 'disabled="disabled"' : '');?> />
@@ -241,8 +241,8 @@ global $theme, $user, $globals, $error;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>New Password :</b><br />
-	<font class="ucpfexp">If you want to change your password please enter it here.</font>
+	<b><?php echo $l['acc_new_pass'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_new_pass_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="password" size="30" name="newpass" />
@@ -251,8 +251,8 @@ global $theme, $user, $globals, $error;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Confirm New Password :</b><br />
-	<font class="ucpfexp">Just to verify the submitted password.</font>
+	<b><?php echo $l['acc_conf_new_pass'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_conf_new_pass_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="password" size="30" name="confirmnewpass" />
@@ -262,8 +262,8 @@ global $theme, $user, $globals, $error;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Secret Question :</b><br />
-	<font class="ucpfexp">If you forget your password you will be asked to answer this question to reset your password.</font>
+	<b><?php echo $l['acc_sec_qt'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_sec_qt_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="45" name="secretqt" value="<?php echo (isset($_POST['secretqt']) ? $_POST['secretqt'] : $user['secret_question']);?>" />
@@ -273,8 +273,8 @@ global $theme, $user, $globals, $error;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Answer :</b><br />
-	<font class="ucpfexp">Enter the answer to your question that only you should know (Dont enter if you do not wish to change your current Answer). </font>
+	<b><?php echo $l['acc_answer'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_answer_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="30" name="answer" />
@@ -284,8 +284,8 @@ global $theme, $user, $globals, $error;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Email Address :</b><br />
-	<font class="ucpfexp">Enter your email address here.</font>
+	<b><?php echo $l['acc_email'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_email_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="text" size="45" name="email" value="<?php echo (isset($_POST['email']) ? $_POST['email'] : $user['email']);?>" />
@@ -295,8 +295,8 @@ global $theme, $user, $globals, $error;
 	
 	<tr>
 	<td class="ucpflc" width="30%">
-	<b>Current Password :</b><br />
-	<font class="ucpfexp">To make changes to your Account Settings you will have to enter your Current Password for security reasons.</font>
+	<b><?php echo $l['acc_curr_pass'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_curr_pass_exp'];?></font>
 	</td>
 	<td class="ucpflc">
 	&nbsp;&nbsp;&nbsp;<input type="password" size="30" name="currentpass" />
@@ -306,7 +306,7 @@ global $theme, $user, $globals, $error;
 	
 	<tr>
 	<td class="ucpflc" colspan="2" align="center">
-	<input type="submit" name="editaccount" value="Save Changes" />
+	<input type="submit" name="editaccount" value="<?php echo $l['acc_save_ch'];?>" />
 	</td>
 	</tr>
 
@@ -334,7 +334,7 @@ global $theme, $user, $globals, $error;
 
 function signature_theme(){
 
-global $theme, $user, $globals, $error, $smileys, $smileycode, $smileyimages, $popup_emoticons, $dmenus;
+global $theme, $user, $globals, $l, $error, $smileys, $smileycode, $smileyimages, $popup_emoticons, $dmenus;
 
 	//The global User CP Headers
 	usercphead();
@@ -371,7 +371,7 @@ function init_editor(){
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Edit Your Signature</td>
+<td class="ucpcbg"><?php echo $l['acc_edit_ur_sig'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -391,7 +391,7 @@ function init_editor(){
 		
 	
 	<tr>
-	<td width="23%" class="ucpflc" valign="top"><b>Text Formatting</b></td>
+	<td width="23%" class="ucpflc" valign="top"><b><?php echo $l['acc_txt_format'];?></b></td>
 	<td class="ucpfrc">
 	<?php editor_buttons('editor');?>
 	</td>
@@ -400,15 +400,15 @@ function init_editor(){
     <?php editor_smileys('editor', $globals['usesmileys']);?>
 	
 	<tr>
-	<td class="ucpflc" valign="top"><b>Signature</b><br />
-	<font class="ucpfexp">Your signature will be displayed at the end of every post you make and PM you send.</font></td>
+	<td class="ucpflc" valign="top"><b><?php echo $l['acc_sig'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_sig_exp'];?></font></td>
 	<td class="ucpfrc"><textarea name="signature" rows="13" cols="65" onchange="storeCaret(this);" onkeyup="storeCaret(this);" onclick="storeCaret(this);" onselect="storeCaret(this);" id="sig" /><?php echo (isset($_POST['signature']) ? $_POST['signature'] : $user['sig']);?></textarea>
 	</td>
 	</tr>
 	
 	<tr>
 	<td class="ucpflc" colspan="2" align="center">
-	<input type="submit" name="editsig" value="Save Changes" />
+	<input type="submit" name="editsig" value="<?php echo $l['acc_save_ch'];?>" />
 	</td>
 	</tr>
 
@@ -434,7 +434,7 @@ function init_editor(){
 
 function avatar_theme(){
 
-global $theme, $user, $globals, $error, $avatargallery, $onload;
+global $theme, $user, $globals, $l, $error, $avatargallery, $onload;
 	
 	//Pass to onload to initialize a JS
 	$onload['fillup'] = 'fillup()';	
@@ -472,7 +472,7 @@ function checkradio(id){
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Edit Your Avatar</td>
+<td class="ucpcbg"><?php echo $l['acc_edit_ur_avatar'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -491,7 +491,7 @@ function checkradio(id){
 	</tr>
 	
 	<tr>
-	<td class="ucpflc" align="center" colspan="2"><b>Your Current Avatar</b>
+	<td class="ucpflc" align="center" colspan="2"><b><?php echo $l['acc_ur_curr_avatar'];?></b>
 	</td>
 	<td class="ucpfrc" align="center">
 	<img src="<?php echo $curpp[0];?>" height="<?php echo $curpp[2];?>" width="<?php echo $curpp[1];?>" />
@@ -503,8 +503,8 @@ function checkradio(id){
 	<input type="radio" name="avatartype" id="avgallery" value="1" <?php echo ((isset($_POST['avatartype'])) ? (((int)$_POST['avatartype'] == 1) ? 'checked="checked"' : '') : (($user['avatar_type'] == 1) ? 'checked="checked"' : ''));?> />
 	</td>
 	<td class="ucpflc" width="25%" align="left">
-	<b>Avatar Gallery</b><br />
-	<font class="ucpfexp">You may choose an avatar from our forum gallery.</font>
+	<b><?php echo $l['acc_avatar_gall'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_avatar_gall_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="left">
 
@@ -530,7 +530,7 @@ function checkradio(id){
 	
 	}else{
 	
-		echo '<td>No images in the Avatar Gallery</td>';
+		echo '<td>'.$l['acc_noimg_avatar_gall'].'</td>';
 	
 	}
 
@@ -574,8 +574,8 @@ function checkradio(id){
 	<input type="radio" name="avatartype" id="avurl" value="2" <?php echo ((isset($_POST['avatartype'])) ? (((int)$_POST['avatartype'] == 2) ? 'checked="checked"' : '') : (($user['avatar_type'] == 2) ? 'checked="checked"' : ''));?> />
 	</td>
 	<td class="ucpflc" width="25%" align="left">
-	<b>Online Image</b><br />
-	<font class="ucpfexp">Enter the URL to your own online image.</font>
+	<b><?php echo $l['acc_online_img'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_online_img_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="left">
 	<input type="text" size="45" name="urlavatar" <?php echo ( (isset($_POST['avatartype']) && (int)$_POST['avatartype'] == 2) && (isset($_POST['urlavatar'])) ? 'value="'.$_POST['urlavatar'].'"' : (($user['avatar_type'] == 2) ? 'value="'.($user['avatar']).'"' : '') );?> onfocus="$('avurl').checked = true;" />
@@ -587,8 +587,8 @@ function checkradio(id){
 	<input type="radio" name="avatartype" id="avupload" value="3" <?php echo ((isset($_POST['avatartype'])) ? (((int)$_POST['avatartype'] == 3) ? 'checked="checked"' : '') : (($user['avatar_type'] == 3) ? 'checked="checked"' : ''));?> />
 	</td>
 	<td class="ucpflc" align="left">
-	<b>Upload Image</b><br />
-	<font class="ucpfexp">Upload an image from your computer.</font>
+	<b><?php echo $l['acc_upl_img'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_upl_img_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="left">
 	<?php echo (($user['avatar_type'] == 3) ? '<img src="'.$curpp[0].'" height="'.$curpp[4].'" width="'.$curpp[3].'" />' : '');?><br />
@@ -598,7 +598,7 @@ function checkradio(id){
 
 	<tr>
 	<td class="ucpflc" colspan="3" align="center">
-	<input type="submit" name="editavatar" value="Save Changes" />&nbsp;<input type="submit" name="removeavatar" value="Remove Avatar" />
+	<input type="submit" name="editavatar" value="<?php echo $l['acc_save_ch'];?>" />&nbsp;<input type="submit" name="removeavatar" value="<?php echo $l['acc_rem_avatar'];?>" />
 	</td>
 	</tr>
 
@@ -625,7 +625,7 @@ function checkradio(id){
 
 function personalpic_theme(){
 
-global $theme, $user, $globals, $error;
+global $theme, $user, $globals, $l, $error;
 
 	//The global User CP Headers
 	usercphead();
@@ -644,7 +644,7 @@ global $theme, $user, $globals, $error;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Edit Your Personal Picture</td>
+<td class="ucpcbg"><?php echo $l['acc_edit_ur_perpic'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -663,7 +663,7 @@ global $theme, $user, $globals, $error;
 	</tr>
 	
 	<tr>
-	<td class="ucpflc" align="center" colspan="2"><b>Your Current Picture</b>
+	<td class="ucpflc" align="center" colspan="2"><b><?php echo $l['acc_curr_perpic'];?></b>
 	</td>
 	<td class="ucpfrc" align="center">
 	<img src="<?php echo $curpp[0];?>" height="<?php echo $curpp[2];?>" width="<?php echo $curpp[1];?>" />
@@ -676,8 +676,8 @@ global $theme, $user, $globals, $error;
 	<input type="radio" name="ppictype" id="ppicurl" value="1" <?php echo ((isset($_POST['ppictype'])) ? (((int)$_POST['ppictype'] == 1) ? 'checked="checked"' : '') : (($user['ppic_type'] == 1) ? 'checked="checked"' : ''));?> />
 	</td>
 	<td class="ucpflc" width="25%" align="left">
-	<b>Online Picture</b><br />
-	<font class="ucpfexp">Enter the URL to your own online image.</font>
+	<b><?php echo $l['acc_online_perpic'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_online_perpic_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="left">
 	<input type="text" size="45" name="urlppic" <?php echo ( (isset($_POST['ppictype']) && (int)$_POST['ppictype'] == 1) && (isset($_POST['urlppic'])) ? 'value="'.$_POST['urlppic'].'"' : (($user['ppic_type'] == 1) ? 'value="'.($user['ppic']).'"' : '') );?> onfocus="$('ppicurl').checked = true;" />
@@ -689,8 +689,8 @@ global $theme, $user, $globals, $error;
 	<input type="radio" name="ppictype" id="ppicupload" value="2" <?php echo ((isset($_POST['ppictype'])) ? (((int)$_POST['ppictype'] == 2) ? 'checked="checked"' : '') : (($user['ppic_type'] == 2) ? 'checked="checked"' : ''));?> />
 	</td>
 	<td class="ucpflc" align="left">
-	<b>Upload Image</b><br />
-	<font class="ucpfexp">Upload an image from your computer.</font>
+	<b><?php echo $l['acc_upl_img'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['acc_upl_img_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="left">
 	<?php echo (($user['ppic_type'] == 2) ? '<img src="'.$curpp[0].'" height="'.$curpp[4].'" width="'.$curpp[3].'" />' : '');?><br />
@@ -700,7 +700,7 @@ global $theme, $user, $globals, $error;
 
 	<tr>
 	<td class="ucpflc" colspan="3" align="center">
-	<input type="submit" name="editppic" value="Save Changes" />&nbsp;<input type="submit" name="removeppic" value="Remove Picture" />
+	<input type="submit" name="editppic" value="<?php echo $l['acc_save_ch'];?>" />&nbsp;<input type="submit" name="removeppic" value="<?php echo $l['acc_rem_perpic'];?>" />
 	</td>
 	</tr>
 

@@ -31,6 +31,11 @@ function forumpermissions(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/forumpermissions')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/forumpermissions';
 	
@@ -165,7 +170,7 @@ global $fpermissions, $fpfid, $fpugid;
 	}else{
 	
 		//Show a major error and return
-		reporterror('No forum specified' ,'Sorry, we were unable to process your request because  you did not specify the forum which you wish to edit. Please go back and select the forum you wish to edit.');
+		reporterror($l['no_forum'], $l['no_forum_exp']);
 			
 		return false;
 		
@@ -180,7 +185,7 @@ global $fpermissions, $fpfid, $fpugid;
 	}else{
 	
 		//Show a major error and return
-		reporterror('No user group specified' ,'Sorry, we were unable to process your request because you did not specify the user group which you wish to edit. Please go back and select the user group you wish to edit.');
+		reporterror($l['no_user_group'], $l['no_user_group_exp']);
 			
 		return false;
 		
@@ -191,7 +196,7 @@ global $fpermissions, $fpfid, $fpugid;
 	if(!fpermissionsmanage()){
 	
 		//Show a major error and return
-		reporterror('Processing Problem' ,'Sorry, we were unable to process your request because  the forum permissions could noot be loaded.');
+		reporterror($l['processing_problem'], $l['processing_problem_exp']);
 			
 		return false;
 	
@@ -202,7 +207,7 @@ global $fpermissions, $fpfid, $fpugid;
 	if(empty($fpermissions[$fpfid][$fpugid])){
 	
 		//Show a major error and return
-		reporterror('Invalid User Group' ,'Sorry, we were unable to process your request because  there is no forum permissions for the specified user group and forum. If you would like to create a forum permission for the same, please click <a href="'.$globals['index_url'].'act=admin&adact=fpermissions&seadact=createfpermissions&fpfid='.$fpfid.'&fpug='.$fpugid.'">here</a>.');
+		reporterror($l['invalid_user_group'], lang_vars($l['invalid_user_group_exp'], array($fpfid, $fpugid)));
 			
 		return false;
 	
@@ -306,7 +311,7 @@ global $fpermissions, $fpfid, $fpugid;
 	
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Delete Forum Permission Error' ,'There were some errors in deleting the specified forum permission set.');
+			reporterror($l['del_perm_error'], $l['del_perm_error_exp']);
 			
 			return false;
 			
@@ -368,7 +373,7 @@ global $fpermissions, $fpfid, $fpugid, $categories, $forums, $user_group, $error
 	if(!fpermissionsmanage()){
 	
 		//Show a major error and return
-		reporterror('Processing Problem' ,'Sorry, we were unable to process your request because  the forum permissions could noot be loaded.');
+		reporterror($l['processing_problem'], $l['processing_problem_exp']);
 			
 		return false;
 	
@@ -427,7 +432,7 @@ global $fpermissions, $fpfid, $fpugid, $categories, $forums, $user_group, $error
 		//Check the Forum is set
 		if(!(isset($_POST['fpfid'])) || (trim($_POST['fpfid']) == "")){
 		
-			$error[] = 'The Forum was not Posted.';
+			$error[] = $l['no_forum_posted'];
 			
 		}else{
 		
@@ -435,7 +440,7 @@ global $fpermissions, $fpfid, $fpugid, $categories, $forums, $user_group, $error
 			
 			if(!in_array($fpfid, $forum_ids)){
 			
-				$error[] = 'The Forum that you submitted is invalid.';
+				$error[] = $l['invalid_forum_posted'];
 			
 			}			
 			
@@ -452,7 +457,7 @@ global $fpermissions, $fpfid, $fpugid, $categories, $forums, $user_group, $error
 		//Check the User Group is set
 		if(!(isset($_POST['fpugid'])) || (trim($_POST['fpugid']) == "")){
 		
-			$error[] = 'The User Group was not Posted.';
+			$error[] = $l['no_group_posted'];
 			
 		}else{
 		
@@ -462,13 +467,13 @@ global $fpermissions, $fpfid, $fpugid, $categories, $forums, $user_group, $error
 			//Check is the user group already created
 			if(!empty($fpermissions[$fpfid][$fpugid])){
 			
-				$error[] = 'The User Group that you submitted is already created for this forum.';
+				$error[] = $l['group_perm_created'];
 			
 			}	
 			
 			if(!in_array($fpugid, $valid_ug)){
 			
-				$error[] = 'The User Group that you submitted is invalid.';
+				$error[] = $l['user_group_invalid'];
 			
 			}
 			
@@ -547,7 +552,7 @@ global $fpermissions, $fpfid, $fpugid, $categories, $forums, $user_group, $error
 	
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Forum Permission Set Error' ,'There were some errors in creating the Forum Permission Set for the Forum <b>'.$board['fname'].'</b>.');
+			reporterror($l['create_perm_error'], $l['create_perm_error_exp']);
 			
 			return false;
 			

@@ -27,11 +27,16 @@ if(!defined('AEF')){
 }
 
 
+if(!load_lang('admin/index')){
+    
+	return false;
+        
+}
 //Can he admin
 if(!$user['can_admin']){
 
 	//Show a major error and return
-	reporterror('No Permissions' ,'Sorry, you are not allowed to view this section of the board as you do not have the adequate permissions to do so. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+	reporterror($l['no_permissions'], $l['no_view_section']);
 		
 	return false;
 
@@ -39,9 +44,9 @@ if(!$user['can_admin']){
 
 $tree = array();//Board tree for users location
 $tree[] = array('l' => $globals['index_url'],
-				'txt' => 'Index');
+				'txt' => $l['index']);
 $tree[] = array('l' => $globals['index_url'].'act=admin',
-				'txt' => 'Admin');
+				'txt' => $l['admin_']);
 
 $load_ahf = true;
 

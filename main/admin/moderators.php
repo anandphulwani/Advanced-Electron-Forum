@@ -31,6 +31,11 @@ function moderators(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/moderators')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/moderators';
 	
@@ -107,7 +112,7 @@ global $categories, $forums, $error, $board;
 	}else{
 	
 		//Show a major error and return
-		reporterror('No forum specified' ,'Sorry, we were unable to process your request because  you did not specify the forum which you wish to edit. Please go back and select the forum you wish to edit.');
+		reporterror($l['no_forum'], $l['no_forum_exp']);
 			
 		return false;
 		
@@ -145,7 +150,7 @@ global $categories, $forums, $error, $board;
 	if(empty($board)){
 	
 		//Show a major error and return
-		reporterror('No forum found' ,'The forum you specified is invalid as it does not exist in the system.');
+		reporterror($l['no_forum_found'], $l['no_forum_found_exp1']);
 			
 		return false;
 		
@@ -159,7 +164,7 @@ global $categories, $forums, $error, $board;
 		//Check if the Usernames field exists.
 		if(!(isset($_POST['modusernames'])) || trim($_POST['modusernames']) == ""){
 		
-			$error[] = 'You did not specify the usernames of any moderators.';
+			$error[] = $l['no_usernames'];
 			
 		}else{
 		
@@ -199,7 +204,7 @@ global $categories, $forums, $error, $board;
 	
 			if(mysql_affected_rows($conn) < 1){
 					
-				reporterror('Moderator Error' ,'There were some errors in replacing the moderator fields in the system.');
+				reporterror($l['moderator_error'], $l['moderator_error_exp']);
 				
 				return false;
 				
@@ -220,7 +225,7 @@ global $categories, $forums, $error, $board;
 		
 		if(empty($board['moderators'])){
 		
-			reporterror('Delete Forum Permission Error' ,'There are no moderators in this forum that can be deleted.');
+			reporterror($l['delete_mod_error'], $l['no_mod_to_del']);
 			
 			return false;
 		
@@ -235,7 +240,7 @@ global $categories, $forums, $error, $board;
 	
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Delete Forum Permission Error' ,'There were some errors in deleting the specified forums Moderators.');
+			reporterror($l['delete_mod_error'], $l['delete_mod_error_exp']);
 			
 			return false;
 			
@@ -304,7 +309,7 @@ global $error;
 	
 	if(empty($mods)){
 	
-		$error[] = 'The Usernames of the moderators were not specified.';
+		$error[] = $l['no_usernames_mods'];
 	
 	}
 	
@@ -332,7 +337,7 @@ global $error;
 	if(mysql_num_rows($qresult) < 1){
 		
 		//There was no result
-		$error[] = 'The Usernames '.(implode(", ", $mods)).' you specified do not exist.';
+		$error[] = $l['the_usernames'].(implode(", ", $mods)).$l['specified_not_exist'];
 		
 	}
 	
@@ -383,7 +388,7 @@ global $error;
 		
 	if(!empty($not_there)){
 		
-		$error[] = 'The Usernames '.(implode(",", $not_there)).' you specified do not exist.';
+		$error[] = $l['the_usernames'].(implode(",", $not_there)).$l['specified_not_exist'];
 	
 	}
 		

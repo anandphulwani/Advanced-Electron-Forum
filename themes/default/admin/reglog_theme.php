@@ -1,17 +1,36 @@
 <?php
 
-if(!defined('AEF'))
-{
+//////////////////////////////////////////////////////////////
+//===========================================================
+// reglog_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
+
+if(!defined('AEF')){
 die('Hacking Attempt');
 }
 
 
 function regset_theme(){
 
-global $globals, $theme, $error;
+global $globals, $l, $theme, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Registration Settings');
+	adminhead($l['cp_reg_set']);
 	
 	?>
 	
@@ -23,14 +42,14 @@ global $globals, $theme, $error;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Registration Settings</font><br />
+	<font class="adgreen"><?php echo $l['reg_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for changing the registration settings for the new members.
+	<?php echo $l['reg_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -47,14 +66,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Registration Settings
+		<?php echo $l['reg_set'];?>
 		</td>
 		</tr>
 	
 		<tr>
 		<td width="35%" class="adbg">
-		<b>New Registrations:</b><br />
-		<font class="adexp">Should new registrations be allowed ?</font>
+		<b><?php echo $l['new_reg'];?></b><br />
+		<font class="adexp"><?php echo $l['new_reg_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="allow_reg"	<?php echo ($globals['allow_reg'] ? 'checked="checked"' : '');?> />
@@ -63,23 +82,23 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td class="adbg">
-		<b>Registration Method:</b><br />
-		<font class="adexp">Choose the registration method</font>
+		<b><?php echo $l['reg_method'];?></b><br />
+		<font class="adexp"><?php echo $l['reg_method_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<select name="reg_method">
-		<option value="1" <?php echo (isset($_POST['reg_method']) && $_POST['reg_method'] == 1 ? 'selected="selected"' : ($globals['reg_method'] == 1 ? 'selected="selected"' : '' ));?> >Immediate</option>
-		<option value="2" <?php echo (isset($_POST['reg_method']) && $_POST['reg_method'] == 2 ? 'selected="selected"' : ($globals['reg_method'] == 2 ? 'selected="selected"' : '' ));?> >Email Validation</option>
-		<option value="3" <?php echo (isset($_POST['reg_method']) && $_POST['reg_method'] == 3 ? 'selected="selected"' : ($globals['reg_method'] == 3 ? 'selected="selected"' : '' ));?> >By Admins</option>
+		<option value="1" <?php echo (isset($_POST['reg_method']) && $_POST['reg_method'] == 1 ? 'selected="selected"' : ($globals['reg_method'] == 1 ? 'selected="selected"' : '' ));?> ><?php echo $l['immediate'];?></option>
+		<option value="2" <?php echo (isset($_POST['reg_method']) && $_POST['reg_method'] == 2 ? 'selected="selected"' : ($globals['reg_method'] == 2 ? 'selected="selected"' : '' ));?> ><?php echo $l['by_email'];?></option>
+		<option value="3" <?php echo (isset($_POST['reg_method']) && $_POST['reg_method'] == 3 ? 'selected="selected"' : ($globals['reg_method'] == 3 ? 'selected="selected"' : '' ));?> ><?php echo $l['by_admins'];?></option>
 		</select>
 		</td>
 		</tr>
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Welcome Email:</b><br />
-		<font class="adexp">Send a welcome email to the registered members.</font>
+		<b><?php echo $l['welcome_email'];?></b><br />
+		<font class="adexp"><?php echo $l['welcome_email_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="wel_email"	<?php echo ($globals['wel_email'] ? 'checked="checked"' : '');?> />
@@ -88,8 +107,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Notify Admin</b><br />
-		<font class="adexp">Notify the Admin on new registration. </font>
+		<b><?php echo $l['notify_admin'];?></b><br />
+		<font class="adexp"><?php echo $l['notify_admin_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="reg_notify" <?php echo ($globals['reg_notify'] ? 'checked="checked"' : '');?> />
@@ -98,8 +117,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Max Username Length</b><br />
-		<font class="adexp">Maximum length of a username.</font>
+		<b><?php echo $l['max_uname_length'];?></b><br />
+		<font class="adexp"><?php echo $l['max_uname_length_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="max_uname" value="<?php echo (empty($_POST['max_uname']) ? $globals['max_uname'] : $_POST['max_uname']);?>" />
@@ -108,8 +127,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Min Username Length</b><br />
-		<font class="adexp">Minimum length of a username.</font>
+		<b><?php echo $l['min_uname_length'];?></b><br />
+		<font class="adexp"><?php echo $l['min_uname_length_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="min_uname" value="<?php echo (empty($_POST['min_uname']) ? $globals['min_uname'] : $_POST['min_uname']);?>" />
@@ -118,8 +137,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Max Password Length</b><br />
-		<font class="adexp">Maximum length of a users password.</font>
+		<b><?php echo $l['max_pass_length'];?></b><br />
+		<font class="adexp"><?php echo $l['max_pass_length_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="max_pass" value="<?php echo (empty($_POST['max_pass']) ? $globals['max_pass'] : $_POST['max_pass']);?>" />
@@ -128,8 +147,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Min Password Length</b><br />
-		<font class="adexp">Minimum length of a users password.</font>
+		<b><?php echo $l['min_pass_length'];?></b><br />
+		<font class="adexp"><?php echo $l['min_pass_length_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="min_pass" value="<?php echo (empty($_POST['min_pass']) ? $globals['min_pass'] : $_POST['min_pass']);?>" />
@@ -138,8 +157,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Confirmation Code</b><br />
-		<font class="adexp">Should the security confirmation code be enabled.</font>
+		<b><?php echo $l['confirm_code'];?></b><br />
+		<font class="adexp"><?php echo $l['confirm_code_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="sec_conf" <?php echo ($globals['sec_conf'] ? 'checked="checked"' : '');?> />
@@ -148,8 +167,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Same PC Registrations</b><br />
-		<font class="adexp">Should Registrations from the same compter be allowed.</font>
+		<b><?php echo $l['same_pc_reg'];?></b><br />
+		<font class="adexp"><?php echo $l['same_pc_reg_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="samepc_reg" <?php echo ($globals['samepc_reg'] ? 'checked="checked"' : '');?> />
@@ -163,7 +182,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editregset" value="Submit" />
+		<input type="submit" name="editregset" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -179,10 +198,10 @@ global $globals, $theme, $error;
 
 function agerest_theme(){
 
-global $globals, $theme, $error;
+global $globals, $l, $theme, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Age Restrictions');
+	adminhead($l['cp_age_rest']);
 	
 	?>
 	
@@ -194,14 +213,14 @@ global $globals, $theme, $error;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Age Restriction Settings</font><br />
+	<font class="adgreen"><?php echo $l['age_rest_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Here you can set a age limit for new members.
+	<?php echo $l['age_rest_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -218,15 +237,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Age Restriction Settings
+		<?php echo $l['age_rest_set'];?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Age :</b><br />
-		<font class="adexp">Age below which restrictions are applicable.<br />
-		Enter 0(zero) to disable.</font>
+		<b><?php echo $l['age'];?></b><br />
+		<font class="adexp"><?php echo $l['age_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="age_limit" value="<?php echo (empty($_POST['v']) ? $globals['age_limit'] : $_POST['age_limit']);?>" />
@@ -235,22 +253,22 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td class="adbg">
-		<b>Action :</b><br />
-		<font class="adexp">What to do if the applicants age is below the required age ?</font>
+		<b><?php echo $l['action'];?></b><br />
+		<font class="adexp"><?php echo $l['action_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<select name="age_rest_act">
-		<option value="1" <?php echo (isset($_POST['age_rest_act']) && $_POST['age_rest_act'] == 1 ? 'selected="selected"' : '');?> >Reject Registration</option>
-		<option value="2" <?php echo (isset($_POST['age_rest_act']) && $_POST['age_rest_act'] == 2 ? 'selected="selected"' : '');?> >Require Parent/Guardian Consent</option>
+		<option value="1" <?php echo (isset($_POST['age_rest_act']) && $_POST['age_rest_act'] == 1 ? 'selected="selected"' : '');?> ><?php echo $l['reject_reg'];?></option>
+		<option value="2" <?php echo (isset($_POST['age_rest_act']) && $_POST['age_rest_act'] == 2 ? 'selected="selected"' : '');?> ><?php echo $l['require_parent_consent'];?></option>
 		</select>
 		</td>
 		</tr>
 		
 		<tr>
 		<td class="adbg">
-		<b>Address :</b><br />
-		<font class="adexp">Address to which the Parental approval/consent is to be send.</font>
+		<b><?php echo $l['address'];?></b><br />
+		<font class="adexp"><?php echo $l['address_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">&nbsp;&nbsp;&nbsp;&nbsp;
 		<textarea name="age_rest_act_address" cols="45" rows="6"><?php echo (empty($_POST['age_rest_act_address']) ? $globals['age_rest_act_address'] : $_POST['age_rest_act_address']);?></textarea>
@@ -259,8 +277,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Fax :</b><br />
-		<font class="adexp">Fax Number to which the Parental approval/consent is to be send.</font>
+		<b><?php echo $l['fax'];?></b><br />
+		<font class="adexp"><?php echo $l['fax_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="age_rest_act_fax" value="<?php echo (empty($_POST['age_rest_act_fax']) ? $globals['age_rest_act_fax'] : $_POST['age_rest_act_fax']);?>" />
@@ -269,8 +287,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Telephone :</b><br />
-		<font class="adexp">Telephone Number for parents to contact for age restriction queries.</font>
+		<b><?php echo $l['tlfn'];?></b><br />
+		<font class="adexp"><?php echo $l['tlfn_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="age_rest_act_tele" value="<?php echo (empty($_POST['age_rest_act_tele']) ? $globals['age_rest_act_tele'] : $_POST['age_rest_act_tele']);?>" />
@@ -284,7 +302,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editagerestset" value="Submit" />
+		<input type="submit" name="editagerestset" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -300,10 +318,10 @@ global $globals, $theme, $error;
 
 function reserved_theme(){
 
-global $globals, $theme, $error;
+global $globals, $l, $theme, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Set Reserved Names');
+	adminhead($l['cp_reserved_names_set']);
 	
 	?>
 	
@@ -315,14 +333,14 @@ global $globals, $theme, $error;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Set Reserved Names</font><br />
+	<font class="adgreen"><?php echo $l['reserved_names_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Here you can set reserved usernames that can be used by members while registering.
+	<?php echo $l['reserved_names_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -339,15 +357,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Set Reserved Names
+		<?php echo $l['reserved_names_set'];?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Reserved Names :</b><br />
-		<font class="adexp">Enter the names that you would like to reserve.
-		(One reserved word per line)</font>
+		<b><?php echo $l['reserved_names'];?></b><br />
+		<font class="adexp"><?php echo $l['reserved_names_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">&nbsp;&nbsp;&nbsp;&nbsp;
 		<textarea name="reserved_names" cols="45" rows="6"><?php echo (empty($_POST['reserved_names']) ? $globals['reserved_names'] : $_POST['reserved_names']);?></textarea>
@@ -356,8 +373,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Match Whole Words:</b><br />
-		<font class="adexp">This will match 'admin' in 'admin' only and not in 'myadmin'.</font>
+		<b><?php echo $l['match_whole_words'];?></b><br />
+		<font class="adexp"><?php echo $l['match_whole_words_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="reserved_match_whole"	<?php echo ($globals['reserved_match_whole'] ? 'checked="checked"' : '');?> />
@@ -366,8 +383,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Case Insensitive Match:</b><br />
-		<font class="adexp">This will match 'admin' in 'Admin' or 'ADMIN'.</font>
+		<b><?php echo $l['case_insens_match'];?></b><br />
+		<font class="adexp"><?php echo $l['case_insens_match_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="reserved_match_insensitive"	<?php echo ($globals['reserved_match_insensitive'] ? 'checked="checked"' : '');?> />
@@ -381,7 +398,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editreserved" value="Submit" />
+		<input type="submit" name="editreserved" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -397,10 +414,10 @@ global $globals, $theme, $error;
 
 function logset_theme(){
 
-global $globals, $theme, $error;
+global $globals, $theme, $l, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Log In Settings');
+	adminhead($l['cp_login']);
 	
 	?>
 	
@@ -412,14 +429,14 @@ global $globals, $theme, $error;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Log In Settings</font><br />
+	<font class="adgreen"><?php echo $l['login_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Here you can set reserved usernames that can be used by members while registering.
+	<?php echo $l['login_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -436,14 +453,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Log In Settings
+		<?php echo $l['login_set'];?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Login Attempts :</b><br />
-		<font class="adexp">The max number of failed login attempts from a particular IP address.</font>
+		<b><?php echo $l['login_attempts'];?></b><br />
+		<font class="adexp"><?php echo $l['login_attempts_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">&nbsp;&nbsp;&nbsp;&nbsp;
 		<input type="text" size="30"  name="login_failed" value="<?php echo (empty($_POST['login_failed']) ? $globals['login_failed'] : $_POST['login_failed']);?>" />
@@ -452,8 +469,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Anonymous Login:</b><br />
-		<font class="adexp">Allow users to sign in anonymously.</font>
+		<b><?php echo $l['anonym_login'];?></b><br />
+		<font class="adexp"><?php echo $l['anonym_login_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="anon_login" <?php echo ($globals['anon_login'] ? 'checked="checked"' : '');?> />
@@ -462,8 +479,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Security Code:</b><br />
-		<font class="adexp">Show the user for security confirmation code when using the 'Forgot Password' or 'Forgot Username' feature. (Recommended)</font>
+		<b><?php echo $l['security_code'];?></b><br />
+		<font class="adexp"><?php echo $l['security_code_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="fpass_sec_conf" <?php echo ($globals['fpass_sec_conf'] ? 'checked="checked"' : '');?> />
@@ -472,8 +489,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Smart Redirect:</b><br />
-		<font class="adexp">If a guest browsing any forum page logs in then the user will be redirected to the previous page.</font>
+		<b><?php echo $l['smart_redirect'];?> :</b><br />
+		<font class="adexp"><?php echo $l['smart_redirect_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="smart_redirect" <?php echo ($globals['smart_redirect'] ? 'checked="checked"' : '');?> />
@@ -487,7 +504,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editlogset" value="Submit" />
+		<input type="submit" name="editlogset" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>	
 	</table>

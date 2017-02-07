@@ -49,6 +49,8 @@ $l['approve_news'] = 'Approve News';
 $l['unapprove_news'] = 'Unapprove News';
 $l['submit_go'] = 'Go';
 $l['no_news_articles'] = 'There are no news articles present in the database.';
+$l['page_jump_title'] = 'Type the page to jump to';
+$l['ticked'] = 'Shown in Ticker';
 
 }//End of function
 
@@ -68,7 +70,7 @@ $l['submit_news'] = 'Submit News';
 
 //A code to avoid refresh
 $l['no_security_code'] = 'The Hidden Submit Code was not posted or is in wrong format.';
-$l['wrong_security_code'] = 'The Security Confirmation Code does not match.';
+$l['wrong_security_code'] = 'Oops...the Security Confirmation Code did not match! You might have double clicked or refreshed the page.';
 
 $l['no_title'] = 'The news title was left empty.';
 $l['no_news'] = 'The news article was left empty.';
@@ -85,6 +87,7 @@ $l['news_article'] = 'News Article';
 $l['full_story_link'] = 'Full Story Link';
 $l['news_image'] = 'Image';
 $l['submit_button'] = 'Submit News';
+$l['showinticker'] = 'Show in Ticker';
 
 }//End of function
 
@@ -119,6 +122,7 @@ $l['news_article'] = 'News Article';
 $l['full_story_link'] = 'Full Story Link';
 $l['news_image'] = 'Image';
 $l['submit_button'] = 'Edit News';
+$l['showinticker'] = 'Show in Ticker';
 
 }//End of function
 

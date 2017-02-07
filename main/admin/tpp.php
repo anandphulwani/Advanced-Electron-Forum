@@ -31,6 +31,11 @@ function tpp(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/tpp')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/tpp';
 	
@@ -148,7 +153,7 @@ global $error;
 		//Check the Max Number of Characters in a topics Title
 		if(!(isset($_POST['maxtitlechars'])) || (trim($_POST['maxtitlechars']) == "")){
 			
-			$error[] = 'The Max Number of Characters in a topics Title.';
+			$error[] = $l['tpp_no_max_topics_title'];
 			
 		}else{
 		
@@ -160,7 +165,7 @@ global $error;
 		//Check the Min Number of Characters in a topics Title
 		if(!(isset($_POST['mintitlechars'])) || (trim($_POST['mintitlechars']) == "")){
 		
-			$error[] = 'The Minimum Number of Characters in a topics Title.';
+			$error[] = $l['tpp_no_min_topics_title'];
 			
 		}else{
 		
@@ -178,7 +183,7 @@ global $error;
 		//Check the Number of Topics to appear Per Board Page
 		if(!(isset($_POST['maxtopics'])) || (trim($_POST['maxtopics']) == "")){
 		
-			$error[] = 'The Number of Topics to appear Per Forum Page was not Posted.';
+			$error[] = $l['tpp_no_num_topics_pp'];
 			
 		}else{
 		
@@ -190,7 +195,7 @@ global $error;
 		//Check the Number of Posts to appear Per Topic
 		if(!(isset($_POST['maxpostsintopics'])) || (trim($_POST['maxpostsintopics']) == "")){
 			
-			$error[] = 'The Number of Posts to appear Per Topic was not Posted.';
+			$error[] = $l['tpp_no_num_posts_pt'];
 			
 		}else{
 		
@@ -208,7 +213,7 @@ global $error;
 		//Check the Replies for Hot Topic 
 		if(!(isset($_POST['maxreplyhot'])) || (trim($_POST['maxreplyhot']) == "")){
 		
-			$error[] = 'The Replies for Hot Topic was not Posted.';
+			$error[] = $l['tpp_no_replies_hot_topic'];
 			
 		}else{
 		
@@ -219,7 +224,7 @@ global $error;
 		//Check the Replies for Very Hot Topic 
 		if(!(isset($_POST['maxreplyveryhot'])) || (trim($_POST['maxreplyveryhot']) == "")){
 		
-			$error[] = 'The Replies for Very Hot Topic was not Posted.';
+			$error[] = $l['tpp_no_replies_veryhot'];
 			
 		}else{
 		
@@ -230,7 +235,7 @@ global $error;
 		//Check the Old Topic Warn
 		if(!(isset($_POST['warnoldtopic'])) || (trim($_POST['warnoldtopic']) == "")){
 		
-			$error[] = 'The Old Topic Warn was not Posted.';
+			$error[] = $l['tpp_no_old_topic_warn'];
 			
 		}else{
 		
@@ -248,7 +253,7 @@ global $error;
 		//Check the Prefix for Stickied Topic
 		if(!(isset($_POST['prefixsticky'])) || (trim($_POST['prefixsticky']) == "")){
 		
-			$error[] = 'The Prefix for Stickied Topics was not Posted.';
+			$error[] = $l['tpp_no_prefix_stickied'];
 			
 		}else{
 		
@@ -259,7 +264,7 @@ global $error;
 		//Check the Prefix for Moved Topic
 		if(!(isset($_POST['prefixmoved'])) || (trim($_POST['prefixmoved']) == "")){
 		
-			$error[] = 'The Prefix for Moved Topics was not Posted.';
+			$error[] = $l['tpp_no_prefix_moved'];
 			
 		}else{
 		
@@ -270,7 +275,7 @@ global $error;
 		//Check the Prefix for Poll Topics
 		if(!(isset($_POST['prefixpolls'])) || (trim($_POST['prefixpolls']) == "")){
 		
-			$error[] = 'The Prefix for Poll Topics was not Submitted.';
+			$error[] = $l['tpp_no_prefix_poll'];
 			
 		}else{
 		
@@ -302,7 +307,7 @@ global $error;
 		//Check the Max Number of Characters in a topics description
 		if(!(isset($_POST['maxdescchars'])) || (trim($_POST['maxdescchars']) == "")){
 			
-			$error[] = 'The Max Number of characters in a topics description was not specified.';
+			$error[] = $l['tpp_no_max_topics_desc'];
 			
 		}else{
 		
@@ -314,7 +319,7 @@ global $error;
 		//Check the Min Number of Characters in a topics description
 		if(!(isset($_POST['mindescchars'])) || (trim($_POST['mindescchars']) == "")){
 		
-			$error[] = 'The Min Number of characters in a topics description was not specified.';
+			$error[] = $l['tpp_no_min_topics_desc'];
 			
 		}else{
 		
@@ -438,7 +443,7 @@ global $error;
 		//Check the Number of Posts PT:
 		if(!(isset($_POST['maxpostsintopics'])) || (trim($_POST['maxpostsintopics']) == "")){
 		
-			$error[] = 'The Number of Posts to appear Per Topic was not Submitted.';
+			$error[] = $l['tpp_no_num_posts_pt_subm'];
 			
 		}else{
 		
@@ -449,7 +454,7 @@ global $error;
 		//Check the Max Characters per Post :
 		if(!(isset($_POST['maxcharposts'])) || (trim($_POST['maxcharposts']) == "")){
 		
-			$error[] = 'The Max Characters per Post was not Submitted.';
+			$error[] = $l['tpp_no_max_post_subm'];
 		
 		}else{
 		
@@ -460,7 +465,7 @@ global $error;
 		//Check the Min Characters per Post :
 		if(!(isset($_POST['mincharposts'])) || (trim($_POST['mincharposts']) == "")){
 		
-			$error[] = 'The Min Characters per Post was not Submitted.';
+			$error[] = $l['tpp_no_min_post_subm'];
 		
 		}else{
 		
@@ -472,7 +477,7 @@ global $error;
 		//Check the Time between Post :
 		if(!(isset($_POST['timepostfromuser'])) || (trim($_POST['timepostfromuser']) == "")){
 		
-			$error[] = 'The time between posts from the same User was not Submitted.';
+			$error[] = $l['tpp_no_time_between_posts'];
 		
 		}else{
 		
@@ -490,7 +495,7 @@ global $error;
 		//Check the Max Emoticons Allowed 
 		if(!(isset($_POST['maxemotpost'])) || (trim($_POST['maxemotpost']) == "")){
 		
-			$error[] = 'The Max Emoticons Allowed was not Submitted.';
+			$error[] = $l['tpp_no_max_emoticons'];
 			
 		}else{
 		
@@ -502,7 +507,7 @@ global $error;
 		//Check the Max Images Allowed
 		if(!(isset($_POST['maximgspost'])) || (trim($_POST['maximgspost']) == "")){
 			
-			$error[] = 'The Max Images Allowed was not Submitted.';
+			$error[] = $l['tpp_no_max_images'];
 		
 		}else{
 			
@@ -514,7 +519,7 @@ global $error;
 		//Check the Max Width of Images
 		if(!(isset($_POST['maximgwidthpost'])) || (trim($_POST['maximgwidthpost']) == "")){
 		
-			$error[] = 'The Max Width of Images was not Submitted.';
+			$error[] = $l['tpp_no_width_images'];
 			
 		}else{
 		
@@ -526,7 +531,7 @@ global $error;
 		//Check the Max Height of Images
 		if(!(isset($_POST['maximgheightpost'])) || (trim($_POST['maximgheightpost']) == "")){
 		
-			$error[] = 'The Max Height of Images was not Submitted.';
+			$error[] = $l['tpp_no_height_images'];
 			
 		}else{
 		
@@ -538,7 +543,7 @@ global $error;
 		//Check the Max Width of Flash
 		if(!(isset($_POST['maxflashwidthinpost'])) || (trim($_POST['maxflashwidthinpost']) == "")){
 		
-			$error[] = 'The Max Width of Flash was not Submitted.';
+			$error[] = $l['tpp_no_width_flash'];
 			
 		}else{
 		
@@ -548,7 +553,7 @@ global $error;
 		
 		//Check the Max Height of Flash
 		if(!(isset($_POST['maxflashheightinpost'])) || (trim($_POST['maxflashheightinpost']) == "")){
-			$error[] = "The Max Height of Flash was not Submitted.";
+			$error[] = $l['tpp_no_height_flash'];
 			
 		}else{
 		
@@ -559,7 +564,7 @@ global $error;
 		//Check the last posts while replying
 		if(!(isset($_POST['last_posts_reply'])) || (trim($_POST['last_posts_reply']) == "")){
 		
-			$error[] = 'The number of posts to show while replying was not submitted.';
+			$error[] = $l['tpp_no_num_posts_wr'];
 		
 		}else{
 		
@@ -676,7 +681,7 @@ global $error;
 		//Check the Number of options in a poll:
 		if(!(isset($_POST['maxoptionspoll'])) || (trim($_POST['maxoptionspoll']) == "")){
 		
-			$error[] = 'The Max number of Poll Options was not Submitted.';
+			$error[] = $l['tpp_no_max_poll_options'];
 			
 		}else{
 		
@@ -688,7 +693,7 @@ global $error;
 		//The max poll qt length
 		if(!(isset($_POST['maxpollqtlen'])) || (trim($_POST['maxpollqtlen']) == "")){
 		
-			$error[] = 'The Max number of Poll Options was not Submitted.';
+			$error[] = $l['tpp_no_max_poll_qt_length'];
 			
 		}else{
 		

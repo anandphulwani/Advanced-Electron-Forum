@@ -26,6 +26,11 @@ if(!defined('AEF')){
 
 }
 
+if(!load_lang('usercp/index')){
+    
+    return false;
+        
+}
 
 function usercp(){
 
@@ -39,7 +44,7 @@ global $tree, $load_uhf, $ucpact;
 	if(!$logged_in){
 	
 		//Show a major error and return
-		reporterror('No Permissions' ,'Sorry, this section is only for registered and logged in users. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.<br /><br />If you wish to register click <a href="'.$globals['index_url'].'act=register">here</a>.<br />To login to your account click <a href="'.$globals['index_url'].'act=login">here</a>.');
+		reporterror($l['no_perms'], $l['only_reglog']);
 			
 		return false;
 	
@@ -52,9 +57,9 @@ global $tree, $load_uhf, $ucpact;
 	
 	$tree = array();//Board tree for users location
 	$tree[] = array('l' => $globals['index_url'],
-					'txt' => 'Index');
+					'txt' => $l['index']);
 	$tree[] = array('l' => $globals['index_url'].'act=usercp',
-					'txt' => 'User Control Panel');
+					'txt' => $l['cpuser']);
 	
 	//Check the Unread
 	unreadcheck();
@@ -221,7 +226,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	
 	if(!$globals['pmon']){
 	
-		reporterror('PM System Disabled' ,'Sorry we were unable to process your request because it has been disabled on the board. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['pm_disabled'], $l['pm_disabled_exp']);
 			
 		return false;
 	
@@ -230,7 +235,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	
 	if(!$user['can_use_pm']){
 	
-		reporterror('No Permissions' ,'Sorry we were unable to process your request because you do not have the adequate permissions to use the PM system. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['no_perms'], $l['no_perms_exp']);
 			
 		return false;
 	
@@ -262,7 +267,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 		if(mysql_num_rows($qresult) < 1){
 			
 			//Didnt get anyresult - Show a major error and return				
-			reporterror('Illegal Operation' ,'Sorry, we were unable to process your request because there were some problems in counting the Unread PM. Please contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['ilegal_op'], $l['ilegal_op_exp']);
 			
 			return false;
 				
@@ -281,7 +286,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 			
 			if(mysql_affected_rows($conn) < 1){
 				
-				reporterror('Update PM count error' ,'Sorry, we were unable to process your request because there were some problems in updating the Unread PM. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+				reporterror($l['up_pm_count_error'], $l['up_pm_count_error_exp']);
 				
 				return false;
 				

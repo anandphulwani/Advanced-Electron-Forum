@@ -1,5 +1,24 @@
 <?php
 
+//////////////////////////////////////////////////////////////
+//===========================================================
+// smilies_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
 if(!defined('AEF')){
 
 	die('Hacking Attempt');
@@ -8,10 +27,10 @@ if(!defined('AEF')){
 
 function smset_theme(){
 
-global $globals, $theme, $error;
+global $globals, $l, $theme, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Smiley Settings');
+	adminhead($l['cp_sm_smiley_set']);
 	
 	?>
 	
@@ -23,14 +42,14 @@ global $globals, $theme, $error;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Smiley Settings</font><br />
+	<font class="adgreen"><?php echo $l['smiley_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for changing the Smiley settings for the board.
+	<?php echo $l['smiley_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -47,14 +66,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Smiley Settings
+		<?php echo $l['smiley_set'];?>
 		</td>
 		</tr>
 	
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Use Smileys :</b><br />
-		<font class="adexp">This will enable smilies throughout the board.</font>
+		<b><?php echo $l['use_smileys'];?></b><br />
+		<font class="adexp"><?php echo $l['use_smileys_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="usesmileys" <?php echo ($globals['usesmileys'] ? 'checked="checked"' : '');?> />
@@ -63,8 +82,8 @@ global $globals, $theme, $error;
         
         <tr>
 		<td width="35%" class="adbg">
-		<b>Space Boundary :</b><br />
-		<font class="adexp">If enabled smileys will be parsed only when a space boundary is there.</font>
+		<b><?php echo $l['space_boundary'];?></b><br />
+		<font class="adexp"><?php echo $l['space_boundary_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="smiley_space_boundary" <?php echo ($globals['smiley_space_boundary'] ? 'checked="checked"' : '');?> />
@@ -78,7 +97,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editsmset" value="Submit" />
+		<input type="submit" name="editsmset" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -94,10 +113,10 @@ global $globals, $theme, $error;
 
 function smman_theme(){
 
-global $globals, $theme, $smileys, $smileyimages;
+global $globals, $l, $theme, $smileys, $smileyimages;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage Smileys');
+	adminhead($l['cp_sm_manage_smileys']);
 	
 	?>
 	
@@ -109,14 +128,14 @@ global $globals, $theme, $smileys, $smileyimages;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Manage Smileys</font><br />
+	<font class="adgreen"><?php echo $l['manage_smileys'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for managing the smileys of the board.
+	<?php echo $l['manage_smileys_exp'];?>
 	</td>
 	</tr>
 	
@@ -126,31 +145,31 @@ global $globals, $theme, $smileys, $smileyimages;
 	<table width="100%" cellpadding="5" cellspacing="1" class="cbor">
 	<tr>
 	<td class="adcbg" colspan="7">
-	Current Smileys
+	<?php echo $l['current_smileys'];?>
 	</td>
 	</tr>
 	
 	<tr align="center">
 	<td class="adcbg2" width="10%">
-	<b>Smiley</b>
+	<b><?php echo $l['smiley'];?></b>
 	</td>
 	<td class="adcbg2" width="15%">
-	<b>Code</b>
+	<b><?php echo $l['code'];?></b>
 	</td>
 	<td class="adcbg2" width="20%">
-	<b>File Name</b>
+	<b><?php echo $l['file_name'];?></b>
 	</td>
 	<td class="adcbg2" width="20%">
-	<b>Emotion</b>
+	<b><?php echo $l['emotion'];?></b>
 	</td>
 	<td class="adcbg2" width="10%">
-	<b>Status</b>
+	<b><?php echo $l['status'];?></b>
 	</td>
 	<td class="adcbg2" width="10%">
-	<b>Edit</b>
+	<b><?php echo $l['edit'];?></b>
 	</td>
 	<td class="adcbg2" width="15%">
-	<b>Delete</b>
+	<b><?php echo $l['delete'];?></b>
 	</td>
 	</tr>
 	
@@ -160,7 +179,7 @@ global $globals, $theme, $smileys, $smileyimages;
 	
 	echo '<tr>
 	<td class="adbg" colspan="5">
-	No smileys were found.
+	'.$l['no_smileys_found'].'
 	</td>
 	</tr>';
 	
@@ -182,13 +201,13 @@ global $globals, $theme, $smileys, $smileyimages;
 	'.$smileys[$sk]['smtitle'].'
 	</td>
 	<td class="adbg">
-	'.($smileys[$sk]['smstatus'] ? 'Pop Up' : 'Form').'
+	'.($smileys[$sk]['smstatus'] ? $l['popup'] : $l['form']).'
 	</td>
 	<td class="adbg" align="center">
-	<a href="'.$globals['index_url'].'act=admin&adact=smileys&seadact=editsm&smid='.$smileys[$sk]['smid'].'">Edit</a>
+	<a href="'.$globals['index_url'].'act=admin&adact=smileys&seadact=editsm&smid='.$smileys[$sk]['smid'].'">'.$l['edit'].'</a>
 	</td>
 	<td class="adbg" align="center">
-	<a href="'.$globals['index_url'].'act=admin&adact=smileys&seadact=delsm&smid='.$smileys[$sk]['smid'].'">Delete</a>
+	<a href="'.$globals['index_url'].'act=admin&adact=smileys&seadact=delsm&smid='.$smileys[$sk]['smid'].'">'.$l['delete'].'</a>
 	</td>
 	</tr>';
 	
@@ -203,7 +222,7 @@ global $globals, $theme, $smileys, $smileyimages;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 	<tr>
 	<td align="center" class="adbg">
-	<input type="button" value="Add New Smiley"  onclick="javascript:window.location='<?php echo $globals['index_url'].'act=admin&adact=smileys&seadact=addsm';?>'" />
+	<input type="button" value="<?php echo $l['add_new_smiley'];?>"  onclick="javascript:window.location='<?php echo $globals['index_url'].'act=admin&adact=smileys&seadact=addsm';?>'" />
 	</td>
 	</tr>	
 	</table>
@@ -217,13 +236,13 @@ global $globals, $theme, $smileys, $smileyimages;
 
 function smreorder_theme(){
 
-global $globals, $theme, $smileys, $smileyimages, $error, $onload, $dmenus;
+global $globals, $l, $theme, $smileys, $smileyimages, $error, $onload, $dmenus;
 	
 	//Pass to onload to initialize a JS
 	$onload['smreoder'] = 'init_reoder()';
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Reorder Smileys');
+	adminhead($l['cp_sm_reorder_smileys']);
 	
 	?>
 	
@@ -235,14 +254,14 @@ global $globals, $theme, $smileys, $smileyimages, $error, $onload, $dmenus;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Reorder Smileys</font><br />
+	<font class="adgreen"><?php echo $l['reorder_smileys'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for changing the Smiley order in which they appear while posting. <br /><b>Drag and Drop</b> the smiley box and put them in the order you like.
+	<?php echo $l['reorder_smileys_exp'];?>
 	</td>
 	</tr>
 	
@@ -259,7 +278,7 @@ global $globals, $theme, $smileys, $smileyimages, $error, $onload, $dmenus;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Reorder Smileys
+		<?php echo $l['reorder_smileys'];?>
 		</td>
 		</tr>
 
@@ -313,7 +332,7 @@ reo_hid = 'smhid';
 	}
 	
 	?>
-		<input type="submit" name="smreorder" value="Re Order" />
+		<input type="submit" name="smreorder" value="<?php echo $l['re_order'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -330,10 +349,10 @@ reo_hid = 'smhid';
 //Edit smiley
 function editsm_theme(){
 
-global $globals, $theme, $error, $smiley, $folders;
+global $globals, $l, $theme, $error, $smiley, $folders;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Edit Smileys');
+	adminhead($l['cp_sm_edit_smileys']);
 	
 	?>
 	
@@ -345,14 +364,14 @@ global $globals, $theme, $error, $smiley, $folders;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Edit Smileys</font><br />
+	<font class="adgreen"><?php echo $l['edit_smileys'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for editing a smiley.
+	<?php echo $l['edit_smileys_exp'];?>
 	</td>
 	</tr>
 	
@@ -369,14 +388,14 @@ global $globals, $theme, $error, $smiley, $folders;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Edit Smileys
+		<?php echo $l['edit_smileys'];?>
 		</td>
 		</tr>
 	
 		<tr>
 		<td width="45%" class="adbg">
-		<b>Code :</b><br />
-		<font class="adexp">The code of the smiley that will be used in posts and PM's.</font>
+		<b><?php echo $l['code_'];?></b><br />
+		<font class="adexp"><?php echo $l['code_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="smcode" value="<?php echo (empty($_POST['smcode']) ? $smiley['smcode'] : $_POST['smcode']);?>" />
@@ -385,8 +404,8 @@ global $globals, $theme, $error, $smiley, $folders;
 		
 		<tr>
 		<td class="adbg">
-		<b>Emotion :</b><br />
-		<font class="adexp">The emotion of the smiley.</font>
+		<b><?php echo $l['emotion_'];?></b><br />
+		<font class="adexp"><?php echo $l['emotion_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="smtitle" value="<?php echo (empty($_POST['smtitle']) ? $smiley['smtitle'] : $_POST['smtitle']);?>" />
@@ -396,8 +415,8 @@ global $globals, $theme, $error, $smiley, $folders;
 		
 		<tr>
 		<td class="adbg">
-		<b>Display in post form :</b><br />
-		<font class="adexp">If enabled the smiley will be displayed in the post form, otherwise it will be in the pop up box.</font>
+		<b><?php echo $l['display_in'];?></b><br />
+		<font class="adexp"><?php echo $l['display_in_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="smstatus" <?php echo (!$smiley['smstatus'] ? 'checked="checked"' : '');?> />
@@ -406,8 +425,8 @@ global $globals, $theme, $error, $smiley, $folders;
 		
 		<tr>
 		<td class="adbg">
-		<b>Folder :</b><br />
-		<font class="adexp">The name of the folder in which the smiley image is there.</font>
+		<b><?php echo $l['folder'];?></b><br />
+		<font class="adexp"><?php echo $l['folder_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<select name="smfolder" disabled="disabled">
@@ -421,8 +440,8 @@ global $globals, $theme, $error, $smiley, $folders;
 		
 		<tr>
 		<td class="adbg">
-		<b>Smiley File :</b><br />
-		<font class="adexp">The name of the file in the directory.</font>
+		<b><?php echo $l['smiley_file'];?></b><br />
+		<font class="adexp"><?php echo $l['smiley_file_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="smfile" value="<?php echo $smiley['smfile'];?>"  disabled="disabled" />
@@ -437,7 +456,7 @@ global $globals, $theme, $error, $smiley, $folders;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editsm" value="Submit" />
+		<input type="submit" name="editsm" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -454,10 +473,10 @@ global $globals, $theme, $error, $smiley, $folders;
 //Add smiley
 function addsm_theme(){
 
-global $globals, $theme, $error, $smiley, $folders;
+global $globals, $l, $theme, $error, $smiley, $folders;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Add Smileys');
+	adminhead($l['cp_sm_add_smileys']);
 	
 	?>
 	
@@ -469,14 +488,14 @@ global $globals, $theme, $error, $smiley, $folders;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Add Smileys</font><br />
+	<font class="adgreen"><?php echo $l['add_smileys'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for adding a smiley.
+	<?php echo $l['add_smileys_exp'];?>
 	</td>
 	</tr>
 	
@@ -493,14 +512,14 @@ global $globals, $theme, $error, $smiley, $folders;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Add Smileys
+		<?php echo $l['add_smileys'];?>
 		</td>
 		</tr>
 	
 		<tr>
 		<td width="45%" class="adbg">
-		<b>Code :</b><br />
-		<font class="adexp">The code of the smiley that will be used in posts and PM's.</font>
+		<b><?php echo $l['code_'];?></b><br />
+		<font class="adexp"><?php echo $l['code_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="smcode" value="<?php echo (empty($_POST['smcode']) ? '' : $_POST['smcode']);?>" />
@@ -509,8 +528,8 @@ global $globals, $theme, $error, $smiley, $folders;
 		
 		<tr>
 		<td class="adbg">
-		<b>Emotion :</b><br />
-		<font class="adexp">The emotion of the smiley.</font>
+		<b><?php echo $l['emotion_'];?></b><br />
+		<font class="adexp"><?php echo $l['emotion_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="smtitle" value="<?php echo (empty($_POST['smtitle']) ? '' : $_POST['smtitle']);?>" />
@@ -520,8 +539,8 @@ global $globals, $theme, $error, $smiley, $folders;
 		
 		<tr>
 		<td class="adbg">
-		<b>Display in post form :</b><br />
-		<font class="adexp">If enabled the smiley will be displayed in the post form, otherwise it will be in the pop up box.</font>
+		<b><?php echo $l['display_in'];?></b><br />
+		<font class="adexp"><?php echo $l['display_in_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="smstatus" checked="checked" />
@@ -530,8 +549,8 @@ global $globals, $theme, $error, $smiley, $folders;
 		
 		<tr>
 		<td class="adbg">
-		<b>Folder :</b><br />
-		<font class="adexp">The name of the folder in which the smiley image is there.</font>
+		<b><?php echo $l['folder'];?></b><br />
+		<font class="adexp"><?php echo $l['folder_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<select name="smfolder">
@@ -545,8 +564,8 @@ global $globals, $theme, $error, $smiley, $folders;
 		
 		<tr>
 		<td class="adbg">
-		<input type="radio" name="filemethod" value="1" <?php echo (isset($_POST['filemethod']) && trim($_POST['filemethod']) == 1 ? 'checked="checked"' : '' );?> /><b>Smiley File :</b><br />
-		<font class="adexp">The name of the file in the directory.</font>
+		<input type="radio" name="filemethod" value="1" <?php echo (isset($_POST['filemethod']) && trim($_POST['filemethod']) == 1 ? 'checked="checked"' : '' );?> />&nbsp;<b><?php echo $l['smiley_file'];?></b><br />
+		<font class="adexp"><?php echo $l['smiley_file_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="smfile" value="<?php echo (empty($_POST['smfile']) ? '' : $_POST['smfile']);?>" />
@@ -555,8 +574,8 @@ global $globals, $theme, $error, $smiley, $folders;
 				 
 		<tr>
 		<td class="adbg">
-		<input type="radio" name="filemethod" value="2" <?php echo (isset($_POST['filemethod']) && trim($_POST['filemethod']) == 2 ? 'checked="checked"' : '' );?>  /><b>Upload Smiley File :</b><br />
-		<font class="adexp">The file will be uploaded in the selected directory.</font>
+		<input type="radio" name="filemethod" value="2" <?php echo (isset($_POST['filemethod']) && trim($_POST['filemethod']) == 2 ? 'checked="checked"' : '' );?>  />&nbsp;<b><?php echo $l['upload_smiley'];?></b><br />
+		<font class="adexp"><?php echo $l['upload_smiley_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" size="30"  name="smfile_u" value="<?php echo (empty($_POST['smfile']) ? '' : $_POST['smfile']);?>" />
@@ -571,7 +590,7 @@ global $globals, $theme, $error, $smiley, $folders;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="addsm" value="Submit" />
+		<input type="submit" name="addsm" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>	
 	</table>

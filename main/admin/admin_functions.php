@@ -69,7 +69,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 		//Open the file for editing
 		if(!$handle = fopen($filename, 'wb')){
 			
-			reporterror('Error' ,'The universal.php file could not be opened for editing.');
+			reporterror($l['Error'], $l['universal_no_open']);
 			
 			return false;
 			
@@ -78,7 +78,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 		// Write $filec to our opened file.
 		if (fwrite($handle, $file) === FALSE) {
 			
-			reporterror('Error' ,'The universal.php file could not be edited.');
+			reporterror($l['Error'], $l['universal_no_edit']);
 			
 			return false;
 			
@@ -89,7 +89,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	
 	} else {
 	
-		reporterror('Error' ,'The universal.php file is not writable.');
+		reporterror($l['Error'], $l['universal_no_writable']);
 			
 		return false;
 		
@@ -119,7 +119,7 @@ global $addslashes;
 		if(!isset($globals[$k])){
 		
 			//Show a major error and return
-			reporterror('No Global Key' ,'The global key - <b>$k</b> is invalid and not present in the system.');
+			reporterror($l['no_global_key'], $l['global_key_invalid']);
 				
 			return false;
 		
@@ -148,7 +148,7 @@ global $addslashes;
 							
 		if(mysql_affected_rows($conn) < 1 && $compare){
 				
-			reporterror('Registry Update Error' ,'There were some errors in updating the registry.');
+			reporterror($l['registry_update_error'], $l['errors_updating_registry']);
 			
 			return false;
 			

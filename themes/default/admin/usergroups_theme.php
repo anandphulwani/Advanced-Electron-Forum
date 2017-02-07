@@ -1,16 +1,35 @@
 <?php
 
-if(!defined('AEF'))
-{
+//////////////////////////////////////////////////////////////
+//===========================================================
+// usergroups_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
+
+if(!defined('AEF')){
 die('Hacking Attempt');
 }
 
 function manug_theme(){
 
-global $globals, $theme, $user_group, $post_group;
+global $globals, $l, $theme, $user_group, $post_group;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage User Groups');
+	adminhead($l['ugr_cp_ugroups']);
 	
 	?>
 	
@@ -22,14 +41,14 @@ global $globals, $theme, $user_group, $post_group;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Manage User Groups</font><br />
+	<font class="adgreen"><?php echo $l['ugr_ugroups'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for managing the User Groups of the board.
+	<?php echo $l['ugr_ugroups_exp'];?>
 	</td>
 	</tr>
 	
@@ -39,22 +58,22 @@ global $globals, $theme, $user_group, $post_group;
 	<table width="100%" cellpadding="5" cellspacing="1" class="cbor">
 	<tr>
 	<td class="adcbg" colspan="7">
-	User Groups
+	<?php echo $l['ugr_ugroups'];?>
 	</td>
 	</tr>
 	
 	<tr align="center">
 	<td class="adcbg2" width="50%">
-	<b>Name</b>
+	<b><?php echo $l['ugr_name'];?></b>
 	</td>
 	<td class="adcbg2" width="25%">
-	<b>Stars</b>
+	<b><?php echo $l['ugr_stars'];?></b>
 	</td>
 	<td class="adcbg2" width="10%">
-	<b>Edit</b>
+	<b><?php echo $l['ugr_edit'];?></b>
 	</td>
 	<td class="adcbg2" width="15%">
-	<b>Delete</b>
+	<b><?php echo $l['ugr_delete'];?></b>
 	</td>
 	</tr>
 	
@@ -72,10 +91,10 @@ global $globals, $theme, $user_group, $post_group;
 	}
 	echo '</td>
 	<td class="adbg" align="center">
-	<a href="'.$globals['index_url'].'act=admin&adact=ug&seadact=editug&ugid='.$user_group[$uk]['member_group'].'">Edit</a>
+	<a href="'.$globals['index_url'].'act=admin&adact=ug&seadact=editug&ugid='.$user_group[$uk]['member_group'].'">'.$l['ugr_edit'].'</a>
 	</td>
 	<td class="adbg" align="center">
-	<a href="'.$globals['index_url'].'act=admin&adact=ug&seadact=delug&ugid='.$user_group[$uk]['member_group'].'">Delete</a>
+	<a href="'.$globals['index_url'].'act=admin&adact=ug&seadact=delug&ugid='.$user_group[$uk]['member_group'].'">'.$l['ugr_delete'].'</a>
 	</td>
 	</tr>';
 	
@@ -89,25 +108,25 @@ global $globals, $theme, $user_group, $post_group;
 	<table width="100%" cellpadding="5" cellspacing="1" class="cbor">
 	<tr>
 	<td class="adcbg" colspan="7">
-	Post Groups
+	<?php echo $l['ugr_post_groups'];?>
 	</td>
 	</tr>
 	
 	<tr align="center">
 	<td class="adcbg2" width="40%">
-	<b>Name</b>
+	<b><?php echo $l['ugr_name'];?></b>
 	</td>
 	<td class="adcbg2" width="25%">
-	<b>Stars</b>
+	<b><?php echo $l['ugr_stars'];?></b>
 	</td>
 	<td class="adcbg2" width="10%">
 	<b>Posts</b>
 	</td>
 	<td class="adcbg2" width="10%">
-	<b>Edit</b>
+	<b><?php echo $l['ugr_edit'];?></b>
 	</td>
 	<td class="adcbg2" width="15%">
-	<b>Delete</b>
+	<b><?php echo $l['ugr_delete'];?></b>
 	</td>
 	</tr>
 	
@@ -128,10 +147,10 @@ global $globals, $theme, $user_group, $post_group;
 	'.$post_group[$pk]['post_count'].'
 	</td>
 	<td class="adbg" align="center">
-	<a href="'.$globals['index_url'].'act=admin&adact=ug&seadact=editug&ugid='.$post_group[$pk]['member_group'].'">Edit</a>
+	<a href="'.$globals['index_url'].'act=admin&adact=ug&seadact=editug&ugid='.$post_group[$pk]['member_group'].'">'.$l['ugr_edit'].'</a>
 	</td>
 	<td class="adbg" align="center">
-	<a href="'.$globals['index_url'].'act=admin&adact=ug&seadact=delug&ugid='.$post_group[$pk]['member_group'].'">Delete</a>
+	<a href="'.$globals['index_url'].'act=admin&adact=ug&seadact=delug&ugid='.$post_group[$pk]['member_group'].'">'.$l['ugr_delete'].'</a>
 	</td>
 	</tr>';
 	
@@ -158,7 +177,7 @@ global $globals, $theme, $user_group, $post_group;
 	echo '<option value="'.$user_group[$uk]['member_group'].'">'.$user_group[$uk]['mem_gr_name'].'</option>';	
 	}
 	?>
-	</select>&nbsp;&nbsp;<input type="submit" value="Add New User Group" />
+	</select>&nbsp;&nbsp;<input type="submit" value="<?php echo $l['ugr_add_new_ug'];?>" />
 	</form>
 	</td>
 	</tr>	
@@ -173,10 +192,10 @@ global $globals, $theme, $user_group, $post_group;
 //Edit User Groups
 function editug_theme(){
 
-global $globals, $theme, $error, $user_group;
+global $globals, $l, $theme, $error, $user_group;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Edit User Groups');
+	adminhead($l['ugr_cp_edit_ugroups']);
 	
 	?>
 	
@@ -188,14 +207,14 @@ global $globals, $theme, $error, $user_group;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Edit User Groups</font><br />
+	<font class="adgreen"><?php echo $l['ugr_edit_ugroups'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for editing a User Group.
+	<?php echo $l['ugr_edit_ugroups_exp'];?>
 	</td>
 	</tr>
 	
@@ -212,14 +231,14 @@ global $globals, $theme, $error, $user_group;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Edit User Groups
+		<?php echo $l['ugr_edit_ugroups'];?>
 		</td>
 		</tr>
 	
 		<tr>
 		<td width="45%" class="adbg">
-		<b>User Group Name :</b><br />
-		<font class="adexp">The name of the user group.</font>
+		<b><?php echo $l['ugr_ugroup_name'];?></b><br />
+		<font class="adexp"><?php echo $l['ugr_ugroup_name_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="mem_gr_name" value="<?php echo (empty($_POST['mem_gr_name']) ? $user_group['mem_gr_name'] : $_POST['mem_gr_name']);?>" />
@@ -228,8 +247,8 @@ global $globals, $theme, $error, $user_group;
 		
 		<tr>
 		<td class="adbg">
-		<b>User Group Color :</b><br />
-		<font class="adexp">The color that will be used for the members of this user group.</font>
+		<b><?php echo $l['ugr_ugroup_colour'];?></b><br />
+		<font class="adexp"><?php echo $l['ugr_ugroup_colour_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="mem_gr_colour" value="<?php echo (empty($_POST['mem_gr_colour']) ? $user_group['mem_gr_colour'] : $_POST['mem_gr_colour']);?>" />
@@ -238,8 +257,8 @@ global $globals, $theme, $error, $user_group;
 		
 		<tr>
 		<td class="adbg">
-		<b>User Group Image :</b><br />
-		<font class="adexp">The user group image(stars). This file must be present in the themes image directory.</font>
+		<b><?php echo $l['ugr_ugroup_image'];?></b><br />
+		<font class="adexp"><?php echo $l['ugr_ugroup_image_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="image_name" value="<?php echo (empty($_POST['image_name']) ? $user_group['image_name'] : $_POST['image_name']);?>" />
@@ -248,7 +267,7 @@ global $globals, $theme, $error, $user_group;
 		
 		<tr>
 		<td class="adbg">
-		<b>Number of Star Image :</b><br />
+		<b><?php echo $l['ugr_num_stars'];?></b><br />
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="image_count" value="<?php echo (empty($_POST['image_count']) ? $user_group['image_count'] : $_POST['image_count']);?>" />
@@ -260,9 +279,8 @@ global $globals, $theme, $error, $user_group;
 		if(!in_array($user_group['member_group'], array(-3,-1,0,1,3))){
 		echo '<tr>
 		<td class="adbg">
-		<b>Post Based :</b><br />
-		<font class="adexp">Is this user group based on post count. <br />
-		<b>If it is a Post Based Group you do not need to fill in the below data for the permissions.</b></font>
+		<b>'.$l['ugr_post_based'].'</b><br />
+		<font class="adexp">'.$l['ugr_post_based_exp'].'</font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="post_based" '.(isset($_POST['post_based']) || $user_group['post_count'] != -1 ? 'checked="checked"' : '' ).' />
@@ -270,8 +288,8 @@ global $globals, $theme, $error, $user_group;
 		</tr>';
 		echo '<tr>
 		<td class="adbg">
-		<b>Number of Posts :</b><br />
-		<font class="adexp">Minimum number of posts to be a member of this user group.</font>
+		<b>'.$l['ugr_num_posts'].'</b><br />
+		<font class="adexp">'.$l['ugr_num_posts_exp'].'</font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="post_count" value="'.(empty($_POST['post_count']) ? $user_group['post_count'] : $_POST['post_count']).'" />
@@ -286,110 +304,110 @@ global $globals, $theme, $error, $user_group;
 	
 	<?php
 		
-	$admin_per = array('can_admin' => array('yn', 'Can Administrate the Board', ''),
-		'allow_html' => array('yn', 'Can post HTML Code', 'Even Javascript will be executed'),		
-		'view_ip' => array('yn', 'Can view IP Addresses of users', ''),				
-		'view_offline_board' => array('yn', 'Can use the board even when in maintainence', '')
+	$admin_per = array('can_admin' => array('yn', $l['ugr_can_admin'], ''),
+		'allow_html' => array('yn', $l['ugr_can_html'], $l['ugr_even_js']),		
+		'view_ip' => array('yn', $l['ugr_view_ips'], ''),				
+		'view_offline_board' => array('yn', $l['ugr_can_maint'], '')
 		);
 	
-	$forum_per = array('view_forum' => array('yn', 'Can view the forum', ''),
-		'can_search' => array('yn', 'Can use the search', ''),
-		'can_email_mem' => array('yn', 'Can email members', ''),
-		'can_email_friend' => array('yn', 'Can email friends', 'Just an email feature'),
-		'view_active' => array('yn', 'Can view Active users list', ''),
-		'hide_online' => array('yn', 'Can hide own Online status', ''),
-		'view_anonymous' => array('yn', 'Can view Anonymous members', ''),
-		'view_members' => array('yn', 'Can view the Members list', ''),
-		'view_stats' => array('yn', 'Can view Board Statistics', ''),
-		'view_calendar' => array('yn', 'Can view the Calendar', '')
+	$forum_per = array('view_forum' => array('yn', $l['ugr_can_view_f'], ''),
+		'can_search' => array('yn', $l['ugr_can_search'], ''),
+		'can_email_mem' => array('yn', $l['ugr_can_email_memb'], ''),
+		'can_email_friend' => array('yn', $l['ugr_can_email_friend'], $l['ugr_can_email_friend_exp']),
+		'view_active' => array('yn', $l['ugr_can_view_act_list'], ''),
+		'hide_online' => array('yn', $l['ugr_can_hide_status'], ''),
+		'view_anonymous' => array('yn', $l['ugr_can_view_anonys'], ''),
+		'view_members' => array('yn', $l['ugr_can_view_memb_list'], ''),
+		'view_stats' => array('yn', $l['ugr_can_view_stats'], ''),
+		'view_calendar' => array('yn', $l['ugr_can_view_cal'], '')
 		);
 		
-	$profile_per = array('prefix' => array('inputtext', 'Prefix', ''),
-		'suffix' => array('inputtext', 'Suffix', ''),
-		'use_avatar' => array('yn', 'Can use avatars from the board', ''),
-		'url_avatar' => array('yn', 'Can specify URL Avatar', ''),
-		'upload_avatar' => array('yn', 'Can Upload own Avatar', ''),
-		'can_view_profile' => array('yn', 'Can View Members profile', ''),
-		'can_edit_own_profile' => array('yn', 'Can edit own profile', ''),
-		'can_edit_other_profile' => array('yn', 'Can edit others profile', ''),
-		'can_del_own_account' => array('yn', 'Can delete their own account', ''),
-		'can_del_other_account' => array('yn', 'Can delete others account', ''),
-		'can_ban_user' => array('yn', 'Can Ban Users', ''),	
+	$profile_per = array('prefix' => array('inputtext', $l['ugr_prefix'], ''),
+		'suffix' => array('inputtext', $l['ugr_suffix'], ''),
+		'use_avatar' => array('yn', $l['ugr_can_avatars_fboard'], ''),
+		'url_avatar' => array('yn', $l['ugr_can_avatars_url'], ''),
+		'upload_avatar' => array('yn', $l['ugr_can_avatars_upload'], ''),
+		'can_view_profile' => array('yn', $l['ugr_can_view_memb_profile'], ''),
+		'can_edit_own_profile' => array('yn', $l['ugr_can_edit_own_prof'], ''),
+		'can_edit_other_profile' => array('yn', $l['ugr_can_edit_other_prof'], ''),
+		'can_del_own_account' => array('yn', $l['ugr_can_del_own_account'], ''),
+		'can_del_other_account' => array('yn', $l['ugr_can_del_other_account'], ''),
+		'can_ban_user' => array('yn', $l['ugr_can_ban'], ''),	
 		);
 	
-	$topic_per = array('can_post_topic' => array('yn', 'Can start topics'),
-		'can_edit_own_topic' => array('yn', 'Edit own topics', ''),
-		'can_edit_other_topic' => array('yn', 'Edit others topic', ''),
-		'can_del_own_topic' => array('yn', 'Delete own topics', ''),
-		'can_del_other_topic' => array('yn', 'Delete others topic', ''),
-		'approve_topics' => array('yn', 'Approve topics', 'Approval System should be enabled'),
-		'can_merge_topics' => array('yn', 'Merge Topics', ''),
-		'can_merge_posts' => array('yn', 'Merge Posts', ''),
-		'can_split_topics' => array('yn', 'Split Topics', ''),
-		'can_email_topic' => array('yn', 'Email Topics to Friends', ''),
-		'can_make_sticky' => array('yn', 'Sticky Topics', ''),
-		'can_move_own_topic' => array('yn', 'Move own topics', ''),
-		'can_move_other_topic' => array('yn', 'Move others topic', ''),
-		'can_lock_own_topic' => array('yn', 'Lock own topics', ''),
-		'can_lock_other_topic' => array('yn', 'Lock others topic', ''),
-		'can_announce_topic' => array('yn', 'Announce Topics', ''),
-		'notify_new_posts' => array('yn', 'Subscribe to topics', ''),
-		'notify_new_topics' => array('yn', 'Subscribe to forums', ''),
-		'has_priviliges' => array('yn', 'Has priviliges', '')
+	$topic_per = array('can_post_topic' => array('yn', $l['ugr_can_start_topics'], ''),
+		'can_edit_own_topic' => array('yn', $l['ugr_can_edit_own_topics'], ''),
+		'can_edit_other_topic' => array('yn', $l['ugr_can_edit_other_topics'], ''),
+		'can_del_own_topic' => array('yn', $l['ugr_can_del_own_topics'], ''),
+		'can_del_other_topic' => array('yn', $l['ugr_can_del_other_topics'], ''),
+		'approve_topics' => array('yn', $l['ugr_approve_topics'], $l['ugr_approve_topics_exp']),
+		'can_merge_topics' => array('yn', $l['ugr_merge_topics'], ''),
+		'can_merge_posts' => array('yn', $l['ugr_merge_posts'], ''),
+		'can_split_topics' => array('yn', $l['ugr_split_topics'], ''),
+		'can_email_topic' => array('yn', $l['ugr_email_topics_friends'], ''),
+		'can_make_sticky' => array('yn', $l['ugr_sticky_topics'], ''),
+		'can_move_own_topic' => array('yn', $l['ugr_move_own_topics'], ''),
+		'can_move_other_topic' => array('yn', $l['ugr_move_other_topics'], ''),
+		'can_lock_own_topic' => array('yn', $l['ugr_lock_own_topics'], ''),
+		'can_lock_other_topic' => array('yn', $l['ugr_lock_other_topics'], ''),
+		'can_announce_topic' => array('yn', $l['ugr_announ_opics'], ''),
+		'notify_new_posts' => array('yn', $l['ugr_subsc_topics'], ''),
+		'notify_new_topics' => array('yn', $l['ugr_subsc_forums'], ''),
+		'has_priviliges' => array('yn', $l['ugr_has_priv'], '')
 		);
 		
-	$post_per = array('can_reply' => array('yn', 'Reply to topics', ''),
-		'can_edit_own' => array('yn', 'Edit own posts', ''),
-		'can_edit_other' => array('yn', 'Edit other posts', ''),
-		'can_del_own_post' => array('yn', 'Delete own posts', ''),
-		'can_del_other_post' => array('yn', 'Delete others post', ''),
-		'approve_posts' => array('yn', 'Approve posts', 'Approval System should be enabled'),
-		'can_report_post' => array('yn', 'Can Report Posts', '')
+	$post_per = array('can_reply' => array('yn', $l['ugr_reply_topics'], ''),
+		'can_edit_own' => array('yn', $l['ugr_edit_own_posts'], ''),
+		'can_edit_other' => array('yn', $l['ugr_edit_other_posts'], ''),
+		'can_del_own_post' => array('yn', $l['ugr_del_own_posts'], ''),
+		'can_del_other_post' => array('yn', $l['ugr_del_other_posts'], ''),
+		'approve_posts' => array('yn', $l['ugr_approve_posts'], $l['ugr_approve_posts_exp']),
+		'can_report_post' => array('yn', $l['ugr_can_report_posts'], '')
 		);
 		
-	$poll_per = array('can_view_poll' => array('yn', 'View Polls', ''),
-		'can_vote_polls' => array('yn', 'Vote in polls', ''),
-		'can_post_polls' => array('yn', 'Can start polls topics', ''),
-		'can_edit_own_poll' => array('yn', 'Edit own polls', ''),
-		'can_edit_other_poll' => array('yn', 'Edit others poll', ''),
-		'add_poll_topic_own' => array('yn', 'Add a poll in self started topics', ''),
-		'add_poll_topic_other' => array('yn', 'Add a poll in topics started by others', ''),
-		'can_rem_own_poll' => array('yn', 'Remove self started polls', ''),
-		'can_rem_other_poll' => array('yn', 'Remove polls started by others', ''),
+	$poll_per = array('can_view_poll' => array('yn', $l['ugr_view_polls'], ''),
+		'can_vote_polls' => array('yn', $l['ugr_vote_polls'], ''),
+		'can_post_polls' => array('yn', $l['ugr_can_start_polls'], ''),
+		'can_edit_own_poll' => array('yn', $l['ugr_edit_own_polls'], ''),
+		'can_edit_other_poll' => array('yn', $l['ugr_edit_other_polls'], ''),
+		'add_poll_topic_own' => array('yn', $l['ugr_add_poll_self'], ''),
+		'add_poll_topic_other' => array('yn', $l['ugr_add_poll_other'], ''),
+		'can_rem_own_poll' => array('yn', $l['ugr_rem_poll_self'], ''),
+		'can_rem_other_poll' => array('yn', $l['ugr_rem_poll_other'], ''),
 		);
 		
-	$att_per = array('can_attach' => array('yn', 'Can attach files', ''),
-		'can_view_attach' => array('yn', 'Download attachments', ''),
-		'can_remove_attach' => array('yn', 'Remove Attachments', ''),
-		'max_attach' => array('inputtext', 'Max attachment size allowed', 'In KB\'s')
+	$att_per = array('can_attach' => array('yn', $l['ugr_can_attach_files'], ''),
+		'can_view_attach' => array('yn', $l['ugr_down_attach'], ''),
+		'can_remove_attach' => array('yn', $l['ugr_rem_attach'], ''),
+		'max_attach' => array('inputtext', $l['ugr_max_attach_size'], $l['ugr_in_kb'])
 		);
 		
-	$news_per = array('can_submit_news' => array('yn', 'Can submit news', ''),
-		'can_approve_news' => array('yn', 'Can approve submitted news', ''),
-		'can_edit_news' => array('yn', 'Can edit news articles', ''),
-		'can_delete_news' => array('yn', 'Can delete nws articles', '')
+	$news_per = array('can_submit_news' => array('yn', $l['ugr_can_subm_news'], ''),
+		'can_approve_news' => array('yn', $l['ugr_can_approv_news'], ''),
+		'can_edit_news' => array('yn', $l['ugr_can_edit_news'], ''),
+		'can_delete_news' => array('yn', $l['ugr_can_del_news'], '')
 		);
 		
-	$pm_per = array('can_use_pm' => array('yn', 'Can use PM system', ''),
-		'max_stored_pm' => array('inputtext', 'Max. Number of storable PM', 'Put \'0\' for unlimited.'),
-		'max_mass_pm' => array('inputtext', 'Max. Number users allowed to mass PM?', 'Put \'0\' for unlimited.'),
-		'can_report_pm' => array('yn', 'Can repost PM', '')
+	$pm_per = array('can_use_pm' => array('yn', $l['ugr_can_use_pm'], ''),
+		'max_stored_pm' => array('inputtext', $l['ugr_max_pm'], $l['ugr_max_pm_exp']),
+		'max_mass_pm' => array('inputtext', $l['ugr_num_users_pm'], $l['ugr_max_pm_exp']),
+		'can_report_pm' => array('yn', $l['ugr_can_repost_pm'], '')
 		);
 	
-	$shoutbox_per = array('can_shout' => array('yn', 'Can shout', 'Will allow him to see and use the shoutbox'),
-		'can_del_shout' => array('yn', 'Can Delete Shouts', 'If enabled the users of this group will be able to delete shouts')
+	$shoutbox_per = array('can_shout' => array('yn', $l['ugr_can_shout'], $l['ugr_can_shout_exp']),
+		'can_del_shout' => array('yn', $l['ugr_del_shouts'], $l['ugr_del_shouts_exp'])
 		);
 			
-	$permissions = array('Topic Permissions' => $topic_per,
-					'Posting Permissions' => $post_per,
-					'Poll Permissions' => $poll_per,
-					'Attachments Permissions' => $att_per,
-					'News Permissions' => $news_per,
-					'Personal Message Permissions' => $pm_per,
-					'Administration Permissions' => $admin_per,
-					'General Board Permissions' => $forum_per,
-					'Profile options' => $profile_per,
-					'Shout Box Permissions' => $shoutbox_per
+	$permissions = array($l['ugr_topic_perms'] => $topic_per,
+					$l['ugr_post_perms'] => $post_per,
+					$l['ugr_poll_perms'] => $poll_per,
+					$l['ugr_attach_perms'] => $att_per,
+					$l['ugr_news_perms'] => $news_per,
+					$l['ugr_pm_perms'] => $pm_per,
+					$l['ugr_admin_perms'] => $admin_per,
+					$l['ugr_gen_board_perms'] => $forum_per,
+					$l['ugr_prof_opt'] => $profile_per,
+					$l['ugr_shoutbox_perms'] => $shoutbox_per
 					);
 	
 	//No you cant do it for admins
@@ -398,7 +416,7 @@ global $globals, $theme, $error, $user_group;
 	echo '<table width="100%" cellpadding="2" cellspacing="1" class="cbor">
 		<tr>
 		<td class="adcbg" colspan="2">
-		Permissions
+		'.$l['ugr_perms'].'
 		</td>
 		</tr>';
 	
@@ -428,8 +446,7 @@ global $globals, $theme, $error, $user_group;
 	
 	echo '<tr>
 	<td class="adbg" width="50%" valign="top">
-	Show a message to this group :<br />
-	<font class="adexp">Type in as much as you want. BBC is also allowed.</font>
+	'.$l['ugr_mess_to_group'].'
 	</td>
 	<td class="adbg" align="left">
 	&nbsp;&nbsp;&nbsp;&nbsp;<textarea cols="30" rows="5" name="group_message">'.(empty($_POST['group_message']) ? $user_group['group_message'] : $_POST['group_message']).'</textarea>
@@ -446,7 +463,7 @@ global $globals, $theme, $error, $user_group;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editug" value="Submit" />
+		<input type="submit" name="editug" value="<?php echo $l['ugr_submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -461,9 +478,9 @@ global $globals, $theme, $error, $user_group;
 
 function yn($name){
 
-global $user_group;
+global $user_group, $l;
 
-return '<input type="radio" name="'.$name.'" value="1" '.(isset($_POST[$name]) && $_POST[$name] == 1 ? 'checked="checked"' : ($user_group[$name] == 1 ? 'checked="checked"' : '') ).' />&nbsp;Yes&nbsp;&nbsp;<input type="radio" name="'.$name.'" value="0" '.(isset($_POST[$name]) && $_POST[$name] == 0 ? 'checked="checked"' : (empty($user_group[$name]) ? 'checked="checked"' : '') ).' />&nbsp;No';
+return '<input type="radio" name="'.$name.'" value="1" '.(isset($_POST[$name]) && $_POST[$name] == 1 ? 'checked="checked"' : ($user_group[$name] == 1 ? 'checked="checked"' : '') ).' />&nbsp;'.$l['ugr_yes'].'&nbsp;&nbsp;<input type="radio" name="'.$name.'" value="0" '.(isset($_POST[$name]) && $_POST[$name] == 0 ? 'checked="checked"' : (empty($user_group[$name]) ? 'checked="checked"' : '') ).' />&nbsp;'.$l['ugr_no'].'';
 
 }
 
@@ -478,10 +495,10 @@ return '<input type="text" name="'.$name.'" value="'.(empty($_POST[$name]) ? $us
 //Add User Groups
 function addug_theme(){
 
-global $globals, $theme, $error, $user_group;
+global $globals, $l, $theme, $error, $user_group;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Add User Groups');
+	adminhead($l['ugr_cp_add_ugroups']);
 	
 	?>
 	
@@ -493,14 +510,14 @@ global $globals, $theme, $error, $user_group;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Add User Groups</font><br />
+	<font class="adgreen"><?php echo $l['ugr_add_ugroups'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for adding a User Group.
+	<?php echo $l['ugr_add_ugroups_exp'];?>
 	</td>
 	</tr>
 	
@@ -517,14 +534,14 @@ global $globals, $theme, $error, $user_group;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Add User Groups
+		<?php echo $l['ugr_add_ugroups'];?>
 		</td>
 		</tr>
 	
 		<tr>
 		<td width="45%" class="adbg">
-		<b>User Group Name :</b><br />
-		<font class="adexp">The name of the user group.</font>
+		<b><?php echo $l['ugr_ugroup_name'];?></b><br />
+		<font class="adexp"><?php echo $l['ugr_ugroup_name_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="mem_gr_name" value="<?php echo (empty($_POST['mem_gr_name']) ? '' : $_POST['mem_gr_name']);?>" />
@@ -533,8 +550,8 @@ global $globals, $theme, $error, $user_group;
 		
 		<tr>
 		<td class="adbg">
-		<b>User Group Color :</b><br />
-		<font class="adexp">The color that will be used for the members of this user group.</font>
+		<b><?php echo $l['ugr_ugroup_colour'];?></b><br />
+		<font class="adexp"><?php echo $l['ugr_ugroup_colour_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="mem_gr_colour" value="<?php echo (empty($_POST['mem_gr_colour']) ? '' : $_POST['mem_gr_colour']);?>" />
@@ -543,8 +560,8 @@ global $globals, $theme, $error, $user_group;
 		
 		<tr>
 		<td class="adbg">
-		<b>User Group Image :</b><br />
-		<font class="adexp">The user group image(stars). This file must be present in the themes image directory.</font>
+		<b><?php echo $l['ugr_ugroup_image'];?></b><br />
+		<font class="adexp"><?php echo $l['ugr_ugroup_image_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="image_name" value="<?php echo (empty($_POST['image_name']) ? '' : $_POST['image_name']);?>" />
@@ -553,7 +570,7 @@ global $globals, $theme, $error, $user_group;
 		
 		<tr>
 		<td class="adbg">
-		<b>Number of Star Image :</b><br />
+		<b><?php echo $l['ugr_num_stars'];?></b><br />
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="image_count" value="<?php echo (empty($_POST['image_count']) ? '' : $_POST['image_count']);?>" />
@@ -563,9 +580,8 @@ global $globals, $theme, $error, $user_group;
 		
 		<tr>
 		<td class="adbg">
-		<b>Post Based :</b><br />
-		<font class="adexp">Is this user group based on post count. <br />
-		<b>If it is a Post Based Group you do not need to fill in the below data for the permissions.</b></font>
+		<b><?php echo $l['ugr_post_based'];?></b><br />
+		<font class="adexp"><?php echo $l['ugr_post_based_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="post_based" <?php echo (isset($_POST['post_based']) ? 'checked="checked"' : '' )?> />
@@ -574,8 +590,8 @@ global $globals, $theme, $error, $user_group;
 		
 		<tr>
 		<td class="adbg">
-		<b>Number of Posts :</b><br />
-		<font class="adexp">Minimum number of posts to be a member of this user group.</font>
+		<b><?php echo $l['ugr_num_posts'];?></b><br />
+		<font class="adexp"><?php echo $l['ugr_num_posts_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="post_count" value="<?php echo (empty($_POST['post_count']) ? '' : $_POST['post_count']);?>" />
@@ -588,117 +604,117 @@ global $globals, $theme, $error, $user_group;
 	
 	<?php
 		
-	$admin_per = array('can_admin' => array('yn', 'Can Administrate the Board', ''),
-		'allow_html' => array('yn', 'Can post HTML Code', 'Even Javascript will be executed'),		
-		'view_ip' => array('yn', 'Can view IP Addresses of users', ''),				
-		'view_offline_board' => array('yn', 'Can use the board even when in maintainence', '')
+	$admin_per = array('can_admin' => array('yn', $l['ugr_can_admin'], ''),
+		'allow_html' => array('yn', $l['ugr_can_html'], $l['ugr_even_js']),		
+		'view_ip' => array('yn', $l['ugr_view_ips'], ''),				
+		'view_offline_board' => array('yn', $l['ugr_can_maint'], '')
 		);
 	
-	$forum_per = array('view_forum' => array('yn', 'Can view the forum', ''),
-		'can_search' => array('yn', 'Can use the search', ''),
-		'can_email_mem' => array('yn', 'Can email members', ''),
-		'can_email_friend' => array('yn', 'Can email friends', 'Just an email feature'),
-		'view_active' => array('yn', 'Can view Active users list', ''),
-		'hide_online' => array('yn', 'Can hide own Online status', ''),
-		'view_anonymous' => array('yn', 'Can view Anonymous members', ''),
-		'view_members' => array('yn', 'Can view the Members list', ''),
-		'view_stats' => array('yn', 'Can view Board Statistics', ''),
-		'view_calendar' => array('yn', 'Can view the Calendar', '')
+	$forum_per = array('view_forum' => array('yn', $l['ugr_can_view_f'], ''),
+		'can_search' => array('yn', $l['ugr_can_search'], ''),
+		'can_email_mem' => array('yn', $l['ugr_can_email_memb'], ''),
+		'can_email_friend' => array('yn', $l['ugr_can_email_friend'], $l['ugr_can_email_friend_exp']),
+		'view_active' => array('yn', $l['ugr_can_view_act_list'], ''),
+		'hide_online' => array('yn', $l['ugr_can_hide_status'], ''),
+		'view_anonymous' => array('yn', $l['ugr_can_view_anonys'], ''),
+		'view_members' => array('yn', $l['ugr_can_view_memb_list'], ''),
+		'view_stats' => array('yn', $l['ugr_can_view_stats'], ''),
+		'view_calendar' => array('yn', $l['ugr_can_view_cal'], '')
 		);
 		
-	$profile_per = array('prefix' => array('inputtext', 'Prefix', ''),
-		'suffix' => array('inputtext', 'Suffix', ''),
-		'use_avatar' => array('yn', 'Can use avatars from the board', ''),
-		'url_avatar' => array('yn', 'Can specify URL Avatar', ''),
-		'upload_avatar' => array('yn', 'Can Upload own Avatar', ''),
-		'can_view_profile' => array('yn', 'Can View Members profile', ''),
-		'can_edit_own_profile' => array('yn', 'Can edit own profile', ''),
-		'can_edit_other_profile' => array('yn', 'Can edit others profile', ''),
-		'can_del_own_account' => array('yn', 'Can delete their own account', ''),
-		'can_del_other_account' => array('yn', 'Can delete others account', ''),
-		'can_ban_user' => array('yn', 'Can Ban Users', ''),	
+	$profile_per = array('prefix' => array('inputtext', $l['ugr_prefix'], ''),
+		'suffix' => array('inputtext', $l['ugr_suffix'], ''),
+		'use_avatar' => array('yn', $l['ugr_can_avatars_fboard'], ''),
+		'url_avatar' => array('yn', $l['ugr_can_avatars_url'], ''),
+		'upload_avatar' => array('yn', $l['ugr_can_avatars_upload'], ''),
+		'can_view_profile' => array('yn', $l['ugr_can_view_memb_profile'], ''),
+		'can_edit_own_profile' => array('yn', $l['ugr_can_edit_own_prof'], ''),
+		'can_edit_other_profile' => array('yn', $l['ugr_can_edit_other_prof'], ''),
+		'can_del_own_account' => array('yn', $l['ugr_can_del_own_account'], ''),
+		'can_del_other_account' => array('yn', $l['ugr_can_del_other_account'], ''),
+		'can_ban_user' => array('yn', $l['ugr_can_ban'], ''),	
 		);
 	
-	$topic_per = array('can_post_topic' => array('yn', 'Can start topics'),
-		'can_edit_own_topic' => array('yn', 'Edit own topics', ''),
-		'can_edit_other_topic' => array('yn', 'Edit others topic', ''),
-		'can_del_own_topic' => array('yn', 'Delete own topics', ''),
-		'can_del_other_topic' => array('yn', 'Delete others topic', ''),
-		'approve_topics' => array('yn', 'Approve topics', 'Approval System should be enabled'),
-		'can_merge_topics' => array('yn', 'Merge Topics', ''),
-		'can_merge_posts' => array('yn', 'Merge Posts', ''),
-		'can_split_topics' => array('yn', 'Split Topics', ''),
-		'can_email_topic' => array('yn', 'Email Topics to Friends', ''),
-		'can_make_sticky' => array('yn', 'Sticky Topics', ''),
-		'can_move_own_topic' => array('yn', 'Move own topics', ''),
-		'can_move_other_topic' => array('yn', 'Move others topic', ''),
-		'can_lock_own_topic' => array('yn', 'Lock own topics', ''),
-		'can_lock_other_topic' => array('yn', 'Lock others topic', ''),
-		'can_announce_topic' => array('yn', 'Announce Topics', ''),
-		'notify_new_posts' => array('yn', 'Subscribe to topics', ''),
-		'notify_new_topics' => array('yn', 'Subscribe to forums', ''),
-		'has_priviliges' => array('yn', 'Has priviliges', '')
+	$topic_per = array('can_post_topic' => array('yn', $l['ugr_can_start_topics'], ''),
+		'can_edit_own_topic' => array('yn', $l['ugr_can_edit_own_topics'], ''),
+		'can_edit_other_topic' => array('yn', $l['ugr_can_edit_other_topics'], ''),
+		'can_del_own_topic' => array('yn', $l['ugr_can_del_own_topics'], ''),
+		'can_del_other_topic' => array('yn', $l['ugr_can_del_other_topics'], ''),
+		'approve_topics' => array('yn', $l['ugr_approve_topics'], $l['ugr_approve_topics_exp']),
+		'can_merge_topics' => array('yn', $l['ugr_merge_topics'], ''),
+		'can_merge_posts' => array('yn', $l['ugr_merge_posts'], ''),
+		'can_split_topics' => array('yn', $l['ugr_split_topics'], ''),
+		'can_email_topic' => array('yn', $l['ugr_email_topics_friends'], ''),
+		'can_make_sticky' => array('yn', $l['ugr_sticky_topics'], ''),
+		'can_move_own_topic' => array('yn', $l['ugr_move_own_topics'], ''),
+		'can_move_other_topic' => array('yn', $l['ugr_move_other_topics'], ''),
+		'can_lock_own_topic' => array('yn', $l['ugr_lock_own_topics'], ''),
+		'can_lock_other_topic' => array('yn', $l['ugr_lock_other_topics'], ''),
+		'can_announce_topic' => array('yn', $l['ugr_announ_opics'], ''),
+		'notify_new_posts' => array('yn', $l['ugr_subsc_topics'], ''),
+		'notify_new_topics' => array('yn', $l['ugr_subsc_forums'], ''),
+		'has_priviliges' => array('yn', $l['ugr_has_priv'], '')
 		);
 		
-	$post_per = array('can_reply' => array('yn', 'Reply to topics', ''),
-		'can_edit_own' => array('yn', 'Edit own posts', ''),
-		'can_edit_other' => array('yn', 'Edit other posts', ''),
-		'can_del_own_post' => array('yn', 'Delete own posts', ''),
-		'can_del_other_post' => array('yn', 'Delete others post', ''),
-		'approve_posts' => array('yn', 'Approve posts', 'Approval System should be enabled'),
-		'can_report_post' => array('yn', 'Can Report Posts', '')
+	$post_per = array('can_reply' => array('yn', $l['ugr_reply_topics'], ''),
+		'can_edit_own' => array('yn', $l['ugr_edit_own_posts'], ''),
+		'can_edit_other' => array('yn', $l['ugr_edit_other_posts'], ''),
+		'can_del_own_post' => array('yn', $l['ugr_del_own_posts'], ''),
+		'can_del_other_post' => array('yn', $l['ugr_del_other_posts'], ''),
+		'approve_posts' => array('yn', $l['ugr_approve_posts'], $l['ugr_approve_posts_exp']),
+		'can_report_post' => array('yn', $l['ugr_can_report_posts'], '')
 		);
 		
-	$poll_per = array('can_view_poll' => array('yn', 'View Polls', ''),
-		'can_vote_polls' => array('yn', 'Vote in polls', ''),
-		'can_post_polls' => array('yn', 'Can start polls topics', ''),
-		'can_edit_own_poll' => array('yn', 'Edit own polls', ''),
-		'can_edit_other_poll' => array('yn', 'Edit others poll', ''),
-		'add_poll_topic_own' => array('yn', 'Add a poll in self started topics', ''),
-		'add_poll_topic_other' => array('yn', 'Add a poll in topics started by others', ''),
-		'can_rem_own_poll' => array('yn', 'Remove self started polls', ''),
-		'can_rem_other_poll' => array('yn', 'Remove polls started by others', ''),
+	$poll_per = array('can_view_poll' => array('yn', $l['ugr_view_polls'], ''),
+		'can_vote_polls' => array('yn', $l['ugr_vote_polls'], ''),
+		'can_post_polls' => array('yn', $l['ugr_can_start_polls'], ''),
+		'can_edit_own_poll' => array('yn', $l['ugr_edit_own_polls'], ''),
+		'can_edit_other_poll' => array('yn', $l['ugr_edit_other_polls'], ''),
+		'add_poll_topic_own' => array('yn', $l['ugr_add_poll_self'], ''),
+		'add_poll_topic_other' => array('yn', $l['ugr_add_poll_other'], ''),
+		'can_rem_own_poll' => array('yn', $l['ugr_rem_poll_self'], ''),
+		'can_rem_other_poll' => array('yn', $l['ugr_rem_poll_other'], ''),
 		);
 		
-	$att_per = array('can_attach' => array('yn', 'Can attach files', ''),
-		'can_view_attach' => array('yn', 'Download attachments', ''),
-		'can_remove_attach' => array('yn', 'Remove Attachments', ''),
-		'max_attach' => array('inputtext', 'Max attachment size allowed', 'In KB\'s')
+	$att_per = array('can_attach' => array('yn', $l['ugr_can_attach_files'], ''),
+		'can_view_attach' => array('yn', $l['ugr_down_attach'], ''),
+		'can_remove_attach' => array('yn', $l['ugr_rem_attach'], ''),
+		'max_attach' => array('inputtext', $l['ugr_max_attach_size'], $l['ugr_in_kb'])
 		);
 		
-	$news_per = array('can_submit_news' => array('yn', 'Can submit news', ''),
-		'can_approve_news' => array('yn', 'Can approve submitted news', ''),
-		'can_edit_news' => array('yn', 'Can edit news articles', ''),
-		'can_delete_news' => array('yn', 'Can delete nws articles', '')
+	$news_per = array('can_submit_news' => array('yn', $l['ugr_can_subm_news'], ''),
+		'can_approve_news' => array('yn', $l['ugr_can_approv_news'], ''),
+		'can_edit_news' => array('yn', $l['ugr_can_edit_news'], ''),
+		'can_delete_news' => array('yn', $l['ugr_can_del_news'], '')
 		);
 		
-	$pm_per = array('can_use_pm' => array('yn', 'Can use PM system', ''),
-		'max_stored_pm' => array('inputtext', 'Max. Number of storable PM', 'Put \'0\' for unlimited.'),
-		'max_mass_pm' => array('inputtext', 'Max. Number users allowed to mass PM?', 'Put \'0\' for unlimited.'),
-		'can_report_pm' => array('yn', 'Can repost PM', '')
+	$pm_per = array('can_use_pm' => array('yn', $l['ugr_can_use_pm'], ''),
+		'max_stored_pm' => array('inputtext', $l['ugr_max_pm'], $l['ugr_max_pm_exp']),
+		'max_mass_pm' => array('inputtext', $l['ugr_num_users_pm'], $l['ugr_max_pm_exp']),
+		'can_report_pm' => array('yn', $l['ugr_can_repost_pm'], '')
 		);
 	
-	$shoutbox_per = array('can_shout' => array('yn', 'Can shout', 'Will allow him to see and use the shoutbox'),
-		'can_del_shout' => array('yn', 'Can Delete Shouts', 'If enabled the users of this group will be able to delete shouts')
+	$shoutbox_per = array('can_shout' => array('yn', $l['ugr_can_shout'], $l['ugr_can_shout_exp']),
+		'can_del_shout' => array('yn', $l['ugr_del_shouts'], $l['ugr_del_shouts_exp'])
 		);
 			
-	$permissions = array('Topic Permissions' => $topic_per,
-					'Posting Permissions' => $post_per,
-					'Poll Permissions' => $poll_per,
-					'Attachments Permissions' => $att_per,
-					'News Permissions' => $news_per,
-					'Personal Message Permissions' => $pm_per,
-					'Administration Permissions' => $admin_per,
-					'General Board Permissions' => $forum_per,
-					'Profile options' => $profile_per,
-					'Shout Box Permissions' => $shoutbox_per
+	$permissions = array($l['ugr_topic_perms'] => $topic_per,
+					$l['ugr_post_perms'] => $post_per,
+					$l['ugr_poll_perms'] => $poll_per,
+					$l['ugr_attach_perms'] => $att_per,
+					$l['ugr_news_perms'] => $news_per,
+					$l['ugr_pm_perms'] => $pm_per,
+					$l['ugr_admin_perms'] => $admin_per,
+					$l['ugr_gen_board_perms'] => $forum_per,
+					$l['ugr_prof_opt'] => $profile_per,
+					$l['ugr_shoutbox_perms'] => $shoutbox_per
 					);
 	
 	
 	echo '<table width="100%" cellpadding="2" cellspacing="1" class="cbor">
 		<tr>
 		<td class="adcbg" colspan="2">
-		Permissions
+		'.$l['ugr_perms'].'
 		</td>
 		</tr>';
 	
@@ -728,8 +744,7 @@ global $globals, $theme, $error, $user_group;
 	
 	echo '<tr>
 	<td class="adbg" width="50%" valign="top">
-	Show a message to this group :<br />
-	<font class="adexp">Type in as much as you want. BBC is also allowed.</font>
+	'.$l['ugr_mess_to_group'].'
 	</td>
 	<td class="adbg" align="left">
 	&nbsp;&nbsp;&nbsp;&nbsp;<textarea cols="30" rows="5" name="group_message">'.(empty($_POST['group_message']) ? $user_group['group_message'] : $_POST['group_message']).'</textarea>
@@ -746,7 +761,7 @@ global $globals, $theme, $error, $user_group;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="addug" value="Submit" />
+		<input type="submit" name="addug" value="<?php echo $l['ugr_submit'];?>" />
 		</td>
 		</tr>	
 	</table>

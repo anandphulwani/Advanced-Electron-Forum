@@ -26,11 +26,16 @@ if(!defined('AEF')){
 
 }
 
+if(!load_lang('usercp/subscriptions')){
+    
+    return false;
+        
+}
 //The name of the file
 $theme['init_theme'] = 'usercp/subscriptions';
 
 //The name of the Page
-$theme['init_theme_name'] = 'UserCP Subscriptions';
+$theme['init_theme_name'] = $l['subsc_usercp_subscriptions'];
 
 //Array of functions to initialize
 $theme['init_theme_func'] = array('topicsub_theme',
@@ -48,7 +53,7 @@ global $subscriptions, $count, $tree;
 	//Is it even on
 	if(!$globals['notifications']){
 	
-		reporterror('Error' ,'Sorry, we were unable to process your request because Notifications are disabled on the board. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['subsc_error'] ,$l['subsc_error_exp']);
 				
 		return false;
 	
@@ -64,10 +69,10 @@ global $subscriptions, $count, $tree;
 	$tids = array();
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=topicsub',
-					'txt' => 'Notifications');
+					'txt' => $l['subsc_notifications']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=topicsub',
-					'txt' => 'Topic Notifications');
+					'txt' => $l['subsc_topic_notifications']);
 	
 	//Count the subscriptions that you have
 	$qresult = makequery("SELECT COUNT(nt.notify_tid) AS count
@@ -77,7 +82,7 @@ global $subscriptions, $count, $tree;
 	if(mysql_num_rows($qresult) < 1){
 		
 		//Show a major error and return
-		reporterror('No page found' ,'There were some errors in counting the subscriptions. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+		reporterror($l['subsc_no page found'] ,$l['subsc_no page found_exp']);
 			
 		return false;
 		
@@ -125,7 +130,7 @@ global $subscriptions, $count, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 					
-			reporterror('Unsubscription error' ,'Sorry, we were unable to unsubscribe to the topic(s) you specified because the connection with the database failed. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['subsc_unsubscription_error'] ,$l['subsc_unsubscription_error_topic_exp1']);
 			
 			return false;
 			
@@ -157,7 +162,7 @@ global $subscriptions, $count, $tree;
 		if($page > 0){
 	
 			//Show a major error and return
-			reporterror('No page found' ,'There is no such page in your Topic Subscriptions. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+			reporterror($l['subsc_no page found'] ,$l['subsc_unsubscription_error_topic_exp2']);
 				
 			return false;
 			
@@ -192,7 +197,7 @@ global $subscriptions, $count, $tree;
 	//Is it even on
 	if(!$globals['notifications']){
 	
-		reporterror('Error' ,'Sorry, we were unable to process your request because Notifications are disabled on the board. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['subsc_error'] ,$l['subsc_error_exp']);
 				
 		return false;
 	
@@ -208,10 +213,10 @@ global $subscriptions, $count, $tree;
 	$fids = array();
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=topicsub',
-					'txt' => 'Notifications');
+					'txt' => $l['subsc_notifications']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=forumsub',
-					'txt' => 'Forum Notifications');
+					'txt' => $l['subsc_forum_notifications']);
 	
 	//Count the subscriptions that you have
 	$qresult = makequery("SELECT COUNT(nf.notify_fid) AS count
@@ -221,7 +226,7 @@ global $subscriptions, $count, $tree;
 	if(mysql_num_rows($qresult) < 1){
 		
 		//Show a major error and return
-		reporterror('No page found' ,'There were some errors in counting the subscriptions. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+		reporterror($l['subsc_no page found'] ,$l['subsc_no page found_exp']);
 			
 		return false;
 		
@@ -269,7 +274,7 @@ global $subscriptions, $count, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 					
-			reporterror('Unsubscription error' ,'Sorry, we were unable to unsubscribe to the Forum(s) you specified because the connection with the database failed. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['subsc_unsubscription_error'] ,$l['subsc_unsubscription_error_forum_exp1']);
 			
 			return false;
 			
@@ -301,7 +306,7 @@ global $subscriptions, $count, $tree;
 		if($page > 0){
 	
 			//Show a major error and return
-			reporterror('No page found' ,'There is no such page in your Forums Subscriptions. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+			reporterror($l['subsc_no page found'] ,$l['subsc_unsubscription_error_forum_exp']);
 				
 			return false;
 			

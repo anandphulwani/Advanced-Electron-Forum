@@ -1,14 +1,33 @@
 <?php
 
-if(!defined('AEF'))
-{
+//////////////////////////////////////////////////////////////
+//===========================================================
+// tpp_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
+
+if(!defined('AEF')){
 die('Hacking Attempt');
 }
 
 //A global part to appear
 function tpp_global(){
 
-global $globals, $theme, $categories;
+global $globals, $l, $theme, $categories;
 
 	?>
 	
@@ -20,15 +39,14 @@ global $globals, $theme, $categories;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Message Settings</font><br />
+	<font class="adgreen"><?php echo $l['tpp_message_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place where you can set the settings of Topics, Posts and Polls .<br />
-	Also you can set Censorship for particular Badwords that are undesirable in the posts .
+	<?php echo $l['tpp_message_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -42,10 +60,10 @@ global $globals, $theme, $categories;
 
 function manage_topics_theme(){
 
-global $globals, $theme, $error;
+global $globals, $theme, $l, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage Topics');
+	adminhead($l['tpp_cp_manage_topics']);
 	
 	tpp_global();
 	
@@ -57,14 +75,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Topic Settings
+		<?php echo $l['tpp_topics_set'];?>
 		</td>
 		</tr>
 	
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Max Characters in Title:</b><br />
-		<font class="adexp">The Max Number of Characters in a topics Title. Zero(0) for no Limit</font>
+		<b><?php echo $l['tpp_max_char_title'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_max_char_title_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxtitlechars"
@@ -74,8 +92,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Min Characters in Title:</b><br />
-		<font class="adexp">The Minimum Number of Characters in a topics Title. Zero(0) for no Limit</font>
+		<b><?php echo $l['tpp_min_char_title'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_min_char_title_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="mintitlechars"
@@ -85,8 +103,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Number of topics PP:</b><br />
-		<font class="adexp">The Number of topics that will appear Per Board Page.</font>
+		<b><?php echo $l['tpp_num_topics_pp'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_num_topics_pp_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxtopics"
@@ -96,8 +114,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Number of Posts PT:</b><br />
-		<font class="adexp">The Number of Posts that will appear Per Topic Page.</font>
+		<b><?php echo $l['tpp_num_posts_pt'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_num_posts_pt_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxpostsintopics"
@@ -107,8 +125,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Replies for Hot Topic :</b><br />
-		<font class="adexp">The Number of replies for a 'Hot topic'.</font>
+		<b><?php echo $l['tpp_replies_hot_topic'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_replies_hot_topic_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxreplyhot"
@@ -118,8 +136,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Replies for Very Hot Topic :</b><br />
-		<font class="adexp">The Number of replies for a 'Very Hot topic'.</font>
+		<b><?php echo $l['tpp_replies_veryhot_topic'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_replies_veryhot_topic_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxreplyveryhot"
@@ -129,8 +147,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Disable Shouting in Topic Titles :</b><br />
-		<font class="adexp">This will make 'SHOUTING' in a topic title to 'Shouting' .</font>
+		<b><?php echo $l['tpp_disable_shouting_topic_titles'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_disable_shouting_topic_titles_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="disableshoutingtopics"
@@ -141,8 +159,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Previous - Next Topic Links :</b><br />
-		<font class="adexp">Enable Previous - Next Topic Links within each Topic.</font>
+		<b><?php echo $l['tpp_prev_next_topic_links'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_prev_next_topic_links_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="prenextopic"
@@ -154,8 +172,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Old Topic Warn :</b><br />
-		<font class="adexp">The Number of Days before topic is warned as Old on reply.</font>
+		<b><?php echo $l['tpp_old_topic_warn'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_old_topic_warn_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="warnoldtopic"
@@ -165,8 +183,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Prefix for Stickied Topic :</b><br />
-		<font class="adexp">The Stickied Topic will have this Prefix on the Board Page.</font>
+		<b><?php echo $l['tpp_pref_stickied_topics'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_pref_stickied_topics_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="prefixsticky"
@@ -176,8 +194,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Prefix for Moved Topic :</b><br />
-		<font class="adexp">The Moved Topic Post will have this Prefix on the Board Page.</font>
+		<b><?php echo $l['tpp_pref_moved_topics'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_pref_moved_topics_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="prefixmoved"
@@ -187,8 +205,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Prefix for Poll Topics :</b><br />
-		<font class="adexp">The Poll Topic will have this Prefix on the Board Page.</font>
+		<b><?php echo $l['tpp_pref_poll_topics'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_pref_poll_topics_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="prefixpolls"
@@ -198,8 +216,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Disable Shouting in Topic Description :</b><br />
-		<font class="adexp">This will make 'SHOUTING' in a topic description to 'Shouting' .</font>
+		<b><?php echo $l['tpp_disable_shouting_topic_desc'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_disable_shouting_topic_desc_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="disableshoutingdesc"
@@ -209,8 +227,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Max Characters in Description:</b><br />
-		<font class="adexp">The Max Number of Characters in a topics description. Zero(0) for no Limit</font>
+		<b><?php echo $l['tpp_max_char_desc'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_max_char_desc_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxdescchars"
@@ -220,8 +238,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Min Characters in Description:</b><br />
-		<font class="adexp">The Minimum Number of Characters in a topics description. Zero(0) for no Limit</font>
+		<b><?php echo $l['tpp_min_char_desc'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_min_char_desc_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="mindescchars"
@@ -231,8 +249,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Allow Tell a friend feature :</b><br />
-		<font class="adexp">This will allow users to email a topic to a friend.</font>
+		<b><?php echo $l['tpp_allow_tell_friend'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_allow_tell_friend_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="allow_taf"
@@ -242,8 +260,8 @@ global $globals, $theme, $error;
         
         <tr>
 		<td class="adbg">
-		<b>Show users who read a topic :</b><br />
-		<font class="adexp">This will show within a topic the usernames of members who have read that topic.</font>
+		<b><?php echo $l['who_read_topic'];?> :</b><br />
+		<font class="adexp"><?php echo $l['who_read_topic_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="who_read_topic"
@@ -258,7 +276,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="edittopset" value="Submit" />
+		<input type="submit" name="edittopset" value="<?php echo $l['tpp_submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -275,10 +293,10 @@ global $globals, $theme, $error;
 
 function manage_posts_theme(){
 
-global $globals, $theme, $error;
+global $globals, $theme, $l, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage Posts');
+	adminhead($l['tpp_cp_manage_posts']);
 	
 	tpp_global();
 	
@@ -291,14 +309,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Posts Settings
+		<?php echo $l['tpp_manage_posts'];?>
 		</td>
 		</tr>
 			
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Number of Posts PT:</b><br />
-		<font class="adexp">The Number of Posts that will appear Per Topic Page.</font>
+		<b><?php echo $l['tpp_num_posts_pt'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_num_posts_pt_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxpostsintopics"
@@ -308,8 +326,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Max Characters per Post :</b><br />
-		<font class="adexp">The Number of Characters allowed in one Posting.</font>
+		<b><?php echo $l['tpp_max_char_post'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_max_char_post_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxcharposts"
@@ -319,8 +337,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Min Characters per Post :</b><br />
-		<font class="adexp">The Minimum Number of Characters necessary in one Posting.</font>
+		<b><?php echo $l['tpp_min_char_post'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_min_char_post_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="mincharposts"
@@ -330,8 +348,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Time Between Posts :</b><br />
-		<font class="adexp">The Time difference required between posts from the same user in Seconds.</font>
+		<b><?php echo $l['tpp_time_between_posts'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_time_between_posts_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="timepostfromuser"
@@ -341,8 +359,8 @@ global $globals, $theme, $error;
         
         <tr>
 		<td width="35%" class="adbg">
-		<b>Show Last Posts :</b><br />
-		<font class="adexp">The Number of Posts that should be shown while replying in a topic. (0 to disable)</font>
+		<b><?php echo $l['tpp_show_last_posts'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_show_last_posts_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="last_posts_reply"
@@ -352,8 +370,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Max Emoticons Allowed :</b><br />
-		<font class="adexp">The Number of Emoticons to be allowed Per Post (Excludes Topic title).</font>
+		<b><?php echo $l['tpp_max_emoticons_allow'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_max_emoticons_allow_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxemotpost"
@@ -363,8 +381,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Max Images Allowed :</b><br />
-		<font class="adexp">The Max number of Images to be allowed Per Post using [IMG][/IMG].</font>
+		<b><?php echo $l['tpp_max_images_allow'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_max_images_allow_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maximgspost"
@@ -374,8 +392,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Width x Height of Image :</b><br />
-		<font class="adexp">The Maximum width and height of a Image that is posted using [IMG][/IMG]. Larger Images will be scaled down.</font>
+		<b><?php echo $l['tpp_width_height_image'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_width_height_image_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="10"  name="maximgwidthpost"
@@ -386,8 +404,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Remove Nested Quotes :</b><br />
-		<font class="adexp">While Posting Quotes within quotes will be removed.</font>
+		<b><?php echo $l['tpp_rem_nested_quotes'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_rem_nested_quotes_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="removenestedquotes"
@@ -398,8 +416,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Attach Sig to Post :</b><br />
-		<font class="adexp">Attach the Users sig to his posts .</font>
+		<b><?php echo $l['tpp_attach_sig_post'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_attach_sig_post_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="attachsigtopost"
@@ -410,8 +428,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Allow Flash :</b><br />
-		<font class="adexp">Allow Flash files to be Embedded in a Post.</font>
+		<b><?php echo $l['tpp_allow_flash'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_allow_flash_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="embedflashinpost"
@@ -423,8 +441,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Allow Dynamic Images :</b><br />
-		<font class="adexp">Allow dynamic images in a Post.</font>
+		<b><?php echo $l['tpp_allow_dynamic_images'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_allow_dynamic_images_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="allowdynimg"
@@ -435,8 +453,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Width x Height of Flash :</b><br />
-		<font class="adexp">The width and height of a Flash Embedded in a post using [FLASH][/FLASH].</font>
+		<b><?php echo $l['tpp_width_height_flash'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_width_height_flash_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="10"  name="maxflashwidthinpost"
@@ -452,7 +470,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editpostset" value="Submit" />
+		<input type="submit" name="editpostset" value="<?php echo $l['tpp_submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -469,10 +487,10 @@ global $globals, $theme, $error;
 
 function manage_polls_theme(){
 
-global $globals, $theme, $error;
+global $globals, $theme, $l, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage Polls');
+	adminhead($l['tpp_cp_manage_polls']);
 	
 	tpp_global();
 	
@@ -485,14 +503,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Polls Settings
+		<?php echo $l['tpp_polls_set'];?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Enable Polls :</b><br />
-		<font class="adexp">Should the Polls be enabled on the board.</font>
+		<b><?php echo $l['tpp_enable_polls'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_enable_polls_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="enablepolls"
@@ -502,8 +520,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Max Options in Poll:</b><br />
-		<font class="adexp">Maximum number of options in a poll.</font>
+		<b><?php echo $l['tpp_max_options_poll'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_max_options_poll_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxoptionspoll"
@@ -513,8 +531,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="35%" class="adbg">
-		<b>Poll Question Length:</b><br />
-		<font class="adexp">Maximum length of the poll question.</font>
+		<b><?php echo $l['tpp_pollquestion_length'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_pollquestion_length_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="30"  name="maxpollqtlen"
@@ -529,7 +547,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editpollset" value="Submit" />
+		<input type="submit" name="editpollset" value="<?php echo $l['tpp_submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -546,10 +564,10 @@ global $globals, $theme, $error;
 
 function manage_words_theme(){
 
-global $globals, $theme, $error, $from, $to;
+global $globals, $theme, $l, $error, $from, $to;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage Censored Words');
+	adminhead($l['tpp_cp_manage_censored_words']);
 	
 	tpp_global();
 	
@@ -578,14 +596,14 @@ global $globals, $theme, $error, $from, $to;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Censored Words Settings
+		<?php echo $l['tpp_censored_words_set'];?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Case Sensitive :</b><br />
-		<font class="adexp">Should the censored words be case sensitive.</font>
+		<b><?php echo $l['tpp_case_sens'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_case_sens_exp'];?></font>
 		</td>
 		<td width="50%" class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="censor_words_case"
@@ -595,10 +613,10 @@ global $globals, $theme, $error, $from, $to;
 		
 		<tr>
 		<td class="adcbg2" align="center">
-		Convert From
+		<?php echo $l['tpp_convert_from'];?>
 		</td>
 		<td class="adcbg2" align="center">
-		To
+		<?php echo $l['tpp_to'];?>
 		</td>
 		</tr>
 		
@@ -626,10 +644,10 @@ global $globals, $theme, $error, $from, $to;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg" width="50%">
-		<input type="button" onclick="addrow('wordstable');" value="Add more words" />
+		<input type="button" onclick="addrow('wordstable');" value="<?php echo $l['tpp_add_more'];?>" />
 		</td>
 		<td align="center" class="adbg">
-		<input type="submit" name="censorwords" value="Submit" />
+		<input type="submit" name="censorwords" value="<?php echo $l['tpp_submit'];?>" />
 		</td>
 		</tr>
 	</table>
@@ -646,10 +664,10 @@ global $globals, $theme, $error, $from, $to;
 
 function manage_bbc_theme(){
 
-global $globals, $theme, $error;
+global $globals, $l, $theme, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage BBC');
+	adminhead($l['tpp_cp_manage_bbc']);
 	
 	tpp_global();
 	
@@ -662,14 +680,14 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		BBC Settings
+		<?php echo $l['tpp_bbc_set'];?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Parse BBC :</b><br />
-		<font class="adexp">Should Bulletin Board Code(BBC) be enabled ?</font>
+		<b><?php echo $l['tpp_parse_bbc'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_parse_bbc_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="parsebbc"
@@ -679,8 +697,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Autolink URL :</b><br />
-		<font class="adexp">If enabled a URL will be converted into a link.</font>
+		<b><?php echo $l['tpp_autolink_url'];?></b><br />
+		<font class="adexp"><?php echo $l['tpp_autolink_url_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="autolink"
@@ -690,7 +708,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Horizontal Rule :</b><br />
+		<b><?php echo $l['tpp_h_rule'];?></b><br />
 		<font class="adexp">[hr]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -701,7 +719,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Bold :</b><br />
+		<b><?php echo $l['tpp_bold'];?></b><br />
 		<font class="adexp">[b][/b]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -712,7 +730,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Italics :</b><br />
+		<b><?php echo $l['tpp_italics'];?></b><br />
 		<font class="adexp">[i][/i]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -723,7 +741,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Underline :</b><br />
+		<b><?php echo $l['tpp_underline'];?></b><br />
 		<font class="adexp">[u][/u]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -736,7 +754,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Strike through :</b><br />
+		<b><?php echo $l['tpp_strike'];?></b><br />
 		<font class="adexp">[s][/s]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -747,7 +765,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Left Align :</b><br />
+		<b><?php echo $l['tpp_left_align'];?></b><br />
 		<font class="adexp">[left][/left]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -758,7 +776,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Right Align :</b><br />
+		<b><?php echo $l['tpp_right_align'];?></b><br />
 		<font class="adexp">[right][/right]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -769,7 +787,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Center Align :</b><br />
+		<b><?php echo $l['tpp_center_align'];?></b><br />
 		<font class="adexp">[center][/center]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -780,7 +798,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Font Size :</b><br />
+		<b><?php echo $l['tpp_font_size'];?></b><br />
 		<font class="adexp">[size][/size]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -791,7 +809,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Font Face :</b><br />
+		<b><?php echo $l['tpp_font_face'];?></b><br />
 		<font class="adexp">[font][/font]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -802,7 +820,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Superscript Text :</b><br />
+		<b><?php echo $l['tpp_sup_text'];?></b><br />
 		<font class="adexp">[sup][/sup]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -813,7 +831,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Subscript Text :</b><br />
+		<b><?php echo $l['tpp_sub_text'];?></b><br />
 		<font class="adexp">[sub][/sub]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -824,7 +842,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Colour Text :</b><br />
+		<b><?php echo $l['tpp_colour_text'];?></b><br />
 		<font class="adexp">[color][/color]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -835,7 +853,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Anchor(URL) :</b><br />
+		<b><?php echo $l['tpp_anchor_url'];?></b><br />
 		<font class="adexp">[url][/url]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -846,7 +864,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>FTP Link :</b><br />
+		<b><?php echo $l['tpp_ftp_link'];?></b><br />
 		<font class="adexp">[ftp][/ftp]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -857,7 +875,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Email Link :</b><br />
+		<b><?php echo $l['tpp_email_link'];?></b><br />
 		<font class="adexp">[email][/email]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -868,7 +886,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Inline Image:</b><br />
+		<b><?php echo $l['tpp_inline_image'];?></b><br />
 		<font class="adexp">[img][/img]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -879,8 +897,8 @@ global $globals, $theme, $error;
         
         <tr>
 		<td class="adbg">
-		<b>Show Images by default:</b><br />
-       <font class="adexp">If this is disabled then images will no be shown and the Image will be parsed as <br /><b>Image : http://www.url.com/image.jpg</b> .</font>
+		<b><?php echo $l['tpp_show_images'];?></b><br />
+       <font class="adexp"><?php echo $l['tpp_show_images_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="showimgs" <?php echo (isset($_POST['showimgs']) ? 'checked="checked"' : ($globals['showimgs'] ? 'checked="checked"' : ''));?> />
@@ -889,7 +907,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Flash :</b><br />
+		<b><?php echo $l['tpp_flash'];?></b><br />
 		<font class="adexp">[flash][/flash]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -900,7 +918,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Code Block :</b><br />
+		<b><?php echo $l['tpp_code_block'];?></b><br />
 		<font class="adexp">[code][/code]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -911,7 +929,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Quote Text :</b><br />
+		<b><?php echo $l['tpp_quote_text'];?></b><br />
 		<font class="adexp">[quote][/quote]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -922,7 +940,7 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>PHP Code Block:</b><br />
+		<b><?php echo $l['tpp_php_code_block'];?></b><br />
 		<font class="adexp">[php][/php]</font>
 		</td>
 		<td class="adbg" align="left">
@@ -933,8 +951,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Unordered List :</b><br />
-		<font class="adexp">[ul][/ul] (implies [li][/li])</font>
+		<b><?php echo $l['tpp_unord_list'];?></b><br />
+		<font class="adexp">[ul][/ul] (<?php echo $l['tpp_implies'];?> [li][/li])</font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="bbc_ul"
@@ -945,8 +963,8 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Ordered List :</b><br />
-		<font class="adexp">[ol][/ol] (implies [li][/li])</font>
+		<b><?php echo $l['tpp_ord_list'];?></b><br />
+		<font class="adexp">[ol][/ol] (<?php echo $l['tpp_implies'];?> [li][/li])</font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="bbc_ol"
@@ -956,9 +974,9 @@ global $globals, $theme, $error;
 		
 		<tr>
 		<td width="50%" class="adbg">
-		<b>Execute HTML :</b><br />
+		<b><?php echo $l['tpp_execute_html'];?></b><br />
 		<font class="adexp">[parseHTML][/parseHTML]<br />
-		Executes even JavaScript. Can be used only by user groups having permissions.</font>
+		<?php echo $l['tpp_execute_html_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="bbc_parseHTML"
@@ -974,7 +992,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editbbcset" value="Submit" />
+		<input type="submit" name="editbbcset" value="<?php echo $l['tpp_submit'];?>" />
 		</td>
 		</tr>
 	</table>

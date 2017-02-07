@@ -31,6 +31,10 @@ function conpan(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+    if (!load_lang('admin/conpan')) {
+
+        return false;
+    }
 	//The name of the file
 	$theme['init_theme'] = 'admin/conpan';
 	
@@ -141,7 +145,7 @@ global $error;
 		//The URL
 		if(!(isset($_POST['url'])) || (trim($_POST['url']) == "")){
 			
-			$error[] = 'The Board URL was not specified.';
+            $error[] = $l['no_board url'];
 			
 		}else{
 		
@@ -161,7 +165,7 @@ global $error;
 		//The Site's Name
 		if(!(isset($_POST['sn'])) || (trim($_POST['sn']) == "")){
 			
-			$error[] = 'The Site name was not specified.';
+            $error[] = $l['no_site_name'];
 			
 		}else{
 		
@@ -179,7 +183,7 @@ global $error;
 		//The Board Email
 		if(!(isset($_POST['board_email'])) || (trim($_POST['board_email']) == "")){
 			
-			$error[] = 'The boards email address was not specified.';
+            $error[] = $l['no_boards_email'];
 			
 		}else{
 		
@@ -197,7 +201,7 @@ global $error;
 		//The AEF Folder
 		if(!(isset($_POST['server_url'])) || (trim($_POST['server_url']) == "")){
 			
-			$error[] = 'The location of the AEF Folder was not specified.';
+            $error[] = $l['no_aef_folder'];
 			
 		}else{
 		
@@ -207,7 +211,7 @@ global $error;
 			
 			if(!file_exists($server_url.'/universal.php')){
 			
-				$error[] = 'The location of the AEF Folder is invalid.';
+                $error[] = $l['aef_folder_invalid'];
 			
 			}
 			
@@ -223,7 +227,7 @@ global $error;
 		//The AEF Main Files
 		if(!(isset($_POST['mainfiles'])) || (trim($_POST['mainfiles']) == "")){
 			
-			$error[] = 'The location of the AEF Main Files was not specified.';
+            $error[] = $l['no_aef_main_files'];
 			
 		}else{
 		
@@ -233,7 +237,7 @@ global $error;
 			
 			if(!file_exists($mainfiles.'/functions.php')){
 			
-				$error[] = 'The location of the AEF Main Files is invalid.';
+                $error[] = $l['aef_main_files_invalid'];
 			
 			}
 			
@@ -249,7 +253,7 @@ global $error;
 		//The Themes Directory
 		if(!(isset($_POST['themesdir'])) || (trim($_POST['themesdir']) == "")){
 			
-			$error[] = 'The location of the themes directory was not specified.';
+            $error[] = $l['no_themes directory'];
 			
 		}else{
 		
@@ -259,7 +263,7 @@ global $error;
 			
 			if(!file_exists($themesdir.'/default')){
 			
-				$error[] = 'The location of the themes directory is invalid.';
+                $error[] = $l['themes_directory_invalid'];
 			
 			}
 			
@@ -276,7 +280,7 @@ global $error;
 		//The AEF Folder
 		if(!(isset($_POST['cookie_name'])) || (trim($_POST['cookie_name']) == "")){
 			
-			$error[] = 'The Cookie name was not specified.';
+            $error[] = $l['no_cookie_name'];
 			
 		}else{
 		
@@ -359,7 +363,7 @@ global $error;
 		//The MySQL user
 		if(!(isset($_POST['user'])) || (trim($_POST['user']) == "")){
 			
-			$error[] = 'The MySQL user was not specified.';
+            $error[] = $l['no_mysql_user'];
 			
 		}else{
 		
@@ -384,7 +388,7 @@ global $error;
 		//The MySQL database
 		if(!(isset($_POST['database'])) || (trim($_POST['database']) == "")){
 			
-			$error[] = 'The MySQL database was not specified.';
+            $error[] = $l['no_mysql_database'];
 			
 		}else{
 		
@@ -410,7 +414,7 @@ global $error;
 		//The MySQL server
 		if(!(isset($_POST['server'])) || (trim($_POST['server']) == "")){
 			
-			$error[] = 'The MySQL server was not specified.';
+            $error[] = $l['no_mysql_server'];
 			
 		}else{
 		
@@ -483,7 +487,7 @@ global $error;
 			//The Maintenance subject
 			if(!(isset($_POST['maintenance_subject'])) || (trim($_POST['maintenance_subject']) == "")){
 				
-				$error[] = 'The Maintenance subject was not specified.';
+                $error[] = $l['no_maintenance_subject'];
 				
 			}else{
 			
@@ -495,7 +499,7 @@ global $error;
 			//The Maintenance subject
 			if(!(isset($_POST['maintenance_message'])) || (trim($_POST['maintenance_message']) == "")){
 				
-				$error[] = 'The Maintenance message was not specified.';
+                $error[] = $l['no_maintenance_message'];
 				
 			}else{
 			
@@ -569,7 +573,7 @@ global $error;
 		//The Mail type
 		if(!(isset($_POST['mail'])) || (trim($_POST['mail']) == "")){
 			
-			$error[] = 'The Mail type was not specified.';
+            $error[] = $l['no_Mail_type'];
 			
 		}else{
 		
@@ -577,7 +581,7 @@ global $error;
 			
 			if(!in_array($mail, array(0,1))){
 			
-				$error[] = 'The Mail type is invalid.';
+                $error[] = $l['mail_type_invalid'];
 			
 			}
 			
@@ -589,7 +593,7 @@ global $error;
 			//The SMTP Mail user
 			if(!(isset($_POST['mail_user'])) || (trim($_POST['mail_user']) == "")){
 				
-				$error[] = 'The SMTP mail username was not specified.';
+                $error[] = $l['no_smtp_mail_username'];
 				
 			}else{
 			
@@ -600,7 +604,7 @@ global $error;
 			//The SMTP Mail password
 			if(!(isset($_POST['mail_pass'])) || (trim($_POST['mail_pass']) == "")){
 				
-				$error[] = 'The password was not specified.';
+                $error[] = $l['no_pass'];
 				
 			}else{
 			
@@ -611,7 +615,7 @@ global $error;
 			//The SMTP Mail server
 			if(!(isset($_POST['mail_server'])) || (trim($_POST['mail_server']) == "")){
 				
-				$error[] = 'The SMTP server address was not specified.';
+                $error[] = $l['no_smtp_server'];
 				
 			}else{
 			
@@ -622,7 +626,7 @@ global $error;
 			//The SMTP Mail port
 			if(!(isset($_POST['mail_port'])) || (trim($_POST['mail_port']) == "")){
 				
-				$error[] = 'The SMTP port was not specified.';
+                $error[] = $l['no_smtp_port'];
 				
 			}else{
 			
@@ -776,7 +780,7 @@ global $error, $lang_folders;
 		//The session_timeout
 		if(!(isset($_POST['session_timeout'])) || (trim($_POST['session_timeout']) == "")){
 			
-			$error[] = 'The session timeout was not specified.';
+            $error[] = $l['no_session_timeout'];
 			
 		}else{
 		
@@ -788,7 +792,7 @@ global $error, $lang_folders;
 		//The time for users to be considered active
 		if(!(isset($_POST['last_active_span'])) || (trim($_POST['last_active_span']) == "")){
 			
-			$error[] = 'The time for users to be considered active was not specified.';
+            $error[] = $l['no_time_users_active'];
 			
 		}else{
 		
@@ -799,7 +803,7 @@ global $error, $lang_folders;
 		//The number of users to show in active list
 		if(!(isset($_POST['maxactivelist'])) || (trim($_POST['maxactivelist']) == "")){
 			
-			$error[] = 'The number of active users to show in the active users list was not specified.';
+            $error[] = $l['no_number_active_users'];
 			
 		}else{
 		
@@ -810,7 +814,7 @@ global $error, $lang_folders;
 		//The number of members to show in the members list
 		if(!(isset($_POST['maxmemberlist'])) || (trim($_POST['maxmemberlist']) == "")){
 			
-			$error[] = 'The number of members to show in the members list was not specified.';
+            $error[] = $l['no_number_members_list'];
 			
 		}else{
 		
@@ -821,7 +825,7 @@ global $error, $lang_folders;
 		//The number of subscriptions to show in the subscriptions list
 		if(!(isset($_POST['numsubinpage'])) || (trim($_POST['numsubinpage']) == "")){
 			
-			$error[] = 'The number of subscriptions to show in the subscriptions list was not specified.';
+            $error[] = $l['no_number_subscriptions'];
 			
 		}else{
 		
@@ -833,7 +837,7 @@ global $error, $lang_folders;
 		//The number of recent posts was not specified
 		if(!(isset($_POST['recent_posts'])) || (trim($_POST['recent_posts']) == "")){
 			
-			$error[] = 'The number of recent posts was not specified.';
+            $error[] = $l['no_number_recent_posts'];
 			
 		}else{
 		
@@ -845,7 +849,7 @@ global $error, $lang_folders;
 		//RSS Feeds recent posts was not specified
 		if(!(isset($_POST['rss_recent'])) || (trim($_POST['rss_recent']) == "")){
 			
-			$error[] = 'The number of recent posts for RSS Feeds was not specified.';
+            $error[] = $l['no_number_recent_posts_rss'];
 			
 		}else{
 		
@@ -857,7 +861,7 @@ global $error, $lang_folders;
 		//The language
 		if(!(isset($_POST['language'])) || (trim($_POST['language']) == "")){
 			
-			$error[] = 'The default board language was not specified.';
+            $error[] = $l['no_default_board_language'];
 			
 		}else{
 		
@@ -865,7 +869,7 @@ global $error, $lang_folders;
 			
 			if(!in_array($language, $lang_folders)){
 			
-				$error[] = 'The language you specified does not exist.';
+                $error[] = $l['language_not_exist'];
 			
 			}
 			
@@ -1023,7 +1027,7 @@ global $error;
 		//The lifetime of a Shout
 		if(!(isset($_POST['shoutboxtime'])) || (trim($_POST['shoutboxtime']) == "")){
 			
-			$error[] = 'The lifetime of a Shout was not specified.';
+            $error[] = $l['no_lifetime_shout'];
 			
 		}else{
 		
@@ -1034,7 +1038,7 @@ global $error;
 		//The number of shouts on load
 		if(!(isset($_POST['shouts'])) || (trim($_POST['shouts']) == "")){
 			
-			$error[] = 'The number of shouts on load was not specified.';
+            $error[] = $l['no_number_shouts'];
 			
 		}else{
 		
@@ -1042,7 +1046,7 @@ global $error;
 			
 			if($shouts < 1){
 			
-				$error[] = 'The number of shouts on load should be greater than 1.';
+                $error[] = $l['number_shouts_greater'];
 			
 			}
 			
@@ -1128,7 +1132,7 @@ global $error, $info;
 		
 	if(empty($aefmessage)){
 	
-		$info['message'] = 'We were unable to connect to <a href="http://www.anelectron.com">Advanced Electron Forums</a>.';
+        $info['message'] = $l['unable_connect'];
 	
 	}
 	
@@ -1137,7 +1141,7 @@ global $error, $info;
 	//Was there some info recieved
 	if(empty($info['version'])){
 	
-		$info['message'] = 'We were unable to connect to <a href="http://www.anelectron.com">Advanced Electron Forums</a>.';
+        $info['message'] = $l['unable_connect'];
 	
 	}
 		
@@ -1154,7 +1158,7 @@ global $error, $info;
 		//Get the file	
 		if(!get_web_file($info['link'], $compressedfile)){
 	
-			$error[] = 'There were errors while downloading the file from the AEF site.';
+            $error[] = $l['errors_downloading'];
 	
 		}
 		
@@ -1168,7 +1172,7 @@ global $error, $info;
 		//Lets Decompress
 		if(!decompress($compressedfile, $globals['server_url'], 1)){
 			
-			$error[] = 'Could not decompress the Upgrade Files.';
+            $error[] = $l['errors_decompress'];
 		
 		}		
 		

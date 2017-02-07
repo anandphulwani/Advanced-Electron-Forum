@@ -31,6 +31,11 @@ function smileys(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/smileys')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/smileys';
 	
@@ -254,7 +259,7 @@ global $error, $smiley, $folders, $smileycode;
 		//Check the code
 		if(!(isset($_POST['smcode'])) || (trim($_POST['smcode']) == "")){
 			
-			$error[] = 'The smiley code was not specified.';
+			$error[] = $l['no_smiley_code'];
 			
 		}else{
 		
@@ -262,7 +267,7 @@ global $error, $smiley, $folders, $smileycode;
 			
 			if(in_array($smcode, $smcode_r)){
 			
-				$error[] = 'The smiley code specified is already in use.';
+				$error[] = $l['smiley_code_use'];
 			
 			}
 			
@@ -272,7 +277,7 @@ global $error, $smiley, $folders, $smileycode;
 		//Check the folder
 		if(!(isset($_POST['smtitle'])) || (trim($_POST['smtitle']) == "")){
 			
-			$error[] = 'The smiley emotion was not specified.';
+			$error[] = $l['no_smiley_emotion'];
 			
 		}else{
 		
@@ -388,7 +393,7 @@ global $smileys;
 		//Check the code
 		if(empty($_POST['sm']) || !is_array($_POST['sm'])){
 			
-			$error[] = 'The smiley order was not specified.';
+			$error[] = $l['no_smiley_order'];
 			
 		}else{
 		
@@ -396,7 +401,7 @@ global $smileys;
 			
 			if(count($smreordered) != count($smileys)){
 			
-				$error[] = 'The number of smileys submitted is incorrect.';
+				$error[] = $l['number_incorrect'];
 			
 			}		
 			
@@ -413,7 +418,7 @@ global $smileys;
 			//Was every key correct
 			if(!in_array($k, array_keys($smileys))){
 			
-				$error[] = 'Some of the smileys submitted are invalid.';
+				$error[] = $l['smileys_invalid'];
 				
 				break;
 			
@@ -432,7 +437,7 @@ global $smileys;
 		
 		if(count(array_unique($smreordered)) != count($smileys)){
 			
-			$error[] = 'The smiley order submitted is incorrect.';
+			$error[] = $l['sm_order_incorrect'];
 		
 		}
 		
@@ -516,7 +521,7 @@ global $error, $smiley, $folders, $smileycode;
 		//Check the code
 		if(!(isset($_POST['smcode'])) || (trim($_POST['smcode']) == "")){
 			
-			$error[] = 'The smiley code was not specified.';
+			$error[] = $l['no_smiley_code'];
 			
 		}else{
 		
@@ -524,7 +529,7 @@ global $error, $smiley, $folders, $smileycode;
 			
 			if(in_array($smcode, $smcode_r)){
 			
-				$error[] = 'The smiley code specified is already in use.';
+				$error[] = $l['smiley_code_use'];
 			
 			}
 			
@@ -540,7 +545,7 @@ global $error, $smiley, $folders, $smileycode;
 		//Check the emotion
 		if(!(isset($_POST['smtitle'])) || (trim($_POST['smtitle']) == "")){
 			
-			$error[] = 'The smiley emotion was not specified.';
+			$error[] = $l['no_smiley_emotion'];
 			
 		}else{
 		
@@ -567,7 +572,7 @@ global $error, $smiley, $folders, $smileycode;
 		//Check the folder
 		if(!(isset($_POST['smfolder'])) || (trim($_POST['smfolder']) == "")){
 			
-			$error[] = 'The smiley folder was not specified.';
+			$error[] = $l['no_smiley folder'];
 			
 		}else{
 		
@@ -578,7 +583,7 @@ global $error, $smiley, $folders, $smileycode;
 			//Is it a valid folder
 			if(!in_array($globals['server_url'].'/smileys/'.$smfolder, array_keys($folders))){
 			
-				$error[] = 'The smiley folder specified is invalid.';
+				$error[] = $l['smiley_folder_invalid'];
 			
 			}
 			
@@ -593,7 +598,7 @@ global $error, $smiley, $folders, $smileycode;
 		
 		if(!(isset($_POST['filemethod'])) || (trim($_POST['filemethod']) == "")){
 		
-			$error[] = 'The file method i.e. <b>Smiley File</b> OR <b>Upload Smiley File</b> was not specified.';
+			$error[] = $l['file_method'];
 		
 		//Use the server file
 		}elseif(trim($_POST['filemethod']) == 1){
@@ -601,7 +606,7 @@ global $error, $smiley, $folders, $smileycode;
 			//Check the file name
 			if(!(isset($_POST['smfile'])) || (trim($_POST['smfile']) == "")){
 				
-				$error[] = 'The smiley file was not specified.';
+				$error[] = $l['no_smiley_file'];
 				
 			}else{
 			
@@ -612,7 +617,7 @@ global $error, $smiley, $folders, $smileycode;
 				//Check is it there
 				if( ($smsize[0] < 1) || ($smsize[1] < 1) ){
 				
-					$error[] = 'The smiley file was not found in the folder.';
+					$error[] = $l['no_smiley_file_found'];
 				
 				}
 				
@@ -626,7 +631,7 @@ global $error, $smiley, $folders, $smileycode;
 			   empty($_FILES['smfile_u']['size']))
 			{
 			
-				$error[] = 'No smiley file was uploaded.';
+				$error[] = $l['no_sm_uploaded'];
 			
 			}else{
 				
@@ -640,7 +645,7 @@ global $error, $smiley, $folders, $smileycode;
 				//Check its an image
 				if( ($smsize[0] < 1) || ($smsize[1] < 1) ){
 				
-					$error[] = 'The smiley file uploaded is not an image.';
+					$error[] = $l['sm_uploaded_no_image'];
 				
 				}
 				
@@ -649,7 +654,7 @@ global $error, $smiley, $folders, $smileycode;
 				//Finally lets move the File
 				if(!(@move_uploaded_file($smfile_temp, $globals['server_url'].'/smileys/'.$smfolder.'/'.$smfile ))){
 				
-					$error[] = 'The Smiley image could not be uploaded in the specified folder.';
+					$error[] = $l['smiley_image'];
 				
 				}
 			
@@ -682,7 +687,7 @@ global $error, $smiley, $folders, $smileycode;
 				
 		if( empty($smid) ){
 			
-			reporterror('Add Smiley Error' ,'There were some errors in adding the new Smiley.');
+			reporterror($l['add_smiley_error'], $l['add_smiley_error_exp']);
 			
 			return false;
 			

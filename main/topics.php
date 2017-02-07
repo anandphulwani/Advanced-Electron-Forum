@@ -462,7 +462,7 @@ global $categories, $forums, $active, $activebots, $anonymous, $guests, $its_in_
 		if(mysql_num_rows($qresult) < 1){
 			
 			//Show a major error and return
-			reporterror($l['load_topic_error_title'], $l['load_topic_error']);
+			reporterror($l['no_forum_page_title'], $l['no_forum_page']);
 					
 			return false;
 			

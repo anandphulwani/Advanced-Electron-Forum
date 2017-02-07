@@ -1,5 +1,25 @@
 <?php
 
+//////////////////////////////////////////////////////////////
+//===========================================================
+// adminhf_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
+
 if(!defined('AEF')){
 
 	die('Hacking Attempt');
@@ -8,7 +28,7 @@ if(!defined('AEF')){
 
 function adminhead($title = ''){
 
-global $globals, $theme, $onload;
+global $globals, $theme, $onload, $l;
 	
 	//Pass to onload to initialize a JS
 	$onload['admenu'] = 'init_admenu()';
@@ -38,130 +58,130 @@ global $globals, $theme, $onload;
 	
 <div id="admenu" class="sdmenu">
 <div style="border:1px solid #CCC">
-	<span>Admin Options</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin">Admin Index</a>
-	<a href="<?php echo $globals['index_url'];?>">Forum Index</a>
+<span><?php echo $l['admin_options'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin"><?php echo $l['admin_index'];?></a>
+	<a href="<?php echo $globals['index_url'];?>"><?php echo $l['forum_index'];?></a>
+ </div>
+
+<br />
+
+<div style="border:1px solid #CCC">
+	<span><?php echo $l['cpanel'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=coreset"><?php echo $l['core_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=mysqlset"><?php echo $l['mysql_conf'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=onoff"><?php echo $l['maintenance_mode'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=mailset"><?php echo $l['mail_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=genset"><?php echo $l['general_settings'];?></a>
+    <a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=shoutboxset"><?php echo $l['shoutbox_settings'];?></a>
+    <a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=updates"><?php echo $l['updates'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Control Panel</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=coreset">Core Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=mysqlset">MySQL Configuration</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=onoff">Maintenance Mode</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=mailset">Mail Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=genset">General Settings</a>
-    <a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=shoutboxset">Shoutbox Settings</a>
-    <a href="<?php echo $globals['index_url'];?>act=admin&adact=conpan&seadact=updates">Updates</a>
+	<span><?php echo $l['categories'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=categories"><?php echo $l['manage_categories'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=categories&seadact=createcat"><?php echo $l['create_new_category'];?></a>
+    <a href="<?php echo $globals['index_url'];?>act=admin&adact=categories&seadact=catreorder"><?php echo $l['reorder_categories'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Categories</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=categories">Manage Categories</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=categories&seadact=createcat">Create New Category</a>
-    <a href="<?php echo $globals['index_url'];?>act=admin&adact=categories&seadact=catreorder">Reorder Categories</a>
+	<span><?php echo $l['forums'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=forums"><?php echo $l['manage_forums'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=forums&seadact=createforum"><?php echo $l['create_new_forum'];?></a>
+    <a href="<?php echo $globals['index_url'];?>act=admin&adact=forums&seadact=forumreorder"><?php echo $l['reorder_forums'];?></a>	
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=fpermissions"><?php echo $l['forum_permissions'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=fpermissions&seadact=createfpermissions"><?php echo $l['new_forum_permissions'];?>s</a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=moderators"><?php echo $l['moderators'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=recyclebin"><?php echo $l['recycle_bin'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Forums</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=forums">Manage Forums</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=forums&seadact=createforum">Create New Forum</a>
-    <a href="<?php echo $globals['index_url'];?>act=admin&adact=forums&seadact=forumreorder">Reorder Forums</a>	
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=fpermissions">Forum Permissions</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=fpermissions&seadact=createfpermissions">New Forum Permissions</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=moderators">Moderators</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=recyclebin">Recycle Bin</a>
+	<span><?php echo $l['user_settings'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=users&seadact=proacc"><?php echo $l['profile_account'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=users&seadact=avaset"><?php echo $l['avatar_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=users&seadact=ppicset"><?php echo $l['personal_picture'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=users&seadact=pmset"><?php echo $l['pm_settings'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>User Settings</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=users&seadact=proacc">Profile & Account</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=users&seadact=avaset">Avatar Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=users&seadact=ppicset">Personal Picture</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=users&seadact=pmset">PM Settings</a>
+	<span><?php echo $l['user_groups'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=ug&seadact=manug"><?php echo $l['manage_user_groups'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=ug&seadact=addug&ugid=0"><?php echo $l['add_user_groups'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=ug&seadact=editper"><?php echo $l['user_group_permissions'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>User Groups</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=ug&seadact=manug">Manage User Groups</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=ug&seadact=addug&ugid=0">Add User Groups</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=ug&seadact=editper">User Group Permissions</a>
+	<span><?php echo $l['themes'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=skin&seadact=manskin"><?php echo $l['theme_manager'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=skin&seadact=import"><?php echo $l['import_themes'];?></a>
+    <a href="<?php echo $globals['index_url'];?>act=admin&adact=skin&seadact=uninstall"><?php echo $l['uninstall_themes'];?></a>
+    <a href="<?php echo $globals['index_url'];?>act=admin&adact=skin&seadact=settings&theme_id=<?php echo $globals['theme_id'];?>"><?php echo $l['theme_settings'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Themes</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=skin&seadact=manskin">Theme Manager</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=skin&seadact=import">Import Themes</a>
-    <a href="<?php echo $globals['index_url'];?>act=admin&adact=skin&seadact=uninstall">Uninstall Themes</a>
-    <a href="<?php echo $globals['index_url'];?>act=admin&adact=skin&seadact=settings&theme_id=<?php echo $globals['theme_id'];?>">Theme Settings</a>
+	<span><?php echo $l['registration_login'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=reglog&seadact=regset"><?php echo $l['registration_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=reglog&seadact=agerest"><?php echo $l['age_restrictions'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=reglog&seadact=reserved"><?php echo $l['set_reserved_names'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=reglog&seadact=logset"><?php echo $l['log_in_settings'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Registration & login</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=reglog&seadact=regset">Registration Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=reglog&seadact=agerest">Age Restrictions</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=reglog&seadact=reserved">Set Reserved Names</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=reglog&seadact=logset">Log In Settings</a>
+	<span><?php echo $l['account_approvals'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=approvals&seadact=manval"><?php echo $l['manage_validating'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=approvals&seadact=awapp"><?php echo $l['awaiting_approval'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=approvals&seadact=coppaapp"><?php echo $l['coppa_approval'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Account Approvals</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=approvals&seadact=manval">Manage Validating</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=approvals&seadact=awapp">Awaiting Approval</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=approvals&seadact=coppaapp">COPPA Approval</a>
+	<span><?php echo $l['posts_messages'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=topics"><?php echo $l['topic_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=posts"><?php echo $l['post_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=polls"><?php echo $l['poll_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=words"><?php echo $l['words_censorship'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=bbc"><?php echo $l['bulletin_board_code'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Posts and Messages</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=topics">Topic Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=posts">Post Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=polls">Poll Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=words">Words Censorship</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=tpp&seadact=bbc">Bulletin Board Code</a>
+	<span><?php echo $l['attach'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=attach&seadact=attset"><?php echo $l['attach_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=attach&seadact=attmime"><?php echo $l['attach_types'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=attach&seadact=addmime"><?php echo $l['add_attach_type'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Attachments</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=attach&seadact=attset">Attachment Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=attach&seadact=attmime">Attachment Types</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=attach&seadact=addmime">Add Attachment Type</a>
+	<span><?php echo $l['smileys'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=smileys&seadact=smman"><?php echo $l['manage_smileys'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=smileys&seadact=smset"><?php echo $l['smiley_settings'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=smileys&seadact=smreorder"><?php echo $l['reorder_smileys'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=smileys&seadact=addsm"><?php echo $l['add_a_smiley'];?></a>
 </div>
 
 <br />
 
 <div style="border:1px solid #CCC">
-	<span>Smileys</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=smileys&seadact=smman">Manage Smileys</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=smileys&seadact=smset">Smiley Settings</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=smileys&seadact=smreorder">Reorder Smileys</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=smileys&seadact=addsm">Add a Smiley</a>
-</div>
-
-<br />
-
-<div style="border:1px solid #CCC">
-	<span>Backup</span>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=backup&seadact=fileback">Files and Folders</a>
-	<a href="<?php echo $globals['index_url'];?>act=admin&adact=backup&seadact=dbback">Forum Database</a>
+	<span><?php echo $l['backup'];?></span>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=backup&seadact=fileback"><?php echo $l['files_folders'];?></a>
+	<a href="<?php echo $globals['index_url'];?>act=admin&adact=backup&seadact=dbback"><?php echo $l['forum_database'];?></a>
 </div>
 
 </div>

@@ -31,6 +31,11 @@ function reglog(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/reglog')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/reglog';
 	
@@ -166,7 +171,7 @@ global $error;
 		//Which method do you want?
 		if(!(isset($_POST['reg_method'])) || (trim($_POST['reg_method']) == "")){
 		
-			$error[] = 'The Registration method was not submitted.';
+			$error[] = $l['no_reg_method'];
 			
 		}else{
 		
@@ -174,7 +179,7 @@ global $error;
 			
 			if(!in_array($reg_method, array(1,2,3))){
 			
-				$error[] = 'The Registration method is invalid.';
+				$error[] = $l['reg_method_invalid'];
 			
 			}
 			
@@ -190,7 +195,7 @@ global $error;
 		//Check the Max Username length
 		if(!(isset($_POST['max_uname'])) || (trim($_POST['max_uname']) == "")){
 			
-			$error[] = 'The Max Username length was not specified.';
+			$error[] = $l['no_max_username_length'];
 			
 		}else{
 		
@@ -201,7 +206,7 @@ global $error;
 		//Check the Min Username length
 		if(!(isset($_POST['min_uname'])) || (trim($_POST['min_uname']) == "")){
 			
-			$error[] = 'The Min Username length was not specified.';
+			$error[] = $l['no_min_username_length'];
 			
 		}else{
 		
@@ -213,7 +218,7 @@ global $error;
 		//Check the Max password length
 		if(!(isset($_POST['max_pass'])) || (trim($_POST['max_pass']) == "")){
 			
-			$error[] = 'The Max password length was not specified.';
+			$error[] = $l['no_max_pass_length'];
 			
 		}else{
 		
@@ -224,7 +229,7 @@ global $error;
 		//Check the Min password length
 		if(!(isset($_POST['min_pass'])) || (trim($_POST['min_pass']) == "")){
 			
-			$error[] = 'The Min password length was not specified.';
+			$error[] = $l['no_min_pass_length'];
 			
 		}else{
 		
@@ -316,7 +321,7 @@ global $error;
 		//Check the age required
 		if(!(isset($_POST['age_limit'])) || (trim($_POST['age_limit']) == "")){
 			
-			$error[] = 'The Age limit was not specified.';
+			$error[] = $l['no_Age_limit'];
 			
 		}else{
 		
@@ -327,7 +332,7 @@ global $error;
 		//Which method do you want?
 		if(!(isset($_POST['age_rest_act'])) || (trim($_POST['age_rest_act']) == "")){
 		
-			$error[] = 'The Registration method was not submitted.';
+			$error[] = $l['no_reg_method'];
 			
 		}else{
 		
@@ -335,7 +340,7 @@ global $error;
 			
 			if(!in_array($age_rest_act, array(1,2))){
 			
-				$error[] = 'The Registration method is invalid.';
+				$error[] = $l['reg_method_invalid'];
 			
 			}
 			
@@ -503,7 +508,7 @@ global $error;
 		//Check the Max Number of Characters in a topics description
 		if(!(isset($_POST['login_failed'])) || (trim($_POST['login_failed']) == "")){
 			
-			$error[] = 'The max number of failed login attempts was not submitted.';
+			$error[] = $l['no_max_num_failed_login'];
 			
 		}else{
 		

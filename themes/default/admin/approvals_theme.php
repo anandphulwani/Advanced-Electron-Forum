@@ -1,17 +1,36 @@
 <?php
 
-if(!defined('AEF'))
-{
+//////////////////////////////////////////////////////////////
+//===========================================================
+// approvals_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
+
+if(!defined('AEF')){
 die('Hacking Attempt');
 }
 
 
 function manval_theme(){
 
-global $globals, $theme, $members, $error, $count;
+global $globals, $theme, $members, $error, $l, $count;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Manage Validating');
+	adminhead($l['cp_validating']);
 	
 	?>
 	
@@ -23,14 +42,14 @@ global $globals, $theme, $members, $error, $count;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Manage Validating</font><br />
+	<font class="adgreen"><?php echo $l['manage_validating'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Below is a list of members on the board who are to validate their accounts.
+	<?php echo $l['members_validate_accounts'];?>
 	</td>
 	</tr>
 	
@@ -50,18 +69,18 @@ global $globals, $theme, $members, $error, $count;
 	<input type="hidden" name="adact" value="approvals" />
 	<input type="hidden" name="seadact" value="manval" />
 	<input type="hidden" name="mpg" value="<?php echo (empty($_GET['mpg']) ? '' : $_GET['mpg'] );?>" />
-	Sort by: <select name="sortby">
-	<option value="1" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 1 ? ' selected="selected"' : '');?> >User ID</option>
-	<option value="2" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 2 ? ' selected="selected"' : '');?> >Username</option>
-	<option value="3" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 3 ? ' selected="selected"' : '');?> >Email</option>
-	<option value="4" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 4 ? ' selected="selected"' : '');?> >Registration Time</option>
+	<?php echo $l['sort_by'];?> <select name="sortby">
+	<option value="1" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['user_id'];?></option>
+	<option value="2" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['username'];?></option>
+	<option value="3" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 3 ? ' selected="selected"' : '');?> ><?php echo $l['email'];?></option>
+	<option value="4" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 4 ? ' selected="selected"' : '');?> ><?php echo $l['registration_time'];?></option>
 	</select>
 	&nbsp;&nbsp;
 	<select name="order">
-	<option value="1" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 1 ? ' selected="selected"' : '');?> >Ascending</option>
-	<option value="2" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 2 ? ' selected="selected"' : '');?> >Descending</option>
+	<option value="1" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['ascending'];?></option>
+	<option value="2" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['descending'];?></option>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	Page : <select name="mpg">	
+	<?php echo $l['page'];?> <select name="mpg">	
 	<?php 
 	if(empty($count)){
 	
@@ -78,7 +97,7 @@ global $globals, $theme, $members, $error, $count;
 	}
 	?>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="Go" />
+	<input type="submit" value="<?php echo $l['go'];?>" />
 	</td>				
 	</tr>		
 	</table>
@@ -121,13 +140,13 @@ global $globals, $theme, $members, $error, $count;
 	<table width="100%" class="cbor" cellpadding="6" cellspacing="1">		
 	<tr>
 	<td align="right">		
-	With Selected : <select name="dothis">
-	<option value="1" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 1 ? ' selected="selected"' : '');?> >Activate</option>
-	<option value="2" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 2 ? ' selected="selected"' : '');?> >Activate and Send Mail</option>
-	<option value="3" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 3 ? ' selected="selected"' : '');?> >Delete</option>
-	<option value="4" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 4 ? ' selected="selected"' : '');?> >Delete and Send Mail</option>
+	<?php echo $l['with_selected'];?> <select name="dothis">
+	<option value="1" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['activate'];?></option>
+	<option value="2" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['activate_send_mail'];?></option>
+	<option value="3" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 3 ? ' selected="selected"' : '');?> ><?php echo $l['delete'];?></option>
+	<option value="4" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 4 ? ' selected="selected"' : '');?> ><?php echo $l['delete_send_mail'];?></option>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="Go" />		
+	<input type="submit" value="<?php echo $l['go'];?>" />		
 	</td>				
 	</tr>		
 	</table>
@@ -140,10 +159,10 @@ global $globals, $theme, $members, $error, $count;
 	echo'<table width="100%" class="cbor" cellpadding="6" cellspacing="1">
 	
 	<tr>
-	<td class="ttcbg" width="10%">ID</td>
-	<td class="ttcbg" width="20%" align="center">Username</td>
-	<td class="ttcbg" width="35%" align="center">Email</td>
-	<td class="ttcbg" width="30%" align="center">Registered On</td>
+	<td class="ttcbg" width="10%" align="center">'.$l['id'].'</td>
+	<td class="ttcbg" width="20%" align="center">'.$l['username'].'</td>
+	<td class="ttcbg" width="35%" align="center">'.$l['email'].'</td>
+	<td class="ttcbg" width="30%" align="center">'.$l['registered_on'].'</td>
 	<td class="ttcbg" width="5%" align="center">
 	<input type=checkbox onClick="check(document.getElementsByName(\'uid[]\'), this)" value="0">
 	</td>
@@ -154,7 +173,7 @@ global $globals, $theme, $members, $error, $count;
 		echo '<tr>
 		
 		<td class="ucpflc" colspan="5">
-		There are no members who have to activate their accounts.
+		'.$l['no_members_activate_accounts'].'
 		</td>
 		
 		</tr>';
@@ -201,10 +220,10 @@ global $globals, $theme, $members, $error, $count;
 
 function awapp_theme(){
 
-global $globals, $theme, $members, $error, $count;
+global $globals, $theme, $members, $error, $l, $count;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Users Awaiting Approval');
+	adminhead($l['cp_approvals']);
 	
 	?>
 	
@@ -216,14 +235,14 @@ global $globals, $theme, $members, $error, $count;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Users Awaiting Approval</font><br />
+	<font class="adgreen"><?php echo $l['users_awaiting_approval'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Below is a list of members on the board who require Admins Approval.
+	<?php echo $l['require_admins_approval'];?>
 	</td>
 	</tr>
 	
@@ -242,16 +261,16 @@ global $globals, $theme, $members, $error, $count;
 	<input type="hidden" name="adact" value="approvals" />
 	<input type="hidden" name="seadact" value="awapp" />
 	<input type="hidden" name="mpg" value="<?php echo (empty($_GET['mpg']) ? '' : $_GET['mpg'] );?>" />
-	Sort by: <select name="sortby">
-	<option value="1" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 1 ? ' selected="selected"' : '');?> >User ID</option>
-	<option value="2" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 2 ? ' selected="selected"' : '');?> >Username</option>
-	<option value="3" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 3 ? ' selected="selected"' : '');?> >Email</option>
-	<option value="4" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 4 ? ' selected="selected"' : '');?> >Registration Time</option>
+	<?php echo $l['sort_by'];?> <select name="sortby">
+	<option value="1" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['user_id'];?></option>
+	<option value="2" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['username'];?></option>
+	<option value="3" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 3 ? ' selected="selected"' : '');?> ><?php echo $l['email'];?></option>
+	<option value="4" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 4 ? ' selected="selected"' : '');?> ><?php echo $l['registration_time'];?></option>
 	</select>
 	&nbsp;&nbsp;
 	<select name="order">
-	<option value="1" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 1 ? ' selected="selected"' : '');?> >Ascending</option>
-	<option value="2" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 2 ? ' selected="selected"' : '');?> >Descending</option>
+	<option value="1" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['ascending'];?></option>
+	<option value="2" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['descending'];?></option>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
 	Page : <select name="mpg">	
 	<?php 
@@ -270,7 +289,7 @@ global $globals, $theme, $members, $error, $count;
 	}
 	?>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="Go" />
+	<input type="submit" value="<?php echo $l['go'];?>" />
 	</td>				
 	</tr>		
 	</table>
@@ -313,13 +332,13 @@ global $globals, $theme, $members, $error, $count;
 	<table width="100%" class="cbor" cellpadding="6" cellspacing="1">		
 	<tr>
 	<td align="right">		
-	With Selected : <select name="dothis">
-	<option value="1" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 1 ? ' selected="selected"' : '');?> >Activate</option>
-	<option value="2" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 2 ? ' selected="selected"' : '');?> >Activate and Send Mail</option>
-	<option value="3" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 3 ? ' selected="selected"' : '');?> >Delete</option>
-	<option value="4" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 4 ? ' selected="selected"' : '');?> >Delete and Send Mail</option>
+	<?php echo $l['with_selected'];?> <select name="dothis">
+	<option value="1" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['activate'];?></option>
+	<option value="2" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['activate_send_mail'];?></option>
+	<option value="3" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 3 ? ' selected="selected"' : '');?> ><?php echo $l['delete'];?></option>
+	<option value="4" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 4 ? ' selected="selected"' : '');?> ><?php echo $l['delete_send_mail'];?></option>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="Go" />		
+	<input type="submit" value="<?php echo $l['go'];?>" />		
 	</td>				
 	</tr>		
 	</table>
@@ -332,10 +351,10 @@ global $globals, $theme, $members, $error, $count;
 	echo'<table width="100%" class="cbor" cellpadding="6" cellspacing="1">
 	
 	<tr>
-	<td class="ttcbg" width="10%">ID</td>
-	<td class="ttcbg" width="20%" align="center">Username</td>
-	<td class="ttcbg" width="35%" align="center">Email</td>
-	<td class="ttcbg" width="30%" align="center">Registered On</td>
+	<td class="ttcbg" width="10%">'.$l['id'].'</td>
+	<td class="ttcbg" width="20%" align="center">'.$l['username'].'</td>
+	<td class="ttcbg" width="35%" align="center">'.$l['email'].'</td>
+	<td class="ttcbg" width="30%" align="center">'.$l['registered_on'].'</td>
 	<td class="ttcbg" width="5%" align="center">
 	<input type=checkbox onClick="check(document.getElementsByName(\'uid[]\'), this)" value="0">
 	</td>
@@ -346,7 +365,7 @@ global $globals, $theme, $members, $error, $count;
 		echo '<tr>
 		
 		<td class="ucpflc" colspan="5">
-		There are no members who require Admin approval.
+		'.$l['no_approval_required'].'
 		</td>
 		
 		</tr>';
@@ -394,10 +413,10 @@ global $globals, $theme, $members, $error, $count;
 
 function coppaapp_theme(){
 
-global $globals, $theme, $members, $error, $count;
+global $globals, $theme, $members, $error, $l, $count;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - COPPA Users Awaiting Approval');
+	adminhead($l['cp_coppa']);
 	
 	?>
 	
@@ -409,14 +428,14 @@ global $globals, $theme, $members, $error, $count;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">COPPA Users Awaiting Approval</font><br />
+	<font class="adgreen"><?php echo $l['coppa_users_awaiting_approval'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Below is a list of members on the board who require Admins Approval for their age restrictions.
+	<?php echo $l['members_require_coppa_admins_approval'];?>
 	</td>
 	</tr>
 	
@@ -435,16 +454,16 @@ global $globals, $theme, $members, $error, $count;
 	<input type="hidden" name="adact" value="approvals" />
 	<input type="hidden" name="seadact" value="coppaapp" />
 	<input type="hidden" name="mpg" value="<?php echo (empty($_GET['mpg']) ? '' : $_GET['mpg'] );?>" />
-	Sort by: <select name="sortby">
-	<option value="1" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 1 ? ' selected="selected"' : '');?> >User ID</option>
-	<option value="2" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 2 ? ' selected="selected"' : '');?> >Username</option>
-	<option value="3" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 3 ? ' selected="selected"' : '');?> >Email</option>
-	<option value="4" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 4 ? ' selected="selected"' : '');?> >Registration Time</option>
+	<?php echo $l['sort_by'];?> <select name="sortby">
+	<option value="1" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['user_id'];?></option>
+	<option value="2" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['username'];?></option>
+	<option value="3" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 3 ? ' selected="selected"' : '');?> ><?php echo $l['email'];?></option>
+	<option value="4" <?php echo (!empty($_GET['sortby']) && trim($_GET['sortby']) == 4 ? ' selected="selected"' : '');?> ><?php echo $l['registration_time'];?></option>
 	</select>
 	&nbsp;&nbsp;
 	<select name="order">
-	<option value="1" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 1 ? ' selected="selected"' : '');?> >Ascending</option>
-	<option value="2" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 2 ? ' selected="selected"' : '');?> >Descending</option>
+	<option value="1" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['ascending'];?></option>
+	<option value="2" <?php echo (!empty($_GET['order']) && trim($_GET['order']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['descending'];?></option>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
 	Page : <select name="mpg">	
 	<?php 
@@ -463,7 +482,7 @@ global $globals, $theme, $members, $error, $count;
 	}
 	?>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="Go" />
+	<input type="submit" value="<?php echo $l['go'];?>" />
 	</td>				
 	</tr>		
 	</table>
@@ -506,13 +525,13 @@ global $globals, $theme, $members, $error, $count;
 	<table width="100%" class="cbor" cellpadding="6" cellspacing="1">		
 	<tr>
 	<td align="right">		
-	With Selected : <select name="dothis">
-	<option value="1" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 1 ? ' selected="selected"' : '');?> >Activate</option>
-	<option value="2" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 2 ? ' selected="selected"' : '');?> >Activate and Send Mail</option>
-	<option value="3" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 3 ? ' selected="selected"' : '');?> >Delete</option>
-	<option value="4" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 4 ? ' selected="selected"' : '');?> >Delete and Send Mail</option>
+	<?php echo $l['with_selected'];?> <select name="dothis">
+	<option value="1" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 1 ? ' selected="selected"' : '');?> ><?php echo $l['activate'];?></option>
+	<option value="2" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 2 ? ' selected="selected"' : '');?> ><?php echo $l['activate_send_mail'];?></option>
+	<option value="3" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 3 ? ' selected="selected"' : '');?> ><?php echo $l['delete'];?></option>
+	<option value="4" <?php echo (!empty($_GET['dothis']) && trim($_GET['dothis']) == 4 ? ' selected="selected"' : '');?> ><?php echo $l['delete_send_mail'];?></option>
 	</select>&nbsp;&nbsp;&nbsp;&nbsp;
-	<input type="submit" value="Go" />		
+	<input type="submit" value="<?php echo $l['go'];?>" />		
 	</td>				
 	</tr>		
 	</table>
@@ -525,10 +544,10 @@ global $globals, $theme, $members, $error, $count;
 	echo'<table width="100%" class="cbor" cellpadding="6" cellspacing="1">
 	
 	<tr>
-	<td class="ttcbg" width="10%">ID</td>
-	<td class="ttcbg" width="20%" align="center">Username</td>
-	<td class="ttcbg" width="35%" align="center">Email</td>
-	<td class="ttcbg" width="30%" align="center">Registered On</td>
+	<td class="ttcbg" width="10%">'.$l['id'].'</td>
+	<td class="ttcbg" width="20%" align="center">'.$l['username'].'</td>
+	<td class="ttcbg" width="35%" align="center">'.$l['email'].'</td>
+	<td class="ttcbg" width="30%" align="center">'.$l['registered_on'].'</td>
 	<td class="ttcbg" width="5%" align="center">
 	<input type=checkbox onClick="check(document.getElementsByName(\'uid[]\'), this)" value="0">
 	</td>
@@ -539,7 +558,7 @@ global $globals, $theme, $members, $error, $count;
 		echo '<tr>
 		
 		<td class="ucpflc" colspan="5">
-		There are no members who fall below age and require Admin approval.
+		'.$l['no_members_require_coppa'].'
 		</td>
 		
 		</tr>';

@@ -1,14 +1,33 @@
 <?php
 
-if(!defined('AEF'))
-{
+//////////////////////////////////////////////////////////////
+//===========================================================
+// moderators_theme.php(admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
+
+if(!defined('AEF')){
 die('Hacking Attempt');
 }
 
 //A global part to appear
 function moderators_global(){
 
-global $globals, $theme, $categories;
+global $globals, $theme, $l, $categories;
 
 	?>
 	
@@ -20,14 +39,14 @@ global $globals, $theme, $categories;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Moderator Options</font><br />
+	<font class="adgreen"><?php echo $l['mods_options'];?></font><br />
 		
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	In this section you can create, edit and delete special users of a forum known as moderators. As the name suggests this group is mainly responsible for adminitering a particular forum. A forum could have more than one moderator. Also a moderator of a Parent Board does not give the use a moderatorship of the In Boards.
+	<?php echo $l['mods_options_exp'];?>
 	</td>
 	</tr>
 	
@@ -41,14 +60,14 @@ global $globals, $theme, $categories;
 //This is the theme that is for the management of the moderators
 function managemoderators_theme(){
 
-global $globals, $theme, $categories, $forums, $fpermissions;
+global $globals, $theme, $categories, $l, $forums, $fpermissions;
 	
-	adminhead('Administration Center - Manage Moderators');
+	adminhead($l['cp_manage_mods']);
 	
 	moderators_global();
 	
 	echo '<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
-		<tr><td class="adcbg" colspan="2">Edit Moderators</td></tr>';
+		<tr><td class="adcbg" colspan="2">'.$l['edit_mods'].'</td></tr>';
 	
 	//The for loop for the categories
 	foreach($categories as $c => $cv){
@@ -94,8 +113,7 @@ global $globals, $theme, $categories, $forums, $fpermissions;
 				echo '</td>
 				
 				<td class="adbg" align="center">
-				<a href="'.$globals['index_url'].'act=admin&adact=moderators&seadact=edit&forum='.$forums[$c][$f]['fid'].'">Edit
-				</a>
+				<a href="'.$globals['index_url'].'act=admin&adact=moderators&seadact=edit&forum='.$forums[$c][$f]['fid'].'">'.$l['edit'].'</a>
 				</td>
 				
 				</tr>';
@@ -129,9 +147,9 @@ global $globals, $theme, $categories, $forums, $fpermissions;
 
 function editmoderators_theme(){
 
-global $globals, $theme, $categories, $forums, $error, $board;
+global $globals, $theme, $categories, $l, $forums, $error, $board;
 	
-	adminhead('Administration Center - Edit Forum Permissions');
+	adminhead($l['cp_edit_forum_perm']);
 	
 	moderators_global();
 	
@@ -158,14 +176,14 @@ global $globals, $theme, $categories, $forums, $error, $board;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td class="adcbg" colspan="2" style="height:25px">
-		Edit Moderators of <?php echo $board['fname'];?>
+		<?php echo ''.$l['edit_mods_of'].'\''.$board['fname'].'\'.';?>
 		</td>
 		</tr>
 				
 		<tr>
 		<td class="adbg" width="40%" height="30">
-		<b>Moderators Usernames:</b><br />
-		Write the usernames of the members whom you want to give moderator rights. Seperate more than one username with a semicolon '<b>;</b>' (without the qoutes).
+		<b><?php echo $l['mods_usernames'];?></b><br />
+		<?php echo $l['mods_usernames_exp'];?>
 		</td>
 		<td class="adbg" valign="middle">&nbsp;&nbsp;&nbsp;&nbsp;		
 		<input type="text" name="modusernames" <?php echo (isset($_POST['modusernames']) ? 'value="'.$_POST['modusernames'].'"' : ((!empty($mods)) ? 'value="'.(implode('; ', $mods)).'"' : '' ) );?> size="40" onkeyup="handlesuggest(event, 'modusernames')" onkeydown="handlekeys(event)" autocomplete=off style="position:absolute" onblur="setTimeout(hidesuggest, 1000);" suggesturl="<?php echo $globals['index_url'];?>act=suggest" id="modusernames" />
@@ -174,8 +192,8 @@ global $globals, $theme, $categories, $forums, $error, $board;
 		
 		<tr>
 		<td class="adbg" height="30" colspan="2" align="center">
-		<input type="submit" name="editmoderators" value="Submit Changes" />
-		<input type="submit" name="deletemoderators" value="Delete Moderators" />		
+		<input type="submit" name="editmoderators" value="<?php echo $l['submit_changes'];?>" />
+		<input type="submit" name="deletemoderators" value="<?php echo $l['delete_mods'];?>" />		
 		</td>
 		</tr>
 			

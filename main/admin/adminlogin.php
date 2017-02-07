@@ -31,6 +31,12 @@ function adminlogin(){
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 global $error;
 
+	if(!load_lang('admin/adminlogin')){
+    
+		return false;
+			
+	}
+
 	if(!empty($AEF_SESS['adtime']) && (time() - $AEF_SESS['adtime']) < (15*60) ){
 	
 		$AEF_SESS['adtime'] = time();
@@ -51,7 +57,7 @@ global $error;
 			//Check the Password is there
 			if(!(isset($_POST['adpass'])) || strlen(trim($_POST['adpass'])) < 1){
 			
-				$error[] = 'You did not enter your Password.';
+				$error[] = $l['no_password'];
 				
 			}else{
 				
@@ -62,7 +68,7 @@ global $error;
 				
 				if($pass != $user['password']){
 				
-					$error[] = 'You have entered an invalid password.';
+					$error[] = $l['password_invalid'];
 				
 				}else{
 				

@@ -30,6 +30,11 @@ function forums(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/forums')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/forums';
 	
@@ -193,7 +198,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 	}else{
 	
 		//Show a major error and return
-		reporterror('No forum specified' ,'Sorry, we were unable to process your request because  you did not specify the forum which you wish to edit. Please go back and select the forum you wish to edit.');
+		reporterror($l['no_forum'], $l['no_forum_exp']);
 			
 		return false;
 		
@@ -253,7 +258,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 	if(empty($board)){
 	
 		//Show a major error and return
-		reporterror('No forum found' ,'The forum you specified does not exist on the system.');
+		reporterror($l['no_forum_found'], $l['no_forum_found_exp']);
 			
 		return false;
 		
@@ -384,7 +389,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('No Themes Found' ,'There is some problem in the boards theme.');
+		reporterror($l['no_themes_found'], $l['no_themes_found_exp']);
 		
 		return false;
 		
@@ -411,7 +416,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the Parent is set
 		if(!(isset($_POST['editmother'])) || (trim($_POST['editmother']) == "")){
 		
-			$error[] = 'The Mother Was not Posted.';
+			$error[] = $l['no_mother_posted'];
 			
 		}else{
 		
@@ -430,7 +435,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the Order is Set.
 		if(!(isset($_POST['forder'])) || (trim($_POST['forder']) == "")){
 		
-			$error[] = 'The Forum order was missing.';
+			$error[] = $l['forum_order_missing'];
 			
 		}else{
 		
@@ -448,7 +453,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the Status is Set.
 		if(!(isset($_POST['fstatus'])) || (trim($_POST['fstatus']) == "")){
 		
-			$error[] = 'The Forum Status was not posted.';
+			$error[] = $l['no_forum_status'];
 			
 		}else{
 		
@@ -466,7 +471,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the Forum Name is Set.
 		if(!(isset($_POST['fname'])) || (trim($_POST['fname']) == "")){
 		
-			$error[] = 'The Forum Name was not Posted.';
+			$error[] = $l['no_forum_name'];
 			
 		}else{
 		
@@ -492,7 +497,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the theme
 		if(!(isset($_POST['ftheme'])) || (trim($_POST['ftheme']) == "")){
 		
-			$error[] = 'The Forums theme was not posted.';
+			$error[] = $l['no_forums_theme'];
 			
 		}else{
 		
@@ -501,7 +506,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 			//If the selected theme is not the forum default then check
 			if(($id_skin != 0) && !in_array($id_skin, $themeids)){
 			
-				$error[] = 'The Forums theme you selected is invalid.';
+				$error[] = $l['forums_theme_invalid'] ;
 			
 			}
 			
@@ -567,7 +572,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 			//Are ther invalid users
 			if(!empty($invalidug)){
 			
-				$error[] = 'The user groups having ids <b>'.implode(', ', $invalidug).'</b> do not exist on the board.';
+				$error[] = $l['groups_having_ids'].implode(', ', $invalidug).$l['do_not_exist'];
 			
 			}else{
 			
@@ -718,7 +723,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		
 		if($forum_order > $default){
 		
-			$error[] = 'Submitted Order is greater than possible.';
+			$error[] = $l['submitted_order_greater'];
 			
 		}
 		
@@ -839,7 +844,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 						
 					if(mysql_affected_rows($conn) < 1){
 				
-						reporterror('Edit Forum Error' ,'There were some errors in updating the forums new parents children.');
+						reporterror($l['edit_forum_error'], $l['edit_forum_error_exp1']);
 						
 						return false;
 						
@@ -881,7 +886,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 						
 					if(mysql_affected_rows($conn) < 1){
 				
-						reporterror('Edit Forum Error' ,'There were some errors in updating the orders of the other forums.');
+						reporterror($l['edit_forum_error'], $l['edit_forum_error_exp2']);
 						
 						return false;
 						
@@ -917,7 +922,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 						
 					if(mysql_affected_rows($conn) < 1){
 				
-						reporterror('Edit Forum Error' ,'There were some errors in updating the orders of the other forums.');
+						reporterror($l['edit_forum_error'], $l['edit_forum_error_exp2']);
 						
 						return false;
 						
@@ -1105,7 +1110,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('No Themes Found' ,'There is some problem in the boards theme.');
+		reporterror($l['no_themes_found'], $l['no_themes_found_exp']);
 		
 		return false;
 		
@@ -1146,7 +1151,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Is postcode posted
 		if(!(isset($_POST['postcode'])) || strlen(trim($_POST['postcode'])) < 16){
 		
-			$error[] = 'The Security Code was not posted or is in wrong format.';
+			$error[] = $l['no_security_code'];
 			
 		}else{
 		
@@ -1159,7 +1164,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 			
 			if($postedcode != $postcode){
 			
-				$error[] = 'The Security Confirmation Code does not match.';
+				$error[] = $l['sec_code_unmatched'];
 			
 			}
 			
@@ -1175,7 +1180,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the Parent is set
 		if(!(isset($_POST['fmother'])) || (trim($_POST['fmother']) == "")){
 		
-			$error[] = 'The Mother Was not Posted.';
+			$error[] = $l['no_mother_posted'];
 			
 		}else{
 		
@@ -1193,7 +1198,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the Order is Set.
 		if(!(isset($_POST['forder'])) || (trim($_POST['forder']) == "")){
 		
-			$error[] = 'The Forum order was missing.';
+			$error[] = $l['forum_order_missing'];
 			
 		}else{
 		
@@ -1211,7 +1216,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the Status is Set.
 		if(!(isset($_POST['fstatus'])) || (trim($_POST['fstatus']) == "")){
 		
-			$error[] = 'The Forum Status was not posted.';
+			$error[] = $l['no_forum_status'];
 			
 		}else{
 		
@@ -1229,7 +1234,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the Forum Name is Set.
 		if(!(isset($_POST['fname'])) || (trim($_POST['fname']) == "")){
 		
-			$error[] = 'The Forum Name was not Posted.';
+			$error[] = $l['no_forum_name'];
 			
 		}else{
 		
@@ -1255,7 +1260,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		//Check the theme
 		if(!(isset($_POST['ftheme'])) || (trim($_POST['ftheme']) == "")){
 		
-			$error[] = 'The Forums theme was not posted.';
+			$error[] = $l['no_forums_theme'];
 			
 		}else{
 		
@@ -1264,7 +1269,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 			//If the selected theme is not the forum default then check
 			if(($id_skin != 0) && !in_array($id_skin, $themeids)){
 			
-				$error[] = 'The Forums theme you selected is invalid.';
+				$error[] = $l['forums_theme_invalid'];
 			
 			}
 			
@@ -1330,7 +1335,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 			//Are ther invalid users
 			if(!empty($invalidug)){
 			
-				$error[] = 'The user groups having ids <b>'.implode(', ', $invalidug).'</b> do not exist on the board.';
+				$error[] = $l['groups_having_ids'].implode(', ', $invalidug).$l['do_not_exist'];
 			
 			}else{
 			
@@ -1470,7 +1475,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 		
 		if($forum_order > $default){
 		
-			$error[] = 'Submitted Order is greater than possible.';
+			$error[] = $l['submitted_order_greater'];
 			
 		}
 		
@@ -1512,7 +1517,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 					
 		if( empty($fid) ){
 			
-			reporterror('Create Forum Error' ,'There were some errors in inserting the submitted information of the forum.');
+			reporterror($l['create_forum_error'], $l['inserting_submitted_info']);
 			
 			return false;
 			
@@ -1552,7 +1557,7 @@ global $categories, $forums, $board, $samelevel, $member_group, $mother_options,
 					
 				if(mysql_affected_rows($conn) < 1){
 			
-					reporterror('Create Forum Error' ,'There were some errors in updating the new forums parents children.');
+					reporterror($l['create_forum_error'], $l['updating_new_forums_parents']);
 					
 					return false;
 					
@@ -1757,7 +1762,7 @@ global $categories, $forums, $board, $samelevel, $mother_options, $mother_option
 	}else{
 	
 		//Show a major error and return
-		reporterror('No forum specified' ,'Sorry, we were unable to process your request because  you did not specify the forum which you wish to edit. Please go back and select the forum you wish to delete.');
+		reporterror($l['no_forum'], $l['no_forum_delete']);
 			
 		return false;
 		
@@ -1798,7 +1803,7 @@ global $categories, $forums, $board, $samelevel, $mother_options, $mother_option
 	if(empty($board)){
 	
 		//Show a major error and return
-		reporterror('No forum found' ,'The forum you specified does not exist on the system.');
+		reporterror($l['no_forum_found'], $l['no_forum_found_exp']);
 			
 		return false;
 		
@@ -1916,7 +1921,7 @@ global $categories, $forums, $board, $samelevel, $mother_options, $mother_option
 			//Are we to delete or shift
 			if(!(isset($_POST['shiftinto'])) || (trim($_POST['shiftinto']) == "")){
 			
-				$error[] = 'The forum to which the In Boards are to be shifted was not submitted.';
+				$error[] = $l['no_in_boards_shifted'];
 				
 			}else{
 			
@@ -1932,7 +1937,7 @@ global $categories, $forums, $board, $samelevel, $mother_options, $mother_option
 					
 					if(!in_array($cat_id, array_keys($categories))){
 					
-						$error[] = 'The Parent Category you submitted for the In-Boards is invalid.';
+						$error[] = $l['parent_category_invalid'];
 					
 					}
 					
@@ -1962,7 +1967,7 @@ global $categories, $forums, $board, $samelevel, $mother_options, $mother_option
 					
 					if(empty($cat_id)){
 					
-						$error[] = 'The Parent Forum you submitted for the In-Boards is invalid.';
+						$error[] = $l['parent_forum_invalid'];
 					
 					}
 				
@@ -2005,7 +2010,7 @@ global $categories, $forums, $board, $samelevel, $mother_options, $mother_option
 		if(!delete_forums(array($fid))){
 		
 			//Show a major error and return
-			reporterror('Delete forum error' ,'There were some errors while deleting the forum.');
+			reporterror($l['delete_forum_error'], $l['errors_deleting']);
 				
 			return false;
 		
@@ -2097,7 +2102,7 @@ global $categories, $forums, $mother_options, $reoforums, $error;
 			
 			if(empty($forums[$parent]) || count($forums[$parent]) < 2){
 			
-				$error[] = 'The parent you selected has insufficient children.';
+				$error[] = $l['parent_insufficient_children'];
 			
 			}else{
 			
@@ -2138,7 +2143,7 @@ global $categories, $forums, $mother_options, $reoforums, $error;
 			
 			if(empty($board) || empty($board['in_boards']) || count($board['in_boards']) < 2){
 			
-				$error[] = 'The parent you selected has insufficient children.';
+				$error[] = $l['parent_insufficient_children'];
 			
 			}else{
 			
@@ -2160,7 +2165,7 @@ global $categories, $forums, $mother_options, $reoforums, $error;
 		//Check the code
 		if(empty($_POST['for']) || !is_array($_POST['for'])){
 			
-			$error[] = 'The forums order was not specified.';
+			$error[] = $l['no_forum_order'];
 			
 		}else{
 		
@@ -2168,7 +2173,7 @@ global $categories, $forums, $mother_options, $reoforums, $error;
 			
 			if(count($forumreordered) != count($reoforums)){
 			
-				$error[] = 'The number of forum order submitted is incorrect.';
+				$error[] = $l['forum order_incorrect'];
 			
 			}		
 			
@@ -2185,7 +2190,7 @@ global $categories, $forums, $mother_options, $reoforums, $error;
 			//Was every key correct
 			if(!in_array($k, array_keys($reoforums))){
 			
-				$error[] = 'Some of the forums submitted for reordering are invalid.';
+				$error[] = $l['forums_reordering_invalid'];
 				
 				break;
 			
@@ -2204,7 +2209,7 @@ global $categories, $forums, $mother_options, $reoforums, $error;
 		
 		if(count(array_unique($forumreordered)) != count($reoforums)){
 			
-			$error[] = 'The forum order submitted is incorrect.';
+			$error[] = $l['forum order_incorrect'];
 		
 		}
 		

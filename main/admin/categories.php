@@ -30,6 +30,12 @@ function categories(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/categories')){
+		
+		return false;
+			
+	}
+
 	//The name of the file
 	$theme['init_theme'] = 'admin/categories';
 	
@@ -129,7 +135,7 @@ global $categories, $editcat, $orderoptions, $error, $editcategory;
 	}else{
 	
 		//Show a major error and return
-		reporterror('No category specified' ,'Sorry, we were unable to process your request because the category which you are trying to edit was not specified. Please go back and select the category you wish to edit.');
+		reporterror($l['no_cat_specified'], $l['no_cat_specified_exp']);
 			
 		return false;
 		
@@ -160,7 +166,7 @@ global $categories, $editcat, $orderoptions, $error, $editcategory;
 	if(empty($editcategory)){
 	
 		//Show a major error and return
-		reporterror('No category found' ,'The category you specified does not exists in the database. Please go back and select the category you wish to edit.');
+		reporterror($l['no_cat_found'], $l['no_cat_found_exp']);
 			
 		return false;
 		
@@ -193,7 +199,7 @@ global $categories, $editcat, $orderoptions, $error, $editcategory;
 		if( !isset($_POST['catorder']) || trim($_POST['catorder']) == "" || 
 			!is_numeric(trim($_POST['catorder'])) ){
 		
-			$error[] = 'The Category order was missing.';	
+			$error[] = $l['cat_order_missing'];	
 					
 		}else{
 		
@@ -201,7 +207,7 @@ global $categories, $editcat, $orderoptions, $error, $editcategory;
 			
 			if($catorder > count($categories)){
 			
-				$error[] = 'The Category order was greater than the total number of categories and is invalid.';
+				$error[] = $l['cat_order_invalid'];
 			
 			}
 			
@@ -217,7 +223,7 @@ global $categories, $editcat, $orderoptions, $error, $editcategory;
 		//Check the catname
 		if(!isset($_POST['catname']) || trim($_POST['catname']) == ""){
 		
-			$error[] = 'Category Name was not Specified.';
+			$error[] = $l['no_name_specified'];
 						
 		}else{
 		
@@ -257,7 +263,7 @@ global $categories, $editcat, $orderoptions, $error, $editcategory;
 				
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Edit Category Error' ,'There were some errors in updating the submitted information of the category <b>'.$editcategory['name'].'</b>.');
+			reporterror($l['edit_cat_error'], $l['errors_updating'].' <b>'.$editcategory['name'].'</b>.');
 			
 			return false;
 			
@@ -292,7 +298,7 @@ global $categories, $editcat, $orderoptions, $error, $editcategory;
 					
 					if(mysql_affected_rows($conn) < 1){
 				
-						reporterror('Edit Category Error' ,'There were some errors in updating the category orders of all the categories.');
+						reporterror($l['edit_cat_error'], $l['errors_updating_orders']);
 						
 						return false;
 						
@@ -319,7 +325,7 @@ global $categories, $editcat, $orderoptions, $error, $editcategory;
 					
 					if(mysql_affected_rows($conn) < 1){
 				
-						reporterror('Edit Category Error' ,'There were some errors in updating the category orders of all the categories.');
+						reporterror($l['edit_cat_error'], $l['errors_updating_orders']);
 						
 						return false;
 						
@@ -417,7 +423,7 @@ global $categories, $orderoptions, $error;
 		if( !isset($_POST['catorder']) || trim($_POST['catorder']) == "" || 
 			!is_numeric(trim($_POST['catorder'])) ){
 		
-			$error[] = 'The Category order was missing.';	
+			$error[] = $l['cat_order_missing'];	
 					
 		}else{
 		
@@ -425,7 +431,7 @@ global $categories, $orderoptions, $error;
 			
 			if($catorder > $default){
 			
-				$error[] = 'The Category order was greater than the total number of categories and is invalid.';
+				$error[] = $l['cat_order_invalid'];
 			
 			}
 			
@@ -441,7 +447,7 @@ global $categories, $orderoptions, $error;
 		//Check the catname
 		if(!isset($_POST['catname']) || trim($_POST['catname']) == ""){
 		
-			$error[] = 'Category Name was not Specified.';
+			$error[] = $l['no_name_specified'];
 						
 		}else{
 		
@@ -483,7 +489,7 @@ global $categories, $orderoptions, $error;
 				
 		if( empty($newcatid) ){
 			
-			reporterror('New Category Error' ,'Sorry, we were unable to insert the new category into the database.');
+			reporterror($l['new_cat_error'], $l['no_insert_new']);
 			
 			return false;
 			
@@ -526,7 +532,7 @@ global $categories, $orderoptions, $error;
 					
 					if(mysql_affected_rows($conn) < 1){
 				
-						reporterror('New Category Error' ,'There were some errors in updating the category orders of all the categories.');
+						reporterror($l['new_cat_error'], $l['errors_updating_orders']);
 						
 						return false;
 						
@@ -569,7 +575,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	}else{
 	
 		//Show a major error and return
-		reporterror('No category specified' ,'Sorry, we were unable to process your request because no category was specified. Please go back and select the category you wish to delete.');
+		reporterror($l['no_cat_specified'], $l['no_del_cat_specified']);
 			
 		return false;
 		
@@ -578,7 +584,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	if(!delete_categories(array($cid))){
 	
 		//Show a major error and return
-		reporterror('Delete Category Error' ,'There were some errors while deleting the categories.');
+		reporterror($l['delete_cat_error'], $l['errors_deleting']);
 			
 		return false;
 	
@@ -619,7 +625,7 @@ global $categories, $error;
 		//Check the code
 		if(empty($_POST['cat']) || !is_array($_POST['cat'])){
 			
-			$error[] = 'The cateogory order was not specified.';
+			$error[] = $l['no_category_order'];
 			
 		}else{
 		
@@ -627,7 +633,7 @@ global $categories, $error;
 			
 			if(count($catreordered) != count($categories)){
 			
-				$error[] = 'The number of category order submitted is incorrect.';
+				$error[] = $l['number_cat_order_incorrect'];
 			
 			}		
 			
@@ -644,7 +650,7 @@ global $categories, $error;
 			//Was every key correct
 			if(!in_array($k, array_keys($categories))){
 			
-				$error[] = 'Some of the categories submitted are invalid.';
+				$error[] = $l['some_invalid'];
 				
 				break;
 			
@@ -663,7 +669,7 @@ global $categories, $error;
 		
 		if(count(array_unique($catreordered)) != count($categories)){
 			
-			$error[] = 'The category order submitted is incorrect.';
+			$error[] = $l['cat_order_incorrect'];
 		
 		}
 		

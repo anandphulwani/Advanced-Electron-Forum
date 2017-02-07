@@ -32,6 +32,11 @@ function recyclebin(){
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 global $mother_options, $forums, $categories, $error;
 
+	if(!load_lang('admin/recyclebin')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/recyclebin';
 	
@@ -93,7 +98,7 @@ global $mother_options, $forums, $categories, $error;
 		//Check the Forum is set
 		if(!(isset($_POST['rbfid'])) || (trim($_POST['rbfid']) == "")){
 		
-			$error[] = 'The Forum was not Posted.';
+			$error[] = $l['forum_no_posted'];
 			
 		}else{
 		
@@ -101,7 +106,7 @@ global $mother_options, $forums, $categories, $error;
 			
 			if(!empty($rbfid) && !in_array($rbfid, $forum_ids)){
 			
-				$error[] = 'The Forum that you submitted is invalid.';
+				$error[] = $l['forum_invalid'];
 			
 			}
 			

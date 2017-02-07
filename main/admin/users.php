@@ -31,6 +31,11 @@ function users(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/users')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/users';
 	
@@ -135,7 +140,7 @@ global $error;
 		//Check the users own Text Length
 		if(!(isset($_POST['userstextlen'])) || (trim($_POST['userstextlen']) == "")){
 			
-			$error[] = 'The users text length was not specified.';
+			$error[] = $l['usr_no_utxt_length'];
 			
 		}else{
 		
@@ -146,7 +151,7 @@ global $error;
 		//Check the WWW URL's Length 
 		if(!(isset($_POST['wwwlen'])) || (trim($_POST['wwwlen']) == "")){
 			
-			$error[] = 'The users WWW length was not specified.';
+			$error[] = $l['usr_no_www_length'] ;
 			
 		}else{
 		
@@ -158,7 +163,7 @@ global $error;
 		//Check the custom title Length 
 		if(!(isset($_POST['customtitlelen'])) || (trim($_POST['customtitlelen']) == "")){
 			
-			$error[] = 'The users custom title length was not specified.';
+			$error[] = $l['usr_no_utitle_length'];
 			
 		}else{
 		
@@ -166,7 +171,7 @@ global $error;
 			
 			if($customtitlelen > 100){
 			
-				$error[] = 'The users custom title length cannot be greater than 100.';
+				$error[] = $l['usr_utitle_length_100'];
 			
 			}
 			
@@ -175,7 +180,7 @@ global $error;
 		//Check the location Length 
 		if(!(isset($_POST['locationlen'])) || (trim($_POST['locationlen']) == "")){
 			
-			$error[] = 'The users location length was not specified.';
+			$error[] = $l['usr_no_uloc_length'];
 			
 		}else{
 		
@@ -183,7 +188,7 @@ global $error;
 			
 			if($locationlen > 255){
 			
-				$error[] = 'The users location length cannot be greater than 255.';
+				$error[] = $l['usr_uloc_length_255'];
 			
 			}
 			
@@ -199,7 +204,7 @@ global $error;
 		//Check the real name Length 
 		if(!(isset($_POST['realnamelen'])) || (trim($_POST['realnamelen']) == "")){
 			
-			$error[] = 'The users real name length was not specified.';
+			$error[] = $l['usr_no_urname_length'];
 			
 		}else{
 		
@@ -210,7 +215,7 @@ global $error;
 		//Check the secret question Length 
 		if(!(isset($_POST['secretqtlen'])) || (trim($_POST['secretqtlen']) == "")){
 			
-			$error[] = 'The users secret question length was not specified.';
+			$error[] = $l['usr_no_usec_qt_length'];
 			
 		}else{
 		
@@ -221,7 +226,7 @@ global $error;
 		//Check the secret answer max Length 
 		if(!(isset($_POST['secretansmaxlen'])) || (trim($_POST['secretansmaxlen']) == "")){
 			
-			$error[] = 'The users secret answer max length was not specified.';
+			$error[] = $l['usr_no_usec_answ_maxlength'] ;
 			
 		}else{
 		
@@ -232,7 +237,7 @@ global $error;
 		//Check the secret answer min Length 
 		if(!(isset($_POST['secretansminlen'])) || (trim($_POST['secretansminlen']) == "")){
 			
-			$error[] = 'The users secret answer min length was not specified.';
+			$error[] = $l['usr_no_usec_answ_minlength'];
 			
 		}else{
 		
@@ -263,7 +268,7 @@ global $error;
 		//Check the real name Length 
 		if(!(isset($_POST['usersiglen'])) || (trim($_POST['usersiglen']) == "")){
 			
-			$error[] = 'The users users max signature length was not specified.';
+			$error[] = $l['usr_no_usig_maxlength'];
 			
 		}else{
 		
@@ -357,7 +362,7 @@ global $error, $addslashes;
 		//Check the Avatar Directory
 		if(!(isset($_POST['avatardir'])) || (trim($_POST['avatardir']) == "")){
 			
-			$error[] = 'The avatar directory was not specified.';
+			$error[] = $l['usr_no_avatar_dir'];
 			
 		}else{
 		
@@ -370,7 +375,7 @@ global $error, $addslashes;
 		//Check the Avatar URL
 		if(!(isset($_POST['avatarurl'])) || (trim($_POST['avatarurl']) == "")){
 			
-			$error[] = 'The avatar URL was not specified.';
+			$error[] = $l['usr_no_avatar_url'];
 			
 		}else{
 		
@@ -383,7 +388,7 @@ global $error, $addslashes;
 		//Check the upload avatar dir
 		if(!(isset($_POST['uploadavatardir'])) || (trim($_POST['uploadavatardir']) == "")){
 			
-			$error[] = 'The upload avatar directory was not specified.';
+			$error[] = $l['usr_no_up_avatar_dir'];
 			
 		}else{
 		
@@ -397,7 +402,7 @@ global $error, $addslashes;
 		//Check the upload avatar url
 		if(!(isset($_POST['uploadavatarurl'])) || (trim($_POST['uploadavatarurl']) == "")){
 			
-			$error[] = 'The upload avatar URL was not specified.';
+			$error[] = $l['usr_no_up_avatar_url'];
 			
 		}else{
 		
@@ -411,7 +416,7 @@ global $error, $addslashes;
 		//Check the upload avatar max size
 		if(!(isset($_POST['uploadavatarmaxsize'])) || (trim($_POST['uploadavatarmaxsize']) == "")){
 			
-			$error[] = 'The maximum size of an uploaded avatar was not specified.';
+			$error[] = $l['usr_no_maxsize_up_avatar'];
 			
 		}else{
 		
@@ -423,7 +428,7 @@ global $error, $addslashes;
 		//Check the upload avatar types
 		if(!(isset($_POST['avatartypes'])) || (trim($_POST['avatartypes']) == "")){
 			
-			$error[] = 'The allowed file types for uploaded avatars was not specified.';
+			$error[] = $l['usr_no_filetype_up_avatar'];
 			
 		}else{
 		
@@ -434,7 +439,7 @@ global $error, $addslashes;
 		//Check the avatar width
 		if(!(isset($_POST['av_width'])) || (trim($_POST['av_width']) == "")){
 			
-			$error[] = 'The avatars max width was not specified.';
+			$error[] = $l['usr_no_avatars_max_width'];
 			
 		}else{
 		
@@ -445,7 +450,7 @@ global $error, $addslashes;
 		//Check the avatar height
 		if(!(isset($_POST['av_height'])) || (trim($_POST['av_height']) == "")){
 			
-			$error[] = 'The avatars max height was not specified.';
+			$error[] = $l['usr_no_avatars_max_height'];
 			
 		}else{
 		
@@ -525,7 +530,7 @@ global $error, $addslashes;
 		//Check the upload personal picture dir
 		if(!(isset($_POST['uploadppicdir'])) || (trim($_POST['uploadppicdir']) == "")){
 			
-			$error[] = 'The upload personal picture directory was not specified.';
+			$error[] = $l['usr_no_up_perpic_dir'];
 			
 		}else{
 		
@@ -539,7 +544,7 @@ global $error, $addslashes;
 		//Check the upload personal picture url
 		if(!(isset($_POST['uploadppicurl'])) || (trim($_POST['uploadppicurl']) == "")){
 			
-			$error[] = 'The upload personal picture URL was not specified.';
+			$error[] = $l['usr_no_up_perpic_url'];
 			
 		}else{
 		
@@ -553,7 +558,7 @@ global $error, $addslashes;
 		//Check the upload personal picture max size
 		if(!(isset($_POST['uploadppicmaxsize'])) || (trim($_POST['uploadppicmaxsize']) == "")){
 			
-			$error[] = 'The maximum size of an uploaded personal picture was not specified.';
+			$error[] = $l['usr_no_maxsize_up_perpic'];
 			
 		}else{
 		
@@ -565,7 +570,7 @@ global $error, $addslashes;
 		//Check the upload ppic types
 		if(!(isset($_POST['ppictypes'])) || (trim($_POST['ppictypes']) == "")){
 			
-			$error[] = 'The allowed file types for uploaded personal pictures was not specified.';
+			$error[] = $l['usr_no_filetype_up_perpic'];
 			
 		}else{
 		
@@ -577,7 +582,7 @@ global $error, $addslashes;
 		//Check the Personal Picture width
 		if(!(isset($_POST['ppic_width'])) || (trim($_POST['ppic_width']) == "")){
 			
-			$error[] = 'The Personal Picture max width was not specified.';
+			$error[] = $l['usr_no_perpic_max_width'];
 			
 		}else{
 		
@@ -588,7 +593,7 @@ global $error, $addslashes;
 		//Check the Personal Picture height
 		if(!(isset($_POST['ppic_height'])) || (trim($_POST['ppic_height']) == "")){
 			
-			$error[] = 'The Personal Picture max height was not specified.';
+			$error[] = $l['usr_no_perpic_max_height'];
 			
 		}else{
 		
@@ -690,7 +695,7 @@ global $error;
 		//Check the num of PM to show in folders
 		if(!(isset($_POST['pmnumshowinfolders'])) || (trim($_POST['pmnumshowinfolders']) == "")){
 			
-			$error[] = 'The number of PM to show in folders was not specified.';
+			$error[] = $l['usr_num_pm_show'];
 			
 		}else{
 		

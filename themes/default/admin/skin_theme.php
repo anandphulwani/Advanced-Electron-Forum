@@ -1,5 +1,24 @@
 <?php
 
+//////////////////////////////////////////////////////////////
+//===========================================================
+// skin_theme.php(Admin)
+//===========================================================
+// AEF : Advanced Electron Forum 
+// Version : 1.0.6
+// Inspired by Pulkit and taken over by Electron
+// ----------------------------------------------------------
+// Started by: Electron, Ronak Gupta, Pulkit Gupta
+// Date:       23rd Jan 2006
+// Time:       15:00 hrs
+// Site:       http://www.anelectron.com/ (Anelectron)
+// ----------------------------------------------------------
+// Please Read the Terms of use at http://www.anelectron.com
+// ----------------------------------------------------------
+//===========================================================
+// (c)Electron Inc.
+//===========================================================
+//////////////////////////////////////////////////////////////
 if(!defined('AEF')){
 
 	die('Hacking Attempt');
@@ -9,10 +28,10 @@ if(!defined('AEF')){
 
 function manskin_theme(){
 
-global $globals, $theme, $error, $themes;
+global $globals, $theme, $l, $error, $themes;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Theme Manager');
+	adminhead($l['cp_theme_manager_set']);
 	
 	?>
 	
@@ -24,14 +43,14 @@ global $globals, $theme, $error, $themes;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Theme Manager</font><br />
+	<font class="adgreen"><?php echo $l['theme_manager_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	This is the place for changing the Boards Default Theme. Also you can change the theme of every member.
+	<?php echo $l['theme_manager_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -48,14 +67,14 @@ global $globals, $theme, $error, $themes;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Theme Manager
+		<?php echo $l['theme_manager_set'];?>
 		</td>
 		</tr>
 				
 		<tr>
 		<td width="45%" class="adbg">
-		<b>Default Theme :</b><br />
-		<font class="adexp">The boards default theme.</font>
+		<b><?php echo $l['default_skin'];?></b><br />
+		<font class="adexp"><?php echo $l['default_skin_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;
@@ -71,8 +90,8 @@ global $globals, $theme, $error, $themes;
         		
 		<tr>
 		<td class="adbg">
-		<b>Can user choose their theme ?</b><br />
-		<font class="adexp">This will allow users to choose from the installed themes on the board.</font>
+		<b><?php echo $l['choose_skin'];?></b><br />
+		<font class="adexp"><?php echo $l['choose_skin_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="choose_theme"	<?php echo ($globals['choose_theme'] ? 'checked="checked"' : '');?> />
@@ -81,7 +100,7 @@ global $globals, $theme, $error, $themes;
         
         <tr>
 		<td class="adbg" colspan="2" align="center">
-		<input type="submit" name="editskin" value="Submit" />
+		<input type="submit" name="editskin" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>
 		
@@ -93,14 +112,14 @@ global $globals, $theme, $error, $themes;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Reset Paths and URLs of themes
+		<?php echo $l['reset_paths'];?>
 		</td>
 		</tr>
 				
 		<tr>
 		<td width="45%" class="adbg">
-		<b>Base Path :</b><br />
-		<font class="adexp">Reset all theme base paths to the one given.</font>
+		<b><?php echo $l['base_path'];?></b><br />
+		<font class="adexp"><?php echo $l['base_path_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="45"  name="path" value="<?php echo (empty($_POST['path']) ? $globals['themesdir'] : $_POST['path']);?>" />
@@ -109,8 +128,8 @@ global $globals, $theme, $error, $themes;
         		
 		<tr>
 		<td class="adbg">
-		<b>Base URL</b><br />
-		<font class="adexp">This will reset the base URLs of all the themes to the one given.</font>
+		<b><?php echo $l['base_url'];?></b><br />
+		<font class="adexp"><?php echo $l['base_url_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="45"  name="url" value="<?php echo (empty($_POST['url']) ? $globals['url'].'/themes' : $_POST['url']);?>" />
@@ -119,7 +138,7 @@ global $globals, $theme, $error, $themes;
         
         <tr>
 		<td class="adbg" colspan="2" align="center">
-		<input type="submit" name="resetpaths" value="Reset Paths and URLs" />
+		<input type="submit" name="resetpaths" value="<?php echo $l['paths_urls'];?>" />
 		</td>
 		</tr>
 		
@@ -139,10 +158,10 @@ global $globals, $theme, $error, $themes;
 
 function import_theme(){
 
-global $globals, $theme, $error;
+global $globals, $l, $theme, $error;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Import a theme');
+	adminhead($l['cp_import_skin']);
 	
 	?>
 	
@@ -154,14 +173,14 @@ global $globals, $theme, $error;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Import Themes</font><br />
+	<font class="adgreen"><?php echo $l['import_skin'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Here you can Install some new themes for the board.
+	<?php echo $l['import_skin_exp'];?>
 	</td>
 	</tr>
 	
@@ -178,15 +197,15 @@ global $globals, $theme, $error;
 	
 		<tr>
 		<td class="adcbg" colspan="3">
-		Import Skin
+		<?php echo $l['import_skin'];?>
 		</td>
 		</tr>
 		
 		<tr>
         <td width="5%" class="adbg"><input type="radio" name="importtype" id="fromfolder" value="1" <?php echo ((isset($_POST['importtype']) && ((int)$_POST['importtype'] == 1)) ? 'checked="checked"' : '');?> /></td>
 		<td width="35%" class="adbg">
-		<b>From a folder:</b><br />
-		<font class="adexp">Specify the path of the theme.</font>
+		<b><?php echo $l['from_folder'];?></b><br />
+		<font class="adexp"><?php echo $l['from_folder_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="45"  name="folderpath" value="<?php echo (empty($_POST['th_path']) ? $globals['themesdir'].'/' : $_POST['th_path']);?>" onfocus="$('fromfolder').checked = true;" />
@@ -196,8 +215,8 @@ global $globals, $theme, $error;
         <tr>
         <td class="adbg"><input type="radio" name="importtype" id="fromweb" value="2" <?php echo ((isset($_POST['importtype']) && ((int)$_POST['importtype'] == 2)) ? 'checked="checked"' : '');?> /></td>
 		<td class="adbg">
-		<b>From the web:</b><br />
-		<font class="adexp">Specify the URL of the theme on the net. The theme file must be a compressed archive (zip, tgz, tbz2, tar)</font>
+		<b><?php echo $l['from_web'];?></b><br />
+		<font class="adexp"><?php echo $l['from_web_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="40"  name="weburl" value="<?php echo (empty($_POST['weburl']) ? '' : $_POST['weburl']);?>" onfocus="$('fromweb').checked = true;" />
@@ -207,8 +226,8 @@ global $globals, $theme, $error;
         <tr>
         <td class="adbg"><input type="radio" name="importtype" id="fromfile" value="3" <?php echo ((isset($_POST['importtype']) && ((int)$_POST['importtype'] == 3)) ? 'checked="checked"' : '');?> /></td>
 		<td class="adbg">
-		<b>From a file on the server:</b><br />
-		<font class="adexp">Specify the path of the compressed theme file (zip, tgz, tbz2, tar).</font>
+		<b><?php echo $l['from_file_server'];?></b><br />
+		<font class="adexp"><?php echo $l['from_file_server_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" size="40"  name="filepath" value="<?php echo (empty($_POST['filepath']) ? $globals['themesdir'].'/' : $_POST['filepath']);?>" onfocus="$('fromfile').checked = true;" />
@@ -218,8 +237,8 @@ global $globals, $theme, $error;
           <tr>
         <td class="adbg"><input type="radio" name="importtype" id="fromcomp" value="4" <?php echo ((isset($_POST['importtype']) && ((int)$_POST['importtype'] == 4)) ? 'checked="checked"' : '');?> /></td>
 		<td class="adbg">
-		<b>From a file on your computer:</b><br />
-		<font class="adexp">Attach the compressed theme file (zip, tgz, tbz2, tar).</font>
+		<b><?php echo $l['from_file_pc'];?></b><br />
+		<font class="adexp"><?php echo $l['from_file_pc_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;<input type="file" size="35"  name="uploadtheme" onfocus="$('fromcomp').checked = true;" />
@@ -233,7 +252,7 @@ global $globals, $theme, $error;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="importskin" value="Import" />
+		<input type="submit" name="importskin" value="<?php echo $l['import'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -251,10 +270,10 @@ global $globals, $theme, $error;
 
 function uninstall_theme(){
 
-global $globals, $theme, $error, $themes;
+global $globals, $l, $theme, $error, $themes;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Uninstall Themes');
+	adminhead($l['cp_uninstall_skin_set']);
 	
 	?>
 	
@@ -266,14 +285,14 @@ global $globals, $theme, $error, $themes;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Uninstall Themes</font><br />
+	<font class="adgreen"><?php echo $l['uninstall_skin_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	So you dont like some of the theme's you have installed. You can uninstall them here.
+	<?php echo $l['uninstall_skin_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -290,19 +309,19 @@ global $globals, $theme, $error, $themes;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Uninstall Themes
+		<?php echo $l['uninstall_skin_set'];?>
 		</td>
 		</tr>
 				
 		<tr>
 		<td width="45%" class="adbg">
-		<b>Uninstall Theme :</b><br />
-		<font class="adexp">Select the theme you want to uninstall.</font>
+		<b><?php echo $l['uninst_skin'];?></b><br />
+		<font class="adexp"><?php echo $l['uninst_skin_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
 		&nbsp;&nbsp;&nbsp;&nbsp;
 		<select name="theme_id">
-        <option value="0">Select Theme</option>
+        <option value="0"><?php echo $l['select_skin'];?></option>
 		<?php
 		
 		
@@ -327,7 +346,7 @@ global $globals, $theme, $error, $themes;
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="uninstallskin" value="Submit" />
+		<input type="submit" name="uninstallskin" value="<?php echo $l['submit'];?>" />
 		</td>
 		</tr>	
 	</table>
@@ -343,10 +362,10 @@ global $globals, $theme, $error, $themes;
 
 function settings_theme(){
 
-global $globals, $theme, $error, $themes, $theme_registry, $onload;
+global $globals, $l, $theme, $error, $themes, $theme_registry, $onload;
 	
 	//Admin Headers includes Global Headers
-	adminhead('Administration Center - Edit Theme Settings');
+	adminhead($l['cp_edit_skin_set']);
 	
 	?>
 	
@@ -358,14 +377,14 @@ global $globals, $theme, $error, $themes, $theme_registry, $onload;
 	</td>
 	<td align="left" class="adcbg1">
 	
-	<font class="adgreen">Edit Theme Settings</font><br />
+	<font class="adgreen"><?php echo $l['edit_skin_set'];?></font><br />
 	
 	</td>
 	</tr>
 	
 	<tr>
 	<td align="left" colspan="2" class="adbg">
-	Here you can Edit Theme settings of different themes.
+	<?php echo $l['edit_skin_set_exp'];?>
 	</td>
 	</tr>
 	
@@ -382,14 +401,14 @@ global $globals, $theme, $error, $themes, $theme_registry, $onload;
 	
 		<tr>
 		<td class="adcbg" colspan="2">
-		Edit Theme Settings
+		<?php echo $l['edit_skin_set'];?>
 		</td>
 		</tr>
 		
 		<tr>
 		<td width="40%" class="adbg">
-		<b>Edit Settings of : </b><br />
-		<font class="adexp">Select the theme the settings of which you wish to edit.</font>
+		<b><?php echo $l['edit_set'];?></b><br />
+		<font class="adexp"><?php echo $l['edit_set_exp'];?></font>
 		</td>
 		<td class="adbg" align="left">
         <script type="text/javascript">
@@ -428,7 +447,7 @@ addonload('tabs.init();');
 
 <tr>
 <td class="adcbg2" colspan="2" style="padding:4px;">
-Settings
+<?php echo $l['sett'];?>
 </td>
 </tr>
 
@@ -485,7 +504,7 @@ echo '</table>';
 	<table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="center" class="adbg">
-		<input type="submit" name="editsettings" value="Edit Settings" />
+		<input type="submit" name="editsettings" value="<?php echo $l['edit_sett'];?>" />
 		</td>
 		</tr>	
 	</table>

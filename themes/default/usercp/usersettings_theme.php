@@ -2,7 +2,7 @@
 
 function emailpmset_theme(){
 
-global $theme, $user, $globals, $error;
+global $theme, $user, $globals, $l, $error;
 
 	//The global User CP Headers
 	usercphead();
@@ -18,7 +18,7 @@ global $theme, $user, $globals, $error;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Email &amp; PM Preferences</td>
+<td class="ucpcbg"><?php echo $l['uset_email_pm_pref'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -37,96 +37,96 @@ global $theme, $user, $globals, $error;
 	</tr>
 	
 	<tr>
-	<td class="ucpcbg1" colspan="2" align="center"><b>Email Settings</b><br />
+	<td class="ucpcbg1" colspan="2" align="center"><b><?php echo $l['uset_email_set'];?></b><br />
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="ucpflc" width="60%"><b>Recieve Email From Admins</b><br />
-	<font class="ucpfexp">Recieve Email Notifications from Administrators on important issues, notices, updates etc.</font>
+	<td class="ucpflc" width="60%"><b><?php echo $l['uset_recieve_email_admins'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_recieve_email_admins_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-	<input type="radio" name="adminemail" value="1" <?php echo (($user['adminemail'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="adminemail" value="2" <?php echo (($user['adminemail'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="adminemail" value="0" <?php echo (($user['adminemail'] == 0) ? 'checked="checked"' : '');?> /> Default
+	<input type="radio" name="adminemail" value="1" <?php echo (($user['adminemail'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="adminemail" value="2" <?php echo (($user['adminemail'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="adminemail" value="0" <?php echo (($user['adminemail'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="ucpflc"><b>Hide Email From Members</b><br />
-	<font class="ucpfexp">This will hide your email address from other members of the Board.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_hide_email_members'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_hide_email_members_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="hideemail" value="1" <?php echo (($user['hideemail'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="hideemail" value="2" <?php echo (($user['hideemail'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="hideemail" value="0" <?php echo (($user['hideemail'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="hideemail" value="1" <?php echo (($user['hideemail'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="hideemail" value="2" <?php echo (($user['hideemail'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="hideemail" value="0" <?php echo (($user['hideemail'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>	
 	
 	<tr>
-	<td class="ucpflc"><b>Automatic Subscription</b><br />
-	<font class="ucpfexp">Should you subscribe automatically to the topics you start or if you reply to a topic.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_auto_subscription'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_auto_subscription_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="subscribeauto" value="1" <?php echo (($user['subscribeauto'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="subscribeauto" value="2" <?php echo (($user['subscribeauto'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="subscribeauto" value="0" <?php echo (($user['subscribeauto'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="subscribeauto" value="1" <?php echo (($user['subscribeauto'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="subscribeauto" value="2" <?php echo (($user['subscribeauto'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="subscribeauto" value="0" <?php echo (($user['subscribeauto'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>	
 	
 	<tr>
-	<td class="ucpflc"><b>Send New Reply</b><br />
-	<font class="ucpfexp">If you have subscribed to a topic then should the Email Notification include the new post in it.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_send_new_reply'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_send_new_reply_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="sendnewreply" value="1" <?php echo (($user['sendnewreply'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="sendnewreply" value="2" <?php echo (($user['sendnewreply'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="sendnewreply" value="0" <?php echo (($user['sendnewreply'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="sendnewreply" value="1" <?php echo (($user['sendnewreply'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="sendnewreply" value="2" <?php echo (($user['sendnewreply'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="sendnewreply" value="0" <?php echo (($user['sendnewreply'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>		
 	
 	<tr>
-	<td class="ucpcbg1" colspan="2" align="center"><b>Personal Message Settings</b><br />
+	<td class="ucpcbg1" colspan="2" align="center"><b><?php echo $l['uset_pm_set'];?></b><br />
 	</td>
 	</tr>	
 	
 	<tr>
-	<td class="ucpflc"><b>Notify New PM by Email</b><br />
-	<font class="ucpfexp">Should new Personal Messages be notified to you by email.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_notify_new_pm_email'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_notify_new_pm_email_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="pm_email_notify" value="1" <?php echo (($user['pm_email_notify'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="pm_email_notify" value="2" <?php echo (($user['pm_email_notify'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="pm_email_notify" value="0" <?php echo (($user['pm_email_notify'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="pm_email_notify" value="1" <?php echo (($user['pm_email_notify'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="pm_email_notify" value="2" <?php echo (($user['pm_email_notify'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="pm_email_notify" value="0" <?php echo (($user['pm_email_notify'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>	
 	
 	<tr>
-	<td class="ucpflc"><b>Pop-Up Notification of New PM</b><br />
-	<font class="ucpfexp">Show me a Pop-Up message on receiving ne PM's.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_pop-up_notification_new_pm'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_pop-up_notification_new_pm_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="pm_notify" value="1" <?php echo (($user['pm_notify'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="pm_notify" value="2" <?php echo (($user['pm_notify'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="pm_notify" value="0" <?php echo (($user['pm_notify'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="pm_notify" value="1" <?php echo (($user['pm_notify'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="pm_notify" value="2" <?php echo (($user['pm_notify'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="pm_notify" value="0" <?php echo (($user['pm_notify'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="ucpflc"><b>Save Every Outgoing PM</b><br />
-	<font class="ucpfexp">If enabled a copy of every PM you send will be saved in the Outbox.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_save_outgoing_pm'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_save_outgoing_pm_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="saveoutgoingpm" value="1" <?php echo (($user['saveoutgoingpm'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="saveoutgoingpm" value="2" <?php echo (($user['saveoutgoingpm'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="saveoutgoingpm" value="0" <?php echo (($user['saveoutgoingpm'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="saveoutgoingpm" value="1" <?php echo (($user['saveoutgoingpm'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="saveoutgoingpm" value="2" <?php echo (($user['saveoutgoingpm'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="saveoutgoingpm" value="0" <?php echo (($user['saveoutgoingpm'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>
 	
 	<tr>
 	<td class="ucpflc" colspan="2" align="center">
-	<input type="submit" name="editemailpmset" value="Save Changes" />
-	<input type="submit" name="defaultemailpmset" value="Use Default" />
+	<input type="submit" name="editemailpmset" value="<?php echo $l['uset_save_changes'];?>" />
+	<input type="submit" name="defaultemailpmset" value="<?php echo $l['uset_use_default'];?>" />
 	</td>
 	</tr>
 	
@@ -153,7 +153,7 @@ global $theme, $user, $globals, $error;
 
 function forumset_theme(){
 
-global $theme, $user, $globals, $error, $themes, $lang_folders;
+global $theme, $user, $globals, $l, $error, $themes, $lang_folders;
 
 	//The global User CP Headers
 	usercphead();
@@ -169,7 +169,7 @@ global $theme, $user, $globals, $error, $themes, $lang_folders;
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Board Preferences</td>
+<td class="ucpcbg"><?php echo $l['uset_board_preferences'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -188,8 +188,8 @@ global $theme, $user, $globals, $error, $themes, $lang_folders;
 	</tr>	
 	
 	<tr>
-	<td class="ucpflc" width="60%"><b>User Theme</b><br />
-	<font class="ucpfexp">Choose the theme that you want to use.</font>
+	<td class="ucpflc" width="60%"><b><?php echo $l['uset_user_theme'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_user_theme_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
 <script type="text/javascript">
@@ -204,7 +204,7 @@ function preview_theme(id){
 	<select name="user_theme" id="themeselector" >		
 	<?php
 	
-	echo '<option value="0" '.((isset($_POST['user_theme']) && (int)trim($_POST['user_theme']) == 0) ? 'selected="selected"' : ($user['user_theme'] == 0 ? 'selected="selected"' : '' ) ).' >Use Board Default</option>';
+	echo '<option value="0" '.((isset($_POST['user_theme']) && (int)trim($_POST['user_theme']) == 0) ? 'selected="selected"' : ($user['user_theme'] == 0 ? 'selected="selected"' : '' ) ).' >'.$l['uset_use_board_default'].'</option>';
 	
 	foreach($themes as $tk => $tv){
 	
@@ -214,13 +214,13 @@ function preview_theme(id){
 	
 	?>
 	</select>&nbsp;&nbsp;&nbsp;
-	<a href="javascript:preview_theme('themeselector')"><b>Preview</b></a>
+	<a href="javascript:preview_theme('themeselector')"><b><?php echo $l['uset_preview'];?></b></a>
 	</td>
 	</tr>	
 	
     <tr>
-	<td class="ucpflc"><b>Language :</b><br />
-	<font class="ucpfexp">Choose the language you want to use on this board.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_language'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_language_exp'];?></font>
 	</td>
 	<td class="ucpfrc">
 	&nbsp;&nbsp;&nbsp;<select name="language" />
@@ -238,74 +238,74 @@ function preview_theme(id){
 	</tr>
     
 	<tr>
-	<td class="ucpflc"><b>Show Sigs</b><br />
-	<font class="ucpfexp">Show me the Signatures in Posts and PM's.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_show_sigs'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_show_sigs_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="showsigs" value="1" <?php echo (($user['showsigs'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="showsigs" value="2" <?php echo (($user['showsigs'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="showsigs" value="0" <?php echo (($user['showsigs'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="showsigs" value="1" <?php echo (($user['showsigs'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="showsigs" value="2" <?php echo (($user['showsigs'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="showsigs" value="0" <?php echo (($user['showsigs'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="ucpflc"><b>Show Avatars</b><br />
-	<font class="ucpfexp">Show me the Avatars in Posts and PM's.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_show_avatars'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_show_avatars_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="showavatars" value="1" <?php echo (($user['showavatars'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="showavatars" value="2" <?php echo (($user['showavatars'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="showavatars" value="0" <?php echo (($user['showavatars'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="showavatars" value="1" <?php echo (($user['showavatars'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="showavatars" value="2" <?php echo (($user['showavatars'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="showavatars" value="0" <?php echo (($user['showavatars'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>	
 	
 	<tr>
-	<td class="ucpflc"><b>Show Smileys</b><br />
-	<font class="ucpfexp">Show me the Smiley images in Posts and PM's.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_show_smileys'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_show_smileys_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="showsmileys" value="1" <?php echo (($user['showsmileys'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="showsmileys" value="2" <?php echo (($user['showsmileys'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="showsmileys" value="0" <?php echo (($user['showsmileys'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="showsmileys" value="1" <?php echo (($user['showsmileys'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="showsmileys" value="2" <?php echo (($user['showsmileys'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="showsmileys" value="0" <?php echo (($user['showsmileys'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>	
 	
 	<tr>
-	<td class="ucpflc"><b>Fast Reply</b><br />
-	<font class="ucpfexp">If fast reply is enabled then show the fast reply ON or OFF by default.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_fast_reply'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_fast_reply_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="autofastreply" value="1" <?php echo (($user['autofastreply'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="autofastreply" value="2" <?php echo (($user['autofastreply'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="autofastreply" value="0" <?php echo (($user['autofastreply'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="autofastreply" value="1" <?php echo (($user['autofastreply'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="autofastreply" value="2" <?php echo (($user['autofastreply'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="autofastreply" value="0" <?php echo (($user['autofastreply'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>		
 	
 	<tr>
-	<td class="ucpflc"><b>Show Images</b><br />
-	<font class="ucpfexp">Show me the Images images in Posts and PM's.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_show_images'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_show_images_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="showimgs" value="1" <?php echo (($user['showimgs'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="showimgs" value="2" <?php echo (($user['showimgs'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="showimgs" value="0" <?php echo (($user['showimgs'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="showimgs" value="1" <?php echo (($user['showimgs'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="showimgs" value="2" <?php echo (($user['showimgs'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="showimgs" value="0" <?php echo (($user['showimgs'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>
 	
 	<tr>
-	<td class="ucpflc"><b>Anonymous Status</b><br />
-	<font class="ucpfexp">On sign-in what should your anonymous status be.</font>
+	<td class="ucpflc"><b><?php echo $l['uset_anony_status'];?></b><br />
+	<font class="ucpfexp"><?php echo $l['uset_anony_status_exp'];?></font>
 	</td>
 	<td class="ucpfrc" align="center">
-    <input type="radio" name="i_am_anon" value="1" <?php echo (($user['i_am_anon'] == 1) ? 'checked="checked"' : '');?> /> Yes &nbsp;&nbsp;
-    <input type="radio" name="i_am_anon" value="2" <?php echo (($user['i_am_anon'] == 2) ? 'checked="checked"' : '');?> /> No &nbsp;&nbsp;
-    <input type="radio" name="i_am_anon" value="0" <?php echo (($user['i_am_anon'] == 0) ? 'checked="checked"' : '');?> /> Default
+    <input type="radio" name="i_am_anon" value="1" <?php echo (($user['i_am_anon'] == 1) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_yes'];?> &nbsp;&nbsp;
+    <input type="radio" name="i_am_anon" value="2" <?php echo (($user['i_am_anon'] == 2) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_no'];?> &nbsp;&nbsp;
+    <input type="radio" name="i_am_anon" value="0" <?php echo (($user['i_am_anon'] == 0) ? 'checked="checked"' : '');?> /> <?php echo $l['uset_default'];?>
 	</td>
 	</tr>
 	
     <tr>
 	<td class="ucpflc" colspan="2" align="center">
-	<b>Time Zone:</b> <select name="timezone" style="font-size:11px">
+	<b><?php echo $l['uset_time_zone'];?></b> <select name="timezone" style="font-size:11px">
 		<option value="-12" <?php echo (($user['timezone'] == -12) ? 'selected="selected"' : '');?> >(GMT -12:00) Eniwetok, Kwajalein</option>
 		<option value="-11" <?php echo (($user['timezone'] == -11) ? 'selected="selected"' : '');?> >(GMT -11:00) Midway Island, Samoa</option>
 		<option value="-10" <?php echo (($user['timezone'] == -10) ? 'selected="selected"' : '');?> >(GMT -10:00) Hawaii</option>
@@ -342,8 +342,8 @@ function preview_theme(id){
     
 	<tr>
 	<td class="ucpflc" colspan="2" align="center">
-	<input type="submit" name="editforumset" value="Save Changes" />
-	<input type="submit" name="defaultforumset" value="Use Default" />
+	<input type="submit" name="editforumset" value="<?php echo $l['uset_save_changes'];?>" />
+	<input type="submit" name="defaultforumset" value="<?php echo $l['uset_use_default'];?>" />
 	</td>
 	</tr>
 	
@@ -369,10 +369,10 @@ function preview_theme(id){
 
 function themeset_theme(){
 
-global $globals, $theme, $error, $themes, $theme_registry, $onload;
+global $globals, $l, $theme, $error, $themes, $theme_registry, $onload;
 	
 	//Admin Headers includes Global Headers
-	usercphead('User Theme Settings');
+	usercphead($l['uset_user_theme_set']);
 	
 	error_handle($error);
 
@@ -395,7 +395,7 @@ addonload('tabs.init();');
 <td>
 <table width="100%" cellpadding="0" cellspacing="0"><tr>
 <td class="ucpcbgl"></td>
-<td class="ucpcbg">Theme Settings</td>
+<td class="ucpcbg"><?php echo $l['uset_theme_set'];?></td>
 <td class="ucpcbgr"></td>		
 </tr>
 </table>
@@ -456,8 +456,8 @@ echo '</table>';
 
     <tr>
     <td align="center" class="ucpflc">
-    <input type="submit" name="editthemeset" value="Edit Settings" />
-    <input type="submit" name="defaultthemeset" value="Use Default" />
+    <input type="submit" name="editthemeset" value="<?php echo $l['uset_edit_set'];?>" />
+    <input type="submit" name="defaultthemeset" value="<?php echo $l['uset_use_default'];?>" />
     </td>
     </tr>	
 	</table>    
@@ -479,7 +479,7 @@ echo '</table>';
 		echo '<br /><br /><table width="100%" cellpadding="1" cellspacing="1" class="cbor">
 		<tr>
 		<td align="left" class="ucpflc">
-		Sorry, it seems that there are no user settings present in this theme.
+		'.$l['uset_no_settings_theme'].'
 		</td>
 		</tr>	
 	</table>';

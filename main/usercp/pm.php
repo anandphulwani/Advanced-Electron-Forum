@@ -27,6 +27,11 @@ if(!defined('AEF')){
 }
 
 
+if(!load_lang('usercp/pm')){
+    
+    return false;
+        
+}
 //////////////////////////////////////
 // Things to still do with PM System :
 // 1) Send Email Notifications
@@ -45,7 +50,7 @@ if(!defined('AEF')){
 $theme['init_theme'] = 'usercp/pm';
 
 //The name of the Page
-$theme['init_theme_name'] = 'UserCP PM';
+$theme['init_theme_name'] = $l['pm_cpuser_pm'];
 
 //Array of functions to initialize
 $theme['init_theme_func'] = array('inbox_theme',
@@ -86,10 +91,10 @@ global $inbox, $foldercount, $tree;
 	$inbox = array();//The array holding the PM's in the Inbox
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Inbox');
+					'txt' => $l['pm_inbox']);
 	
 	//If the user has asked to delete some PM's
 	if(isset($_POST['deleteselinbox'])){	
@@ -139,7 +144,7 @@ global $inbox, $foldercount, $tree;
 		if($page > 0){
 	
 			//Show a major error and return
-			reporterror('No page found' ,'There is no such page of in your inbox folder. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+			reporterror($l['pm_no page found'] ,$l['pm_no_page_found_exp1']);
 				
 			return false;
 			
@@ -186,10 +191,10 @@ global $sentitems, $foldercount, $tree;
 	$sentitems = array();//The array holding the sentitems
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=sentitems',
-					'txt' => 'Sent Items');
+					'txt' => $l['pm_sent_items']);
 					
 	//If the user has asked to delete some PM's
 	if(isset($_POST['deleteselsent'])){
@@ -239,7 +244,7 @@ global $sentitems, $foldercount, $tree;
 		if($page > 0){
 	
 			//Show a major error and return
-			reporterror('No page found' ,'There is no such page of in your sent items folder. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+			reporterror($l['pm_no page found'] ,$l['pm_no_page_found_exp2']);
 				
 			return false;
 			
@@ -286,10 +291,10 @@ global $drafts, $foldercount, $tree;
 	$drafts = array();//The array holding the Drafts
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=drafts',
-					'txt' => 'Drafts');
+					'txt' => $l['pm_drafts']);
 	
 	//If the user has asked to delete some PM's
 	if(isset($_POST['deleteseldrafts'])){
@@ -339,7 +344,7 @@ global $drafts, $foldercount, $tree;
 		if($page > 0){
 	
 			//Show a major error and return
-			reporterror('No page found' ,'There is no such page of in your sent items folder. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+			reporterror($l['pm_no page found'] ,$l['pm_no_page_found_exp2']);
 				
 			return false;
 			
@@ -392,10 +397,10 @@ global $read, $unread, $tree;
 	$pmidarray = array();
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=trackpm',
-					'txt' => 'Track');
+					'txt' => $l['pm_track_pm']);
 	
 	//If the user has asked to Stop Tracking the read
 	if(isset($_POST['stoptrackread'])){
@@ -450,7 +455,7 @@ global $read, $unread, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Tracking Error' ,'There were some errors in trying to stop tracking the messages you selected. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['pm_tracking_error'] ,$l['pm_tracking_error_exp']);
 			
 			return false;
 			
@@ -554,10 +559,10 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 	$pmsaveinsentitems = 0;
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=writepm',
-					'txt' => 'Compose');
+					'txt' => $l['pm_compose']);
 			
 	/* If someone is Replying Query the QUOTE */
 	
@@ -589,7 +594,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 		
 		if(mysql_num_rows($qresult) < 1){
 			
-			reporterror('Reply Error' ,'The PM that you were trying to Quote in your reply either does not exist or you are not allowed to view the same. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+			reporterror($l['pm_reply_error'] ,$l['pm_reply_error_exp']);
 			
 			return false;
 		
@@ -652,7 +657,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 		//Is postcode posted
 		if(!(isset($_POST['postcode'])) || strlen(trim($_POST['postcode'])) < 16){
 		
-			$error[] = 'The Security Confirmation Code was not posted or is in wrong format.';
+			$error[] = $l['pm_sec_conf_code_no_posted'];
 			
 		}else{
 		
@@ -665,7 +670,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 			
 			if($postedcode != $postcode){
 			
-				$error[] = 'The Security Confirmation Code does not match.';
+				$error[] = $l['pm_sec_conf_code_no_match'];
 			
 			}
 			
@@ -681,7 +686,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 		//Check if the Recipients field exists.
 		if(!(isset($_POST['pmrecipients'])) || trim($_POST['pmrecipients']) == ""){
 		
-			$error[] = 'You did not specify the recipients of this PM.';
+			$error[] = $l['pm_no_specify_recipients'];
 			
 		}else{
 		
@@ -699,7 +704,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 		//Check if the Subject field exists.
 		if(!(isset($_POST['pmsubject'])) || trim($_POST['pmsubject']) == ""){
 		
-			$error[] = 'The Subject Field was empty.';
+			$error[] = $l['pm_subjet_empty'];
 			
 		}else{
 		
@@ -717,7 +722,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 		//Check the PM Message itself
 		if(!(isset($_POST['pmbody'])) || trim($_POST['pmbody']) == ""){
 		
-			$error[] = 'The PM Message was empty.';
+			$error[] = $l['pm_message_empty'];
 			
 		}else{
 			
@@ -807,7 +812,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 					
 					if(!$is_sufficeint){
 					
-						$error[] = 'You dont have sufficient space to store the Sent Items.';
+						$error[] = $l['pm_no_space_sentitems'];
 					
 					}
 					
@@ -866,7 +871,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 				
 			if( empty($pmid) ){
 				
-				reporterror('PM Error' ,'Sorry, we were unable to enter the PM into system because the connection with the Database failed. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+				reporterror($l['pm_pm_error'] ,$l['pm_pm_error_exp1']);
 				
 				return false;
 				
@@ -886,7 +891,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $reply, $
 			
 			if(mysql_affected_rows($conn) < 1){
 					
-				reporterror('PM Error' ,'There were some errors while updating the Senders PM Inbox while Saving Unsent PM. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+				reporterror($l['pm_pm_error'] ,$l['pm_pm_error_exp2']);
 				
 				return false;
 				
@@ -956,7 +961,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 	}else{
 	
 		//Show a major error and return
-		reporterror('No Draft Specified' ,'Sorry, we were unable to process your request because no draft id was specified. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['pm_no_draft_specified'] ,$l['pm_no_draft_exp']);
 			
 		return false;
 		
@@ -973,7 +978,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('Draft not fount' ,'Sorry, we were unable to process your request because the draft was not found in the database. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['pm_draft_no_found'] ,$l['pm_draft_no_found_exp']);
 		
 		return false;
 	
@@ -1026,7 +1031,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 		//Is postcode posted
 		if(!(isset($_POST['postcode'])) || strlen(trim($_POST['postcode'])) < 16){
 		
-			$error[] = 'The Security Confirmation Code was not posted or is in wrong format.';
+			$error[] = $l['pm_sec_conf_code_no_posted'];
 			
 		}else{
 		
@@ -1039,7 +1044,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 			
 			if($postedcode != $postcode){
 			
-				$error[] = 'The Security Confirmation Code does not match.';
+				$error[] = $l['pm_sec_conf_code_no_match'];
 			
 			}
 			
@@ -1055,7 +1060,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 		//Check if the Recipients field exists.
 		if(!(isset($_POST['pmrecipients'])) || trim($_POST['pmrecipients']) == ""){
 		
-			$error[] = 'You did not specify the recipients of this PM.';
+			$error[] = $l['pm_no_specify_recipients'];
 			
 		}else{
 		
@@ -1073,7 +1078,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 		//Check if the Subject field exists.
 		if(!(isset($_POST['pmsubject'])) || trim($_POST['pmsubject']) == ""){
 		
-			$error[] = 'The Subject Field was empty.';
+			$error[] = $l['pm_subjet_empty'];
 			
 		}else{
 		
@@ -1092,7 +1097,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 		//Check the PM Message itself
 		if(!(isset($_POST['pmbody'])) || trim($_POST['pmbody']) == ""){
 		
-			$error[] = 'The PM Message was empty.';
+			$error[] = $l['pm_message_empty'];
 			
 		}else{
 			
@@ -1185,7 +1190,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 										
 					if(!$is_sufficeint){
 					
-						$error[] = 'You dont have sufficient space to store the Sent Items.';
+						$error[] = $l['pm_no_space_sentitems'];
 					
 					}
 					
@@ -1230,7 +1235,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 			
 			if(mysql_affected_rows($conn) < 1){
 				
-				reporterror('Delete Error' ,'There were some errors in deleting the saved PM. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+				reporterror($l['pm_delete_error'] ,$l['pm_delete_error_exp']);
 			
 				return false;
 				
@@ -1252,7 +1257,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 			
 			if(mysql_affected_rows($conn) < 1){
 				
-				reporterror('Delete Error' ,'There were some errors in deleting the saved PM. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+				reporterror($l['pm_delete_error'] ,$l['pm_delete_error_exp']);
 			
 				return false;
 				
@@ -1285,7 +1290,7 @@ global $smileys, $emoticons, $popup_emoticons, $postcodefield, $error, $draft, $
 			
 			if(mysql_affected_rows($conn) < 1){
 				
-				reporterror('Saving Error' ,'There were some errors in saving the PM. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+				reporterror($l['pm_saving_error'] ,$l['pm_saving_error_exp']);
 			
 				return false;
 				
@@ -1360,7 +1365,7 @@ global $error;
 	
 	if(empty($recievers)){
 	
-		$error[] = 'The Recipents were not specified.';
+		$error[] = $l['pm_no_recipents_specified'];
 	
 	}
 	
@@ -1388,7 +1393,7 @@ global $error;
 	if(mysql_num_rows($qresult) < 1){
 		
 		//There was no result
-		$error[] = 'The Recipents '.(implode(",", $recievers)).' you specified do not exist.';
+		$error[] = ''.$l['pm_the_recipents'].''.(implode(",", $recievers)).''.$l['pm_specified_no_exist'].'';
 		
 	}
 	
@@ -1439,7 +1444,7 @@ global $error;
 		
 	if(!empty($not_there)){
 		
-		$error[] = 'The Recipents '.(implode(",", $not_there)).' you specified do not exist.';
+		$error[] = $l['pm_the_recipents'].(implode(",", $not_there)).$l['pm_specified_no_exist'];
 	
 	}
 		
@@ -1486,7 +1491,7 @@ global $error;
 	
 	if(!empty($pm_full)){
 		
-		$error[] = 'The Recipent(s) \''.(implode(",", $pm_full)).'\' have no space to recieve new Messages.';
+		$error[] = $l['pm_the_recipent'].(implode(",", $pm_full)).$l['pm_no_space_recieve_new'];
 	
 	}
 	
@@ -1533,7 +1538,7 @@ global $pm, $user_group, $post_group, $smileycode, $smileyimages, $tree;
 	}else{
 	
 		//Show a major error and return
-		reporterror('No PM Specified' ,'Sorry, we were unable to process your request because no PM id was specified. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['pm_no_pm_specified'] ,$l['pm_no_pm_specified_exp']);
 			
 		return false;
 		
@@ -1561,7 +1566,7 @@ global $pm, $user_group, $post_group, $smileycode, $smileyimages, $tree;
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('No PM Found' ,'Sorry, we were unable to process your request because the PM you specified was not found in the database. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+		reporterror($l['pm_no_pm_found'] ,$l['pm_no_pm_found_exp']);
 		
 		return false;
 		 	
@@ -1571,11 +1576,11 @@ global $pm, $user_group, $post_group, $smileycode, $smileyimages, $tree;
 	$pm = mysql_fetch_assoc($qresult);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=showpm&pmid='.$pm['pmid'],
 					'txt' => $pm['pm_subject'],
-					'prefix' => 'Viewing PM ');
+					'prefix' => $l['pm_viewing_pm']);
 	
 	/*echo '<pre>';
 	print_r($pm);
@@ -1720,7 +1725,7 @@ global $pm, $user_group, $post_group, $smileycode, $smileyimages, $tree;
 		
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some problems in updating the read time of the in the Inbox. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['pm_update_error'] ,$l['pm_viewing_pm_exp1']);
 			
 			return false;
 			
@@ -1742,7 +1747,7 @@ global $pm, $user_group, $post_group, $smileycode, $smileyimages, $tree;
 			
 		if(mysql_affected_rows($conn) < 1){
 				
-			reporterror('Update Error' ,'There were some problems in updating the Users New PM Count. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['pm_update_error'] ,$l['pm_viewing_pm_exp2']);
 			
 			return false;
 			
@@ -1779,10 +1784,10 @@ global $error, $pms, $tree;
 	$pms = array();//Array of returned pm's
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=searchpm',
-					'txt' => 'Search');
+					'txt' => $l['pm_search']);
 	
 	if(isset($_POST['searchpm'])){
 	
@@ -1795,7 +1800,7 @@ global $error, $pms, $tree;
 		
 			if(!in_array($folder, $validfol)){
 			
-				$error[] = 'The Folder to search in is invalid.';
+				$error[] = $l['pm_folder_search_invalid'];
 			
 			}
 	
@@ -1860,7 +1865,7 @@ global $error, $pms, $tree;
 		//Has something even be set to find
 		if(empty($subject) && empty($hasthewords) && empty($doesnthave) && empty($from) && empty($to)){
 		
-			$error[] = 'You did not give anything to search.';
+			$error[] = $l['pm_no_anything_search'];
 		
 		}
 		
@@ -1945,7 +1950,7 @@ global $error, $pms, $tree;
 		
 		}else{
 		
-			$error[] = 'No Personal Messages were found.';
+			$error[] = $l['pm_no_pm_found'];
 			
 			$theme['call_theme_func'] = 'searchpm_theme';
 			
@@ -2001,10 +2006,10 @@ global $error, $foldercount, $tree;
 	$prunedays = 0;
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=prunepm',
-					'txt' => 'Prune');
+					'txt' => $l['pm_prune']);
 	
 	if(isset($_POST['prunesubmit'])){
 		
@@ -2015,7 +2020,7 @@ global $error, $foldercount, $tree;
 	
 		}else{
 		
-			$error[] = 'The Number of days was not Specified.';
+			$error[] = $l['pm_no_num_days'];
 			
 		}
 		
@@ -2027,7 +2032,7 @@ global $error, $foldercount, $tree;
 	
 		}else{
 		
-			$error[] = 'The Folder to Prune was not Specified.';
+			$error[] = $l['pm_no_prune_folder_specified'];
 			
 		}
 		
@@ -2047,7 +2052,7 @@ global $error, $foldercount, $tree;
 		
 		if(!in_array($prunefolder, $validfol)){
 		
-			$error[] = 'The Folder to Prune was not Valid.';
+			$error[] = $l['pm_prune_folder_invalid'];
 		
 		}
 		
@@ -2058,7 +2063,7 @@ global $error, $foldercount, $tree;
 		
 		if(0 >= $prunedays){
 		
-			$error[] = 'The Num of days is negative or Zero.';
+			$error[] = $l['pm_num_days_negative'];
 		
 		}
 		
@@ -2172,19 +2177,19 @@ global $error, $foldercount, $tree;
 			$makequery[0] = array("DELETE FROM ".$dbtables['pm']." 
 							WHERE pm_to = '".$user['id']."'
 							AND pm_folder = '0'
-							AND pm_time < $time", 'Could not Prune the Messages in the Inbox.');
+							AND pm_time < $time", $l['pm_no_prune_inbox']);
 			
 			//Sent Items
 			$makequery[1] = array("DELETE FROM ".$dbtables['pm']." 
 							WHERE pm_from = '".$user['id']."'
 							AND pm_folder = '1'
-							AND pm_time < $time", 'Could not Prune the Messages in Sent Items.');
+							AND pm_time < $time", $l['pm_no_prune_sentitems']);
 							
 			//Drafts
 			$makequery[2] = array("DELETE FROM ".$dbtables['pm']." 
 							WHERE pm_from = '".$user['id']."'
 							AND pm_folder = '2'
-							AND pm_time < $time", 'Could not Prune the Messages in the Drafts.');
+							AND pm_time < $time", $l['pm_no_prune_drafts']);
 							
 			
 			//The Loop
@@ -2252,10 +2257,10 @@ global $error, $foldercount, $tree;
 	$error = array();	
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=inbox',
-					'txt' => 'Messages');
+					'txt' => $l['pm_messages']);
 	
 	$tree[] = array('l' => $globals['index_url'].'act=usercp&ucpact=emptyfolders',
-					'txt' => 'Empty Folders');
+					'txt' => $l['pm_empty_folders']);
 		
 	if(isset($_POST['emptyfoldersubmit'])){
 		
@@ -2264,7 +2269,7 @@ global $error, $foldercount, $tree;
 			!isset($_POST['emptysentitems']) && 
 			!isset($_POST['emptydrafts']) ) {
 		
-			$error[] = 'No folder was selected to Empty.';
+			$error[] = $l['pm_no_folder_selected'];
 		
 		}
 		
@@ -2292,17 +2297,17 @@ global $error, $foldercount, $tree;
 		//Inbox
 		$makequery[0] = array("DELETE FROM ".$dbtables['pm']." 
 						WHERE pm_to = '".$user['id']."'
-						AND pm_folder = '0'", 'Could not Empty the Inbox Folder.', 0);
+						AND pm_folder = '0'", $l['pm_no_empty_inbox'], 0);
 		
 		//Sent Items
 		$makequery[1] = array("DELETE FROM ".$dbtables['pm']." 
 						WHERE pm_from = '".$user['id']."'
-						AND pm_folder = '1'", 'Could not Empty the Sent Items Folder.', 0);
+						AND pm_folder = '1'", $l['pm_no_empty_sentitems'], 0);
 						
 		//Drafts
 		$makequery[2] = array("DELETE FROM ".$dbtables['pm']." 
 						WHERE pm_from = '".$user['id']."'
-						AND pm_folder = '2'", 'Could not Empty the Drafts Folder.', 0);
+						AND pm_folder = '2'", $l['pm_no_empty_drafts'], 0);
 						
 		
 		//Empty the Inbox
@@ -2364,7 +2369,7 @@ global $error, $foldercount, $tree;
 					
 			if(mysql_affected_rows($conn) < 1){
 				
-				reporterror('Empty Folder Error' ,'There were some errors in updating the users PM count. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+				reporterror($l['pm_empty_folder_error'] ,$l['pm_deleting_error_exp2']);
 				
 				return false;
 				
@@ -2412,7 +2417,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	}else{
 	
 		//Show a major error and return
-		reporterror('No PM specified' ,'Sorry, we were unable to process your request because no PM id was specified. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['pm_no_pm_specified'] ,$l['pm_no_pm_specified_exp']);
 			
 		return false;
 		
@@ -2427,7 +2432,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	}else{
 	
 		//Show a major error and return
-		reporterror('No Folder specified' ,'Sorry, we were unable to process your request because no Folder id was specified. If you have followed a valid link please contact us at <a href="mailto:'.$globals['board_email'].'">'.$globals['board_email'].'</a>.');
+		reporterror($l['pm_no_folder_specified'] ,$l['pm_no_pm_specified_exp']);
 			
 		return false;
 		
@@ -2471,19 +2476,19 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 	$makequery[0] = array("DELETE FROM ".$dbtables['pm']." 
 					WHERE pm_to = '".$user['id']."'
 					AND pm_folder = '0'
-					AND pmid IN ($pmids)", 'Could not delete the PM\'s in the Inbox Folder.', 0);
+					AND pmid IN ($pmids)", $l['pm_no_delete_inbox'], 0);
 	
 	//Sent Items
 	$makequery[1] = array("DELETE FROM ".$dbtables['pm']." 
 					WHERE pm_from = '".$user['id']."'
 					AND pm_folder = '1'
-				AND pmid IN ($pmids)", 'Could not delete the PM\'s in the Sent Items Folder.', 0);
+				AND pmid IN ($pmids)", $l['pm_no_delete_sentitems'], 0);
 					
 	//Drafts
 	$makequery[2] = array("DELETE FROM ".$dbtables['pm']." 
 					WHERE pm_from = '".$user['id']."'
 					AND pm_folder = '2'
-					AND pmid IN ($pmids)", 'Could not delete the PM\'s in the Drafts Folder.', 0);
+					AND pmid IN ($pmids)", $l['pm_no_delete_drafts'], 0);
 						
 	
 	//Empty the Inbox
@@ -2537,7 +2542,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 							
 			if(mysql_affected_rows($conn) < 1){
 					
-				reporterror('Deleting Error' ,'There were some errors in deleting the PM\'s you specified. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+				reporterror($l['pm_deleting_error'] ,$l['pm_deleting_error_exp1']);
 				
 				return false;
 				
@@ -2568,7 +2573,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 				
 		if(mysql_affected_rows($conn) < 1){
 			
-			reporterror('Empty Folder Error' ,'There were some errors in updating the users PM count. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['pm_empty_folder_error'] ,$l['pm_empty_folder_error_exp']);
 			
 			return false;
 			
@@ -2605,19 +2610,19 @@ global $user, $conn, $dbtables, $logged_in, $globals, $foldercount;
 	$countquery[0] = array("SELECT COUNT(*) AS pms 
 					FROM ".$dbtables['pm']." 
 					WHERE pm_to = '".$user['id']."'
-					AND pm_folder = '0'", 'Could not COUNT the Messages in the Inbox.');
+					AND pm_folder = '0'", $l['pm_no_count_inbox']);
 	
 	//Sent Items
 	$countquery[1] = array("SELECT COUNT(*) AS pms 
 					FROM ".$dbtables['pm']." 
 					WHERE pm_from = '".$user['id']."'
-					AND pm_folder = '1'", 'Could not COUNT the Messages in Sent Items.');
+					AND pm_folder = '1'", $l['pm_no_count_sentitems']);
 				
 	//Drafts
 	$countquery[2] = array("SELECT COUNT(*) AS pms 
 					FROM ".$dbtables['pm']." 
 					WHERE pm_from = '".$user['id']."'
-					AND pm_folder = '2'", 'Could not COUNT the Messages in the Drafts.');
+					AND pm_folder = '2'", $l['pm_no_count_drafts']);
 					
 	
 	//The Loop
@@ -2629,7 +2634,7 @@ global $user, $conn, $dbtables, $logged_in, $globals, $foldercount;
 		if(mysql_num_rows($qresult) < 1){
 	
 			//Show a major error and return
-			reporterror('PM Counting error' ,'Sorry, we were unable to process your request because there were some problems in counting the PMs in different folders. Please Contact the <a href="mailto:'.$globals['board_email'].'">Administrator</a>.');
+			reporterror($l['pm_counting_error'] ,$l['pm_counting_error_exp']);
 			
 			return false;
 				

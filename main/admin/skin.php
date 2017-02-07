@@ -31,6 +31,11 @@ function skin(){
 
 global $user, $conn, $dbtables, $logged_in, $globals, $l, $AEF_SESS, $theme;
 
+	if(!load_lang('admin/skin')){
+		
+		return false;
+			
+	}
 	//The name of the file
 	$theme['init_theme'] = 'admin/skin';
 	
@@ -119,7 +124,7 @@ global $error, $themes;
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('No Themes Found' ,'There is some problem in the boards theme.');
+		reporterror($l['no_themes_found'], $l['problem_boards_theme']);
 		
 		return false;
 		
@@ -145,7 +150,7 @@ global $error, $themes;
 		//Which skin do you want?
 		if(!(isset($_POST['theme_id'])) || (trim($_POST['theme_id']) == "")){
 		
-			$error[] = 'The default boards theme was not submitted.';
+			$error[] = $l['no_default_theme'];
 			
 		}else{
 		
@@ -153,7 +158,7 @@ global $error, $themes;
 			
 			if(!in_array($theme_id, $themeids)){
 			
-				$error[] = 'The boards theme specified is invalid.';
+				$error[] = $l['theme_invalid'];
 			
 			}
 			
@@ -198,7 +203,7 @@ global $error, $themes;
 		//Whats the path ?
 		if(!(isset($_POST['path'])) || (trim($_POST['path']) == "")){
 		
-			$error[] = 'The path was was not submitted.';
+			$error[] = $l['no_path'];
 			
 		}else{
 		
@@ -212,7 +217,7 @@ global $error, $themes;
 		//Whats the URL ?
 		if(!(isset($_POST['url'])) || (trim($_POST['url']) == "")){
 		
-			$error[] = 'The URL was was not submitted.';
+			$error[] = $l['no_url'];
 			
 		}else{
 		
@@ -247,7 +252,7 @@ global $error, $themes;
 		//Did something even comeout
 		if(empty($thregistry)){
 		
-			$error[] = 'The URL was was not submitted.';
+			$error[] = $l['no_url'];
 			
 		}
 		
@@ -272,7 +277,7 @@ global $error, $themes;
 		
 			if(empty($serialized_registry)){
 			
-				$error[] = 'There were some errors in resetting the themes Paths and URLs.';
+				$error[] = $l['errors_resetting'];
 				
 				//on error call the form
 				if(!empty($error)){
@@ -346,7 +351,7 @@ global $error;
 		
 		if(empty($_POST['importtype']) || !in_array($_POST['importtype'], array(1,2,3,4))){
 		
-			$error[] = 'You did not specify the action to be taken to install the theme.';
+			$error[] = $l['no_action'];
 		
 		}else{
 		
@@ -365,7 +370,7 @@ global $error;
 			//Which folder is it?
 			if(!(isset($_POST['folderpath'])) || (trim($_POST['folderpath']) == "")){
 			
-				$error[] = 'You did not specify the folder path of the theme to be imported.';
+				$error[] = $l['no_folder'];
 				
 			}else{
 			
@@ -387,7 +392,7 @@ global $error;
 			//Whats the URL ?
 			if(!(isset($_POST['weburl'])) || (trim($_POST['weburl']) == "")){
 			
-				$error[] = 'You did not specify the URL of the compressed theme file.';
+				$error[] = $l['no_url_compressed'];
 				
 			}else{
 			
@@ -396,7 +401,7 @@ global $error;
 				//Check its a Valid Link atleast
 				if (!preg_match('/^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\//i', $weburl)) {
 				
-					$error[] = 'The Web URL you gave is Invalid.';
+					$error[] = $l['url_invalid'];
 				
 				}else{
 					
@@ -404,7 +409,7 @@ global $error;
 					
 					if(!get_web_file($weburl, $compressedfile)){
 				
-						$error[] = 'There were errors while installing the file from the web.';
+						$error[] = $l['errors_installing'];
 				
 					}
 				
@@ -424,7 +429,7 @@ global $error;
 			//Which folder is it?
 			if(!(isset($_POST['filepath'])) || (trim($_POST['filepath']) == "")){
 			
-				$error[] = 'You did not specify the local path of the theme file to be imported.';
+				$error[] = $l['no_local path'];
 				
 			}else{
 			
@@ -448,7 +453,7 @@ global $error;
 			   empty($_FILES['uploadtheme']['size']))
 			{
 			
-				$error[] = 'No Theme file was given to be uploaded.';
+				$error[] = $l['no_theme_file_given'];
 			
 			}else{
 			
@@ -459,7 +464,7 @@ global $error;
 				//Lets move the Theme File
 				if(!(@move_uploaded_file($tempfile, $filename))){
 				
-					$error[] = 'The theme file could not be uploaded.';
+					$error[] = $l['errors_uploading'];
 				
 				}
 			
@@ -488,7 +493,7 @@ global $error;
 		
 			if(!decompress($compressedfile, $globals['themesdir'], 0)){
 			
-				$error[] = 'Could not decompress the theme file.';
+				$error[] = $l['no_decompress'];
 			
 			}else{
 				
@@ -513,7 +518,7 @@ global $error;
 		
 		if(empty($th_path)){
 		
-			$error[] = 'Installation was aborted due to some illegal errors.';
+			$error[] = $l['illegal_errors'];
 		
 		}
 		
@@ -530,7 +535,7 @@ global $error;
 		
 		if(empty($registry)){
 		
-			$error[] = 'Installation was aborted as there are some errors in the registry file of the theme to be installed.';
+			$error[] = $l['errors_in_registry'];
 		
 		}
 		
@@ -555,7 +560,7 @@ global $error;
 				
 		if( empty($thid) ){
 			
-			reporterror('Theme Installation Error' ,'There were some errors in installing the new theme.');
+			reporterror($l['install_error'], $l['install_error_exp']);
 			
 			return false;
 			
@@ -573,7 +578,7 @@ global $error;
 						
 		if(mysql_affected_rows($conn) < 1){
 			
-			reporterror('Theme Installation Error' ,'There were some errors in installing the new theme.');
+			reporterror($l['install_error'], $l['install_error_exp']);
 			
 			return false;
 			
@@ -624,7 +629,7 @@ global $error, $themes;
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('No Themes Found' ,'There is some problem in the boards theme.');
+		reporterror($l['no_themes_found'], $l['problem_boards_theme']);
 		
 		return false;
 		
@@ -650,7 +655,7 @@ global $error, $themes;
 		//Which skin do you want to uninstall?
 		if(!(isset($_POST['theme_id'])) || (trim($_POST['theme_id']) == "")){
 		
-			$error[] = 'The theme to be uninstalled was not submitted.';
+			$error[] = $l['no_uninstalled_subm'];
 			
 		}else{
 		
@@ -658,14 +663,14 @@ global $error, $themes;
 			
 			if(!in_array($theme_id, $themeids)){
 			
-				$error[] = 'The theme to be uninstalled does not exist.';
+				$error[] = $l['no_uninstalled_exist'];
 			
 			}
 			
 			//Not the default
 			if($theme_id == 1){
 			
-				$error[] = 'The default AEF (Electron) theme cannot be uninstalled.';
+				$error[] = $l['no_default_uninstall'];
 			
 			}
 			
@@ -747,7 +752,7 @@ global $error, $theme_registry, $themes;
 	if(mysql_num_rows($qresult) < 1){
 	
 		//Show a major error and return
-		reporterror('No Themes Found' ,'There is some problem in the boards theme.');
+		reporterror($l['no_themes_found'], $l['problem_boards_theme']);
 		
 		return false;
 		
@@ -770,7 +775,7 @@ global $error, $theme_registry, $themes;
 	if(empty($_GET['theme_id']) || trim($_GET['theme_id']) == "" || !is_numeric(trim($_GET['theme_id']))){
 	
 		//Show a major error and return
-		reporterror('No theme specified' ,'Sorry, we were unable to load any theme settings because the theme was not specified.');
+		reporterror($l['no_theme_specified'], $l['no_theme_specified_exp']);
 			
 		return false;
 	
@@ -788,7 +793,7 @@ global $error, $theme_registry, $themes;
 	if(empty($theme_registry)){
 	
 		//Show a major error and return
-		reporterror('Error' ,'Sorry, there were some errors while loading the themes registry.');
+		reporterror($l['error_theme'], $l['error_theme_exp']);
 			
 		return false;
 	

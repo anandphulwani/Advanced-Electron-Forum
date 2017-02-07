@@ -50,6 +50,20 @@ $l['go_to_last_post'] = 'Go to the last post of this topic';
 $l['by'] = 'by';
 $l['page_jump_title'] = 'Type the page to jump to';
 $l['submit_go'] = 'Go';
+
+$l['quick_topic'] = 'Quick Topic';
+$l['your_name'] = 'Your Name';//For Guests
+$l['your_email'] = 'Your Email';//Guests Email
+$l['newtopic_title'] = 'Title';
+$l['newtopic_desc'] = 'Description';
+$l['newtopic_post'] = 'Post';
+$l['newtopic_options'] = 'Options';
+$l['options_enable_smileys'] = '<b>Enable<\/b> Smileys';
+$l['options_notify_topic'] = '<b>Notify<\/b> Replies to this Topic';
+$l['options_post_poll'] = '<b>Post<\/b> a Poll';
+$l['newtopic_submit_button'] = 'Post Topic';
+$l['newtopic_advanced'] = 'Advanced Options';
+
 $l['topics_heading'] = 'Topics in forum';
 $l['header_subject'] = 'Topic Subject';
 $l['header_started_by'] = 'Started By';
